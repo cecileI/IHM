@@ -4,6 +4,8 @@ package ihm;
 import java.awt.*;
 import java.awt.geom.*;
 
+
+
 /**
  * Classe utilitaire pour afficher des tortues dans le Canvas, et tracer des traits
  * 
