@@ -191,3 +191,7 @@ public class CanvasTortue
                         new Rectangle(xPosition, yPosition, lo, la));
     }
 }
+
+
+
+
