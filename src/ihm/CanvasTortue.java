@@ -1,3 +1,6 @@
+
+package ihm;
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -5,7 +8,7 @@ import java.awt.geom.*;
  * Classe utilitaire pour afficher des tortues dans le Canvas, et tracer des traits
  * 
  * @author Patrick Girard
- * @version fŽvrier 2017
+ * @version fï¿½vrier 2017
  */
 public class CanvasTortue
 {
