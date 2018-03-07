@@ -4,11 +4,3 @@
  * and open the template in the editor.
  */
 package ihm.controler;
-
-/**
- *
- * @author Group7
- */
-public class interactionProfesseur {
-    
-}
