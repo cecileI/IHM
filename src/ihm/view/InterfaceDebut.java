@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Clara
+ * @author Group7
  */
 public class InterfaceDebut extends JFrame {
     

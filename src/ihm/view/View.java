@@ -13,7 +13,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
- * @author clarisse
+ * @author Group7
  */
 public class View extends JFrame{
     private JTextField txtNombreEleves,txtPrenom,txtNom,txtNiveau,txtProf;
