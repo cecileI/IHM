@@ -54,9 +54,7 @@ public class SQLiteJDBCDriverConnection {
             System.out.println(id + "\t" +nameE );
         }
         
-        
-        
-        
+                
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
