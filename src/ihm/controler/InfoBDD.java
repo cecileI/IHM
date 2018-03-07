@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class InfoBDD {
     private ArrayList<Tentative> listeTentative;
+    private ArrayList<Tentative> listeTentativeNE;
     private ArrayList<Professeur> listeProfesseur;
     private ArrayList<Classe> listeClasse;
     
@@ -57,6 +58,37 @@ public class InfoBDD {
         return listeTentative;
     }
     
+    
+     /**
+    * Création de la liste des Tentatives NON-EVALUEES : StatutTentative non-evalué
+    */
+    public ArrayList<Tentative> selectionListTentativeNE () {
+        listeTentativeNE = new ArrayList<Tentative>();
+
+        Connection recon = connect();
+        Statement stmt = null;
+        String sql = "select IdTentative, IdEleve, IdExercice, StatutTentative, IdProf, ModelEleve from Tentative where StatutTentative='Non-Evalue'";
+        try{
+            stmt = recon.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idT = rs.getInt("IdTentative");
+                int idEleve = rs.getInt("IdEleve");
+                int  idExercice = rs.getInt("IdExercice"); 
+                String StatutTentative = rs.getString("StatutTentative");
+                int idProf = rs.getInt("IdProf");
+                String ModelEleve = rs.getString("ModelEleve");
+
+                Tentative tentNE = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
+                listeTentativeNE.add(tentNE);                          
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listeTentativeNE;
+    }
+    
+   
     /**
     * Création de la liste des Professeurs
     */

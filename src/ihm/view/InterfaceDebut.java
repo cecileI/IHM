@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.view;
 
 import java.awt.*;
@@ -12,7 +7,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Clara
+ * @author Group7
  */
 public class InterfaceDebut extends JFrame {
     
