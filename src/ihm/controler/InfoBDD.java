@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.controler;
 
 import static ihm.SQLiteJDBCDriverConnection.connect;
@@ -22,13 +17,13 @@ public class InfoBDD {
     private ArrayList<Tentative> listeTentative;
     private ArrayList<Professeur> listeProfesseur;
     
-    //Création de la liste Tentative (tentatives des exercices)
-    
+    /**
+    * Création de la liste Tentative (tentatives des exercices)
+    */
     public ArrayList<Tentative> selectionListTentative () {
         
         listeTentative = new ArrayList<Tentative>();
-        
-        
+
         Connection recon = connect();
         Statement stmt = null;
         
@@ -58,10 +53,11 @@ public class InfoBDD {
         }
 
         return listeTentative;
-          
     }
     
-    //Création de la liste Professeur
+    /**
+    * Création de la liste des Professeurs
+    */
     public ArrayList<Professeur> selectionListProfesseur () {
         
         listeProfesseur = new ArrayList<Professeur>();
@@ -89,9 +85,6 @@ public class InfoBDD {
             System.out.println(e.getMessage());
         }
         return listeProfesseur;
-    }
-    
-    
-    
+    }   
     
 }
