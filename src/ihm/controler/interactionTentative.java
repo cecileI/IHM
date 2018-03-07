@@ -24,7 +24,7 @@ public class interactionTentative {
     private ArrayList<Tentative> listeTentative;
     //private Tentative tentative;
     
-    //* Constructeur de la classe interactionTentative
+    // Constructeur de la classe interactionTentative
     public interactionTentative() {
     }   
     
@@ -60,6 +60,10 @@ public class interactionTentative {
                     
             listeTentative.add(tent);                          
         }
+        
+        
+        
+        
         
         
         } catch (SQLException e) {

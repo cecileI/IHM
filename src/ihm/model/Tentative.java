@@ -1,14 +1,9 @@
 package ihm.model;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author cece1
+ * Classe Tentative contenant tous les paramètres pour une tentative, 
+ * permettant de gérer les tentatives des exercices
+ * @author Group7
  */
 public class Tentative {
     private int idTentative;
@@ -18,6 +13,7 @@ public class Tentative {
     private int idProf;
     private String modeleEleve;
 
+    //Constructeur de la classe Tentative
     public Tentative(int idTentative, int idEleve, int idExercice, String statutTentative, int idProf, String modeleEleve) {
         this.idTentative = idTentative;
         this.idEleve = idEleve;
@@ -27,6 +23,7 @@ public class Tentative {
         this.modeleEleve = modeleEleve;
     }
 
+    //getters-setters des paramètres
     public int getIdTentative() {
         return idTentative;
     }

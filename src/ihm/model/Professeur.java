@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.model;
 
 /**
- *
+ * Classe Professeur contenant tous les paramètres d'un professeur, 
+ * permettant de gérer les professeurs
  * @author Group7
  */
 public class Professeur {
@@ -15,6 +11,7 @@ public class Professeur {
     private String prenomProf;
     private String mdpProf;
 
+    //Constructeur de la classe Professeur
     public Professeur(int idProf, String nomProf, String prenomProf, String mdpProf) {
         this.idProf = idProf;
         this.nomProf = nomProf;
@@ -22,6 +19,7 @@ public class Professeur {
         this.mdpProf = mdpProf;
     }
 
+    //getters-setters des paramètres
     public int getIdProf() {
         return idProf;
     }
