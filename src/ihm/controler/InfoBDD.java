@@ -20,20 +20,18 @@ import java.util.ArrayList;
 public class InfoBDD {
     private ArrayList<Tentative> listeTentative;
     
-    //Création de la liste Tentative (tentatives des exercices)
-    
+    /**
+    * Création de la liste Tentative (tentatives des exercices)
+    */
     public ArrayList<Tentative> selectionListTentative () {
         
         listeTentative = new ArrayList<Tentative>();
-        
-        
+
         Connection recon = connect();
         Statement stmt = null;
-        
-        
-        String sql = "select IdTentative, IdEleve, IdExercice, StatutTentative, IdProf, ModelEleve form Tentative";
-        
-        
+
+        String sql = "select IdTentative, IdEleve, IdExercice, StatutTentative, IdProf, ModelEleve from Tentative";
+
         try{
             stmt = recon.createStatement();
 
@@ -56,7 +54,5 @@ public class InfoBDD {
         }
 
         return listeTentative;
-        
-        
     }
 }
