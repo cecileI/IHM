@@ -16,7 +16,7 @@ import javax.swing.tree.TreeSelectionModel;
  * @author clarisse
  */
 public class View extends JFrame{
-    private JTextField txtNombreEleves,txtPrenom,txtNom,txtAge,txtSexe,txtNiveau,txtProf;
+    private JTextField txtNombreEleves,txtPrenom,txtNom,txtNiveau,txtProf;
     private JTree tree;
     private DefaultMutableTreeNode racine;
     private Eleve currentEleve;
@@ -80,10 +80,8 @@ public class View extends JFrame{
     */
     public void update(){
         if (currentEleve != null) {
-            txtSexe.setText(currentEleve.getSexe()); // Sexe de l'eleve
-            txtAge.setText(currentEleve.getAge()); // Age de l'eleve
-            txtNom.setText(currentEleve.getNom()); // Nom de l'eleve
-            txtPrenom.setText(currentEleve.getPrenom()); //Prenom de l'eleve
+            txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
+            txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
             String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
             txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
             txtProf.setText(currentEleve.getClasse().getProf()); //Affichage du nom du prof
@@ -96,8 +94,6 @@ public class View extends JFrame{
             txtProf.setText(currentClasse.getProf()); //Affichage du nom du prof
             txtNiveau.setText("" + currentClasse.getNiveau()); // Affichage du niveau de la classe
             this.viewTable.setData(currentClasse); //mise a jour JTable
-            txtSexe.setText(""); //Vide le champ sexe
-            txtAge.setText(""); //Vide le champ age
             txtNom.setText(""); //Vide le champ nom
             txtPrenom.setText(""); //Vide le champ prenom
             
