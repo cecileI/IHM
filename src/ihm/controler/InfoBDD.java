@@ -13,22 +13,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 /**
- * Classe interactionTentative contenant une liste des Tentatives et permettant 
- * d'intéragir avec les tentatives des exercices réalisés
- * @author Group7
+ *
+ * @author clarisse
  */
-public class interactionTentative {
-
+public class InfoBDD {
     private ArrayList<Tentative> listeTentative;
-    //private Tentative tentative;
-    
-    // Constructeur de la classe interactionTentative
-    public interactionTentative() {
-    }   
-    
-    
     
     //Création de la liste Tentative (tentatives des exercices)
     
@@ -45,27 +35,22 @@ public class interactionTentative {
         
         
         try{
-        stmt = recon.createStatement();
-        
-        ResultSet rs = stmt.executeQuery(sql);
-        while (rs.next()) {
-            int idT = rs.getInt("IdTentative");
-            int idEleve = rs.getInt("IdEleve");
-            int  idExercice = rs.getInt("IdExercice"); 
-            String StatutTentative = rs.getString("StatutTentative");
-            int idProf = rs.getInt("IdProf");
-            String ModelEleve = rs.getString("ModelEleve");
-            
-            Tentative tent = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
-                    
-            listeTentative.add(tent);                          
-        }
-        
-        
-        
-        
-        
-        
+            stmt = recon.createStatement();
+
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idT = rs.getInt("IdTentative");
+                int idEleve = rs.getInt("IdEleve");
+                int  idExercice = rs.getInt("IdExercice"); 
+                String StatutTentative = rs.getString("StatutTentative");
+                int idProf = rs.getInt("IdProf");
+                String ModelEleve = rs.getString("ModelEleve");
+
+                Tentative tent = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
+
+                listeTentative.add(tent);                          
+            }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -74,7 +59,4 @@ public class interactionTentative {
         
         
     }
-    
-    
-    
 }
