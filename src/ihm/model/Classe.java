@@ -27,14 +27,7 @@ public class Classe {
 		this.listEleve = new ArrayList<Eleve>();
 	}
 
-//	public void addEleve(Eleve e) {
-//		this.listEleve.add(e);
-//		e.setClasse(this);
-//	}
-
-	/**
-	 * @return
-	 */
+        
 	public Object getNiveau() {
 		return this.niveau;
 	}
