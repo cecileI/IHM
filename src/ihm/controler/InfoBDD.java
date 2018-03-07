@@ -18,7 +18,7 @@ public class InfoBDD {
     private ArrayList<Tentative> listeTentative;
     private ArrayList<Tentative> listeTentativeNE;
     private ArrayList<Professeur> listeProfesseur;
-    private ArrayList<Classe> listeClasse;
+    private static ArrayList<Classe> listeClasse;
     
     /**
     * Création de la liste Tentative (tentatives des exercices)
@@ -124,7 +124,7 @@ public class InfoBDD {
     /**
     * Création de la liste de classe
     */
-    public ArrayList<Classe> selectionListClasse () {
+    public static ArrayList<Classe> selectionListClasse () {
         
         listeClasse = new ArrayList<Classe>();
         
