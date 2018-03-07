@@ -11,4 +11,10 @@ package ihm.view;
  */
 public class View {
     
+    
+    
+    
+    
+    
+    
 }
