@@ -56,11 +56,9 @@ public class interactionTentative {
             int idProf = rs.getInt("IdProf");
             String ModelEleve = rs.getString("ModelEleve");
             
-            //Tentative tent = new Tentative(IdTentative,IdEleve,IdExercice,StatutTentative,IdProf,ModelEleve);
+            Tentative tent = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
                     
-            //listTentative.add.
-            
-                    
+            listeTentative.add(tent);                          
         }
         
         
