@@ -24,12 +24,11 @@ public class View extends JFrame{
     
     public View(){
     // Tree gestion
-            racine = new DefaultMutableTreeNode(model.getEcole().getNom()); // creation racine 
+            racine = new DefaultMutableTreeNode("Gphy"); // creation racine //model.getEcole().getNom()
             tree = new JTree(racine);  // creation arbre à partir de  racine
             tree.setShowsRootHandles(true);
             tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
             this.add(tree);
-            
     }
     
     /*
@@ -38,7 +37,7 @@ public class View extends JFrame{
     */
     public void createTree(){
         //on parcourt toutes las classes
-        for (Classe laclasse : this.model.getEcole().getClasses()){
+        for (Classe laclasse : this.model.getEcole().getClasses()){ //liste de classe //this.model.getEcole().getClasses()
             //on crée de nouveaux noeuds
             DefaultMutableTreeNode nodeClasse = new DefaultMutableTreeNode(laclasse);
             //on ajoute les classes à l'arbre

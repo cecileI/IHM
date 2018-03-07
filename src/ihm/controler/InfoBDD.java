@@ -1,6 +1,7 @@
 package ihm.controler;
 
 import static ihm.SQLiteJDBCDriverConnection.connect;
+import ihm.model.Classe;
 import ihm.model.Professeur;
 import ihm.model.Tentative;
 import java.sql.Connection;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class InfoBDD {
     private ArrayList<Tentative> listeTentative;
     private ArrayList<Professeur> listeProfesseur;
+    private ArrayList<Classe> listeClasse;
     
     /**
     * Création de la liste Tentative (tentatives des exercices)
@@ -86,5 +88,36 @@ public class InfoBDD {
         }
         return listeProfesseur;
     }   
+    
+    /**
+    * Création de la liste de classe
+    */
+    public ArrayList<Classe> selectionListClasse () {
+        
+        listeClasse = new ArrayList<Classe>();
+        
+        Connection recon = connect();
+        Statement stmt = null;            
+        String sql = "select Niveau IdProf from Classe";
+        
+        try{
+            stmt = recon.createStatement(); //permet de faire la connection
+
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String  nomClasse = rs.getString("Niveau");
+                int prof = rs.getInt("Prof");
+                
+                Classe classe = new Classe(nomClasse,prof);
+
+                listeClasse.add(classe);                          
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listeClasse;
+    }   
+
     
 }

@@ -5,10 +5,10 @@
  */
 package ihm.controler;
 
+import ihm.model.Exercice;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import ihm.model.*;
 import ihm.view.View;
 /**
  *
