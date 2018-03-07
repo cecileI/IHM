@@ -27,8 +27,7 @@ public class interactionTentative {
     // Constructeur de la classe interactionTentative
     public interactionTentative() {
     }   
-    
-    
+        
     
     //Création de la liste Tentative (tentatives des exercices)
     
