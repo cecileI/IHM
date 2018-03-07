@@ -1,4 +1,4 @@
-package ihm;
+package ihm.model;
 /**
  * Tortue LOGO capable de faire de la vitesse
  * 

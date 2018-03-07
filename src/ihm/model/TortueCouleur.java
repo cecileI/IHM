@@ -1,4 +1,4 @@
-package ihm; 
+package ihm.model; 
 /**
  * Tortue LOGO capable d'�crire en couleur
  * Seules les couleurs suivantes sont autoris�es :

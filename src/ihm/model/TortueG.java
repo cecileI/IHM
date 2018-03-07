@@ -1,4 +1,4 @@
-package ihm;
+package ihm.model;
 /**
 * La tortue du programme LOGO. Graphique !
 *

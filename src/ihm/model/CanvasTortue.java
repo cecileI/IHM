@@ -1,5 +1,5 @@
 
-package ihm;
+package ihm.model;
 
 import java.awt.*;
 import java.awt.geom.*;
