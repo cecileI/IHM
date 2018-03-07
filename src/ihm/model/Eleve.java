@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.model;
 
 /**
- *
+ * Classe Eleve contenant tous les paramètres d'un élèves, permettant de gérer les élèves
  * @author Group7
  */
 public class Eleve {
@@ -15,6 +10,8 @@ public class Eleve {
     private String prenomEleve;
     private Classe classe;
 
+
+    //Constructeur de la classe Eleve
     public Eleve(int idEleve, String nomEleve, String prenomEleve, Classe classe) {
         this.idEleve = idEleve;
         this.nomEleve = nomEleve;
@@ -22,6 +19,7 @@ public class Eleve {
         this.classe = classe;
     }
 
+    //getters-setters des paramètres
     public int getIdEleve() {
         return idEleve;
     }

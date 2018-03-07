@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.model;
 
 /**
- *
+ * Classe Notation contenant tous les paramètres relatifs à la notation des exercices
+ * Permet de gérer la notation des exercices
  * @author Group7
  */
 public class Notation {
@@ -14,11 +10,13 @@ public class Notation {
     private String statutExercice;
     private String commentaireExercice;
 
+    //Constructeur de la classe Notation
     public Notation(String statutExercice, String commentaireExercice) {
         this.statutExercice = statutExercice;
         this.commentaireExercice = commentaireExercice;
     }
 
+    //getters-setters des paramètres
     public String getStatutExercice() {
         return statutExercice;
     }

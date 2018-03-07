@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.model;
 
 /**
- *
+ * Classe Exercice contenant tous les paramètres d'un exercice, permettant de gérer les exercices
  * @author Group7
  */
 public class Exercice {
@@ -17,6 +12,7 @@ public class Exercice {
     private String consigne;
     private String modeTortue;  //rapidité de la tortue
 
+    //Constructeur de la classe Exercice
     public Exercice(int idEx, String titre, String modele, String consigne, String modeTortue) {
         this.idEx = idEx;
         this.titre = titre;
@@ -25,6 +21,7 @@ public class Exercice {
         this.modeTortue = modeTortue;
     }
 
+    //getters-setters des paramètres
     public int getIdEx() {
         return idEx;
     }
