@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class Classe {
 	private ArrayList<Eleve> listEleve;
 	private String niveau;
-	private String prof;
+	private int prof;
 
 	/**
 	 * @param niveau
 	 * @param prof
 	 */
-	public Classe(String niveau, String prof) {
+	public Classe(String niveau, int prof) {
 
 		this.niveau = niveau;
 		this.prof = prof;
@@ -53,7 +53,7 @@ public class Classe {
 		return this.listEleve.size();
 	}
 
-	public String getProf() {
+	public int getProf() {
 		return this.prof;
 	}
 
@@ -74,7 +74,7 @@ public class Classe {
 	 * @param prof
 	 *            the prof to set
 	 */
-	public void setProf(String prof) {
+	public void setProf(int prof) {
 		this.prof = prof;
 	}
 

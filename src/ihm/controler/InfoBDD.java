@@ -16,11 +16,13 @@ import java.util.ArrayList;
  * @author Group7
  */
 public class InfoBDD {
+
     private static ArrayList<Tentative> listeTentative;
     private static ArrayList<Tentative> listeTentativeNE;
     private static ArrayList<Professeur> listeProfesseur;
     private static ArrayList<Eleve> listeEleve;
-    
+    private static ArrayList<Classe> listeClasse;
+
     /**
     * Création de la liste Tentative (tentatives des exercices)
     */
@@ -143,9 +145,9 @@ public class InfoBDD {
                 String  prenomEleve = rs.getString("PrenomEleve");
                 
                 
-                Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
+               // Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
 
-                listeEleve.add(eleve);                          
+               // listeEleve.add(eleve);                          
             }
 
         } catch (SQLException e) {
@@ -153,5 +155,36 @@ public class InfoBDD {
         }
         return listeEleve;
     }
+    
+    /**
+    * Création de la liste de classe
+    */
+    public static ArrayList<Classe> selectionListClasse () {
+        
+        listeClasse = new ArrayList<Classe>();
+        
+        Connection recon = connect();
+        Statement stmt = null;            
+        String sql = "select Niveau IdProf from Classe";
+        
+        try{
+            stmt = recon.createStatement(); //permet de faire la connection
+
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String  nomClasse = rs.getString("Niveau");
+                int prof = rs.getInt("Prof");
+                
+                Classe classe = new Classe(nomClasse,prof);
+
+                listeClasse.add(classe);                          
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listeClasse;
+    }   
+
     
 }
