@@ -41,13 +41,16 @@ public class View extends JFrame{
         //on parcourt toutes las classes
         for (Classe laclasse : InfoBDD.selectionListClasse()){ //liste de classe 
             //on crée de nouveaux noeuds
-            DefaultMutableTreeNode nodeClasse = new DefaultMutableTreeNode(laclasse);
+            System.out.println(laclasse);
+            DefaultMutableTreeNode nodeClasse = new DefaultMutableTreeNode(laclasse.getNiveau());
             //on ajoute les classes à l'arbre
             racine.add(nodeClasse);
             //on parcourt tous les eleves
-            for (Eleve leleve : laclasse.getEleves()){
+            System.out.println(laclasse.getElevesClasse());
+            for (Eleve leleve : laclasse.getElevesClasse()){
+                System.out.println(leleve);
                 //on crée de nouveaux noeuds
-                DefaultMutableTreeNode nodeEleve = new DefaultMutableTreeNode(leleve);
+                DefaultMutableTreeNode nodeEleve = new DefaultMutableTreeNode(leleve.getNomEleve());
                 //on ajoute les eleves à l'arbre
                 nodeClasse.add(nodeEleve);
             }
@@ -62,7 +65,8 @@ public class View extends JFrame{
     public void controllerJTreeCall(Object selectedNode){
         if (selectedNode instanceof Eleve) { //si l'élément choisi est un élève
             currentEleve = (Eleve)selectedNode; //l'élève courant est celui sélectionné
-            currentClasse = (Classe) currentEleve.getClasse(); //la classe courante est celle de l'élève sélectionné
+            String currentNiveau =  currentEleve.getNiveau(); //la classe courante est celle de l'élève sélectionné
+            currentClasse= new Classe(currentNiveau);
             //update();//mis à jour
             
         }else if(selectedNode instanceof Classe){ //si l'élément choisi est une classe
@@ -87,14 +91,14 @@ public class View extends JFrame{
             txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
             //txtProf.setText(currentEleve.getClasse().getProf()); //Affichage du nom du prof
             txtNiveau.setText("" + currentEleve.getClasse().getNiveau()); // Affichage du niveau de la classe
-            this.viewTable.setData(currentEleve.getClasse()); //mise a jour JTable
+            //this.viewTable.setData(currentEleve.getClasse()); //mise a jour JTable
             
         }else if(currentClasse!=null){
             String taille = "" + (currentClasse.getNombreEleves()); //Calcul de la taille de la classe
             txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
             //txtProf.setText(currentClasse.getProf()); //Affichage du nom du prof
             txtNiveau.setText("" + currentClasse.getNiveau()); // Affichage du niveau de la classe
-            this.viewTable.setData(currentClasse); //mise a jour JTable
+            //this.viewTable.setData(currentClasse); //mise a jour JTable
             txtNom.setText(""); //Vide le champ nom
             txtPrenom.setText(""); //Vide le champ prenom
             

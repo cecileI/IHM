@@ -8,15 +8,15 @@ public class Eleve {
     private int idEleve;
     private String nomEleve;
     private String prenomEleve;
-    private Classe classe;
+    private String niveau;
 
 
     //Constructeur de la classe Eleve
-    public Eleve(int idEleve, String nomEleve, String prenomEleve, Classe classe) {
+    public Eleve(int idEleve, String nomEleve, String prenomEleve, String niveau) {
         this.idEleve = idEleve;
         this.nomEleve = nomEleve;
         this.prenomEleve = prenomEleve;
-        this.classe = classe;
+        this.niveau = niveau;
     }
 
     //getters-setters des paramètres
@@ -44,12 +44,12 @@ public class Eleve {
         this.prenomEleve = prenomEleve;
     }
 
-    public Classe getClasse() {
-        return classe;
+    public String getNiveau() {
+        return niveau;
     }
 
-    public void setClasse(Classe classe) {
-        this.classe = classe;
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
     }
     
 }
