@@ -72,7 +72,7 @@ public class InfoBDD {
 
         Connection recon = connect();
         Statement stmt = null;
-        String sql = "select IdTentative, IdEleve, IdExercice, StatutTentative, IdProf, ModelEleve from Tentative where StatutTentative='Non-Evalue'";
+        String sql = "select IdTentative, IdEleve, IdExercice, StatutTentative, IdProf, ModelEleve from Tentative where StatutTentative='non-evalue'";
         try{
             stmt = recon.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -199,7 +199,7 @@ public class InfoBDD {
         Connection recon = connect(); // connexion à la base de données
         Statement stmt = null;
         
-        String sql = "select IdExercice, Titre, Modele, Consigne, ModeTortue form Exercice";
+        String sql = "select IdExercice, Titre, Modele, Consigne, ModeTortue from Exercice";
         
                 try{
         stmt = recon.createStatement();
