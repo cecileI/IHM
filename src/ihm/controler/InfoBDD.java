@@ -21,7 +21,7 @@ public class InfoBDD {
     private static ArrayList<Tentative> listeTentative;
     private static ArrayList<Tentative> listeTentativeNE;
     private static ArrayList<Professeur> listeProfesseur;
-    private static ArrayList<Eleve> listeEleve;
+    private static ArrayList<Eleve> listeEleve,listeEleveClasse;
     private static ArrayList<Classe> listeClasse;
     private static ArrayList<Exercice>listeExercice;
 
@@ -162,6 +162,37 @@ public class InfoBDD {
     }
     
     /**
+    * Création de la liste des élèves d'une classe
+    */
+    public static ArrayList<Eleve> selectionListEleveClasse (String niveau) {
+        
+        listeEleveClasse = new ArrayList<Eleve>();
+        
+        Connection recon = connect();
+        Statement stmt = null;            
+        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe from Eleve where Classe="+'"'+niveau+'"';
+
+        try{
+            stmt = recon.createStatement();
+
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idEleve = rs.getInt("IdEleve");
+                String  nomEleve = rs.getString("NomEleve"); 
+                String  prenomEleve = rs.getString("PrenomEleve");
+                
+                
+               Eleve eleve = new Eleve(idEleve,nomEleve,prenomEleve,niveau);
+               listeEleveClasse.add(eleve);                          
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listeEleveClasse;
+    }   
+    
+    /**
     * Création de la liste de classe
     */
     public static ArrayList<Classe> selectionListClasse () {
@@ -170,17 +201,17 @@ public class InfoBDD {
         
         Connection recon = connect();
         Statement stmt = null;            
-        String sql = "select Niveau IdProf from Classe";
+        String sql = "select niveau,IdProf from Classe";
         
         try{
             stmt = recon.createStatement(); //permet de faire la connection
 
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                String  nomClasse = rs.getString("Niveau");
-                int prof = rs.getInt("Prof");
+                String  nomClasse = rs.getString("niveau");
+                int prof = rs.getInt("IdProf");
                 
-                Classe classe = new Classe(nomClasse,prof);
+                Classe classe = new Classe(nomClasse);
 
                 listeClasse.add(classe);                          
             }

@@ -20,7 +20,6 @@ public class InterfaceDebut extends JFrame {
     private JPanel panelProf;
     
     private JLabel jeSuis;
-    private JLabel message;
     
     private JLabel unEleve;
     private JTextField prenomEleve;
@@ -41,10 +40,6 @@ public class InterfaceDebut extends JFrame {
         this.getContentPane().setLayout(new BorderLayout()); 
         this.setTitle("LOGO Groupe 7");
         this.setSize(750,500);
-        
-        message = new JLabel("");
-        message.setHorizontalAlignment(SwingConstants.CENTER);
-        message.setFont(new Font("Arial",Font.BOLD,20));
         
         //Partie eleve
         panelEleve = new JPanel();
@@ -105,7 +100,6 @@ public class InterfaceDebut extends JFrame {
         
         nomProf = new JTextField("Abot");
         nomProf.setHorizontalAlignment(SwingConstants.CENTER);
-        nomProf.setPreferredSize( new Dimension( 100, 50 ) );
         panelProf.add(nomProf);
         
         motDePasse = new JTextField("1234");
@@ -122,14 +116,10 @@ public class InterfaceDebut extends JFrame {
                     String nomP = nomProf.getText();
                     String mdp = motDePasse.getText();
                     if (connexionProf(prenomP, nomP, mdp)==true){
-                        
                         View view = new View();
                         view.createTree();
-                        //ferme la fenetre de connexion
-                        dispose();
-                        
                     }else{
-                        message.setText("Connexion refusée");
+                        System.out.println("Connexion refusée");
                     }
                 }
             }); 
@@ -138,9 +128,6 @@ public class InterfaceDebut extends JFrame {
         jeSuis = new JLabel("Je suis");
         jeSuis.setHorizontalAlignment(SwingConstants.CENTER);
         jeSuis.setFont(new Font("Arial",Font.BOLD,50));
-        
-        
-        
         panelGeneral = new JPanel();
         panelGeneral.setLayout(new GridLayout(1,3));
         panelGeneral.add(panelEleve);
@@ -148,10 +135,8 @@ public class InterfaceDebut extends JFrame {
         panelGeneral.add(labelBlanc);
         panelGeneral.add(panelProf);
         
-        
         this.add(jeSuis, BorderLayout.NORTH);
         this.add(panelGeneral);
-        this.add(message, BorderLayout.SOUTH);
         
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
         this.setLocationRelativeTo(null);
@@ -169,22 +154,17 @@ public class InterfaceDebut extends JFrame {
     public boolean connexionProf (String prenomP, String nomP, String mdp){
         ArrayList<Professeur> listProf = new ArrayList<Professeur>();
         listProf = InfoBDD.selectionListProfesseur(); //recupere la liste des professeurs
-        
+
         for (Professeur prof : listProf) {
-            if (prof.getNomProf().equals(nomP)) {
-                if(prof.getPrenomProf().equals(prenomP)){
-                    if(prof.getMdpProf().equals(mdp)){
-                        return(true);
-                    }
-                }        
-                 
+            if ((prof.getNomProf()== nomP) && (prof.getPrenomProf() == prenomP) && (prof.getMdpProf()== mdp)){
+                return(true); 
             }
         }
         return(false);
     }
     
     /*
-    * Fonction de connexion pour un élève
+    * Fonction de connexion pour un professeur
     * @param prenom P : le prénom du professeur qu'il aura rentré
     * @param
     */
