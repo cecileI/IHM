@@ -83,28 +83,28 @@ public class View extends JFrame{
     *Après avoir cliqué sur un élément (ex : dans le JTree)
     *Fonction qui permet la mise a jour de l'interface
     */
-//    public void update(){
-//        if (currentEleve != null) {
-//            txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
-//            txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
-//            String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
-//            txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
-//            txtProf.setText(currentEleve.getClasse().getProf()); //Affichage du nom du prof
-//            txtNiveau.setText("" + currentEleve.getClasse().getNiveau()); // Affichage du niveau de la classe
-//            this.viewTable.setData(currentEleve.getClasse()); //mise a jour JTable
-//            
-//        }else if(currentClasse!=null){
-//            String taille = "" + (currentClasse.getNombreEleves()); //Calcul de la taille de la classe
-//            txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
-//            txtProf.setText(currentClasse.getProf()); //Affichage du nom du prof
-//            txtNiveau.setText("" + currentClasse.getNiveau()); // Affichage du niveau de la classe
-//            this.viewTable.setData(currentClasse); //mise a jour JTable
-//            txtNom.setText(""); //Vide le champ nom
-//            txtPrenom.setText(""); //Vide le champ prenom
-//            
-//        }else{
-//            System.out.print("Erreur");
-//        }
-//    }
+    public void update(){
+        if (currentEleve != null) {
+            txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
+            txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
+            String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
+            txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
+            //txtProf.setText(currentEleve.getClasse().getProf()); //Affichage du nom du prof
+            txtNiveau.setText("" + currentEleve.getClasse().getNiveau()); // Affichage du niveau de la classe
+            //this.viewTable.setData(currentEleve.getClasse()); //mise a jour JTable
+            
+        }else if(currentClasse!=null){
+            String taille = "" + (currentClasse.getNombreEleves()); //Calcul de la taille de la classe
+            txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
+            //txtProf.setText(currentClasse.getProf()); //Affichage du nom du prof
+            txtNiveau.setText("" + currentClasse.getNiveau()); // Affichage du niveau de la classe
+            //this.viewTable.setData(currentClasse); //mise a jour JTable
+            txtNom.setText(""); //Vide le champ nom
+            txtPrenom.setText(""); //Vide le champ prenom
+            
+        }else{
+            System.out.print("Erreur");
+        }
+    }
     
 }
