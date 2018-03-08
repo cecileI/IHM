@@ -137,7 +137,7 @@ public class InfoBDD {
         
         Connection recon = connect();
         Statement stmt = null;            
-        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe from Eleve";
+        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe, IdProf from Eleve, Classe";
         
         try{
             stmt = recon.createStatement();
@@ -148,10 +148,11 @@ public class InfoBDD {
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
                 
+                String niveau = rs.getString("Classe");
                 
-               // Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
+                Eleve eleve = new Eleve(idEleve, nomEleve,  prenomEleve, niveau);
 
-               // listeEleve.add(eleve);                          
+                listeEleve.add(eleve);                          
             }
 
         } catch (SQLException e) {
