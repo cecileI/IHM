@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.controler;
 
 import static ihm.SQLiteJDBCDriverConnection.connect;
@@ -76,10 +71,14 @@ public class interactionExercice {
         }
     }
     
+    
+       //a mettre dans controllerFunction
     public void modifyExercice(int idE, String titre, String modele, String consigne, String ModeTortue, ArrayList<Exercice> listexercice)
     {
         Connection recon = connect(); // connexion à la base de données
         Statement stmt = null;
+        
+        
     }
 }
 
