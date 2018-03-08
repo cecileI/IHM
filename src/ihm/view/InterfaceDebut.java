@@ -108,7 +108,7 @@ public class InterfaceDebut extends JFrame {
                     String nomP = nomProf.getText();
                     String mdp = motDePasse.getText();
                     if (connexionProf(prenomP, nomP, mdp)==true){
-                        //appel de la fenetre correspondant au prof
+                        View view = new View ();
                     }
                 }
             }); 
@@ -143,8 +143,7 @@ public class InterfaceDebut extends JFrame {
     public boolean connexionProf (String prenomP, String nomP, String mdp){
         ArrayList<Professeur> listProf = new ArrayList<Professeur>();
         listProf = InfoBDD.selectionListProfesseur(); //recupere la liste des professeurs
-        boolean connexion=false;
-        
+
         for (Professeur prof : listProf) {
             if ((prof.getNomProf()== nomP) && (prof.getPrenomProf() == prenomP) && (prof.getMdpProf()== mdp)){
                 return(true); 
@@ -158,13 +157,16 @@ public class InterfaceDebut extends JFrame {
     * @param prenom P : le prénom du professeur qu'il aura rentré
     * @param
     */
-    public void connexionEleve (String prenomP, String nomP, String mdp){
-        ArrayList<Professeur> listProf = new ArrayList<Professeur>();
-        listProf = InfoBDD.selectionListProfesseur(); //recupere
+    public boolean connexionEleve (String prenomE, String nomE, String classe){
+        ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
+        listEleve = InfoBDD.selectionListEleve(); //recupere la liste des élèves
         
-        
-        
-        
+        for (Eleve eleve : listEleve){
+            if ((eleve.getNomEleve()==nomE) && (eleve.getPrenomEleve()==prenomE) && (eleve.getClasse().getNiveau()==classe)){
+                return(true);
+            }
+        }
+        return(false);
     }
     
     public static void main(String[] args) {
