@@ -76,10 +76,14 @@ public class interactionExercice {
         }
     }
     
+    
+       //a mettre dans 
     public void modifyExercice(int idE, String titre, String modele, String consigne, String ModeTortue, ArrayList<Exercice> listexercice)
     {
         Connection recon = connect(); // connexion à la base de données
         Statement stmt = null;
+     
+        
     }
 }
 
