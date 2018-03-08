@@ -3,6 +3,7 @@ package ihm.view;
 import ihm.controler.InfoBDD;
 import ihm.model.Classe;
 import ihm.model.Eleve;
+import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
@@ -20,15 +21,19 @@ public class View extends JFrame{
     
     public View(){
     // Tree gestion
+            this.getContentPane().setLayout(new BorderLayout()); 
+            this.setTitle("LOGO Groupe 7");
+            this.setSize(750,500);
+            
             racine = new DefaultMutableTreeNode("Gphy"); // creation racine //model.getEcole().getNom()
             tree = new JTree(racine);  // creation arbre à partir de  racine
             tree.setShowsRootHandles(true);
             tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
             this.add(tree);
+            
+            
             this.setLocationRelativeTo(null);
             this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            
-            this.setSize(750,500);
             this.setVisible(true);
     }
     

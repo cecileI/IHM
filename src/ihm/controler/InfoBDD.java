@@ -114,8 +114,10 @@ public class InfoBDD {
                 String  nomProf = rs.getString("NomProf"); 
                 String  prenomProf = rs.getString("PrenomProf");
                 String  mdpProf = rs.getString("MdpProf"); 
-                
-                Professeur prof = new Professeur(idProf,nomProf,  prenomProf, mdpProf);
+                System.out.println(nomProf);
+                System.out.println(prenomProf);
+                System.out.println(mdpProf);
+                Professeur prof = new Professeur(idProf, nomProf,  prenomProf, mdpProf);
 
                 listeProfesseur.add(prof);                          
             }
