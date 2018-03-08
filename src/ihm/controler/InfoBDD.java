@@ -3,6 +3,7 @@ package ihm.controler;
 import static ihm.SQLiteJDBCDriverConnection.connect;
 import ihm.model.Classe;
 import ihm.model.Eleve;
+import ihm.model.Exercice;
 import ihm.model.Professeur;
 import ihm.model.Tentative;
 import java.sql.Connection;
@@ -22,6 +23,7 @@ public class InfoBDD {
     private static ArrayList<Professeur> listeProfesseur;
     private static ArrayList<Eleve> listeEleve;
     private static ArrayList<Classe> listeClasse;
+    private static ArrayList<Exercice>listeExercice;
 
     /**
     * Création de la liste Tentative (tentatives des exercices)
@@ -187,4 +189,50 @@ public class InfoBDD {
     }   
 
     
+    /**
+    * Création de la liste des Exercices
+    */
+      public ArrayList<Exercice> selectionListExercice () {
+      
+        listeExercice = new ArrayList<Exercice>();
+        
+        Connection recon = connect(); // connexion à la base de données
+        Statement stmt = null;
+        
+        String sql = "select IdExercice, Titre, Modele, Consigne, ModeTortue form Exercice";
+        
+                try{
+        stmt = recon.createStatement();
+        
+        ResultSet rs = stmt.executeQuery(sql); // applique la requête
+        while (rs.next()) { // Parcours de la liste d'exercices 
+            int idE = rs.getInt("IdExercice");
+            String titre = rs.getString("Titre");
+            String modele = rs.getString("Modele");
+            String consigne = rs.getString("Consigne");
+            String ModeTortue = rs.getString("ModeTortue");
+            
+            Exercice exo = new Exercice(idE, titre, modele, consigne, ModeTortue);
+                    
+            listeExercice.add(exo); 
+                }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return listeExercice;
+              
+       }
+
+      
+    /**
+    * Récupérer la liste des Exercices
+    */
+        public ArrayList<Exercice> getExercices() {
+		return listeExercice;
+	}
+
+        
+ 
 }
