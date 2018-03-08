@@ -108,7 +108,10 @@ public class InterfaceDebut extends JFrame {
                     String nomP = nomProf.getText();
                     String mdp = motDePasse.getText();
                     if (connexionProf(prenomP, nomP, mdp)==true){
-                        View view = new View ();
+                        View view = new View();
+                        view.createTree();
+                    }else{
+                        System.out.println("Connexion refusée");
                     }
                 }
             }); 
