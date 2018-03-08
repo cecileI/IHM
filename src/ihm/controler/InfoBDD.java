@@ -2,6 +2,7 @@ package ihm.controler;
 
 import static ihm.SQLiteJDBCDriverConnection.connect;
 import ihm.model.Classe;
+import ihm.model.Eleve;
 import ihm.model.Professeur;
 import ihm.model.Tentative;
 import java.sql.Connection;
@@ -15,11 +16,13 @@ import java.util.ArrayList;
  * @author Group7
  */
 public class InfoBDD {
-    private ArrayList<Tentative> listeTentative;
-    private ArrayList<Tentative> listeTentativeNE;
-    private ArrayList<Professeur> listeProfesseur;
-    private ArrayList<Classe> listeClasse;
-    
+
+    private static ArrayList<Tentative> listeTentative;
+    private static ArrayList<Tentative> listeTentativeNE;
+    private static ArrayList<Professeur> listeProfesseur;
+    private static ArrayList<Eleve> listeEleve;
+    private static ArrayList<Classe> listeClasse;
+
     /**
     * Création de la liste Tentative (tentatives des exercices)
     */
@@ -92,7 +95,7 @@ public class InfoBDD {
     /**
     * Création de la liste des Professeurs
     */
-    public ArrayList<Professeur> selectionListProfesseur () {
+    public static ArrayList<Professeur> selectionListProfesseur () {
         
         listeProfesseur = new ArrayList<Professeur>();
         
@@ -119,12 +122,44 @@ public class InfoBDD {
             System.out.println(e.getMessage());
         }
         return listeProfesseur;
-    }   
+    } 
+    
+    /**
+    * Création de la liste des Eleves
+    */
+    public static ArrayList<Eleve> selectionListEleve () {
+        
+        listeEleve = new ArrayList<Eleve>();
+        
+        Connection recon = connect();
+        Statement stmt = null;            
+        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe from Eleve";
+        
+        try{
+            stmt = recon.createStatement();
+
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idEleve = rs.getInt("IdEleve");
+                String  nomEleve = rs.getString("NomEleve"); 
+                String  prenomEleve = rs.getString("PrenomEleve");
+                
+                
+               // Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
+
+               // listeEleve.add(eleve);                          
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listeEleve;
+    }
     
     /**
     * Création de la liste de classe
     */
-    public ArrayList<Classe> selectionListClasse () {
+    public static ArrayList<Classe> selectionListClasse () {
         
         listeClasse = new ArrayList<Classe>();
         

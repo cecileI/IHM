@@ -1,8 +1,12 @@
 package ihm.view;
 
+import ihm.controler.*;
+import ihm.model.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -29,6 +33,7 @@ public class InterfaceDebut extends JFrame {
     
     private JButton validEleve;
     private JButton validProf;
+
     
     public InterfaceDebut(){
         
@@ -61,6 +66,15 @@ public class InterfaceDebut extends JFrame {
         validEleve = new JButton("Valider");
         validEleve.setHorizontalAlignment(SwingConstants.CENTER);
         panelEleve.add(validEleve);
+        validEleve.addActionListener(new ActionListener () {
+                public void actionPerformed (ActionEvent e) {
+                    //recupere les donnees du prof et appelle la fonction de verif pour connexion
+                    String prenomE = prenomEleve.getText();
+                    String nomE = nomEleve.getText();
+                    String classe = classeEleve.getText();
+                    connexionEleve(prenomE, nomE, classe);
+                }
+            }); 
 
         //Partie prof
         panelProf = new JPanel();
@@ -89,11 +103,13 @@ public class InterfaceDebut extends JFrame {
         panelProf.add(validProf);
         validProf.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees du prof et appelle la fonction de verif pour connexion
+                    //recupere les donnees du prof 
                     String prenomP = prenomProf.getText();
                     String nomP = nomProf.getText();
                     String mdp = motDePasse.getText();
-                    ConnexionProf(prenomP, nomP, mdp);
+                    if (connexionProf(prenomP, nomP, mdp)==true){
+                        //appel de la fenetre correspondant au prof
+                    }
                 }
             }); 
         
@@ -117,6 +133,39 @@ public class InterfaceDebut extends JFrame {
         
     }
     
+    /*
+    * Fonction de connexion pour un professeur
+    * @param prenomP : le prénom du professeur qu'il aura rentré
+    * @param nomP : le nom du professeur qu'il aura rentré
+    * @param mdp : le mot de passe qu'il aura rentré
+    * @return boolean : si les identifiants du professeur sont corrects -> true
+    */
+    public boolean connexionProf (String prenomP, String nomP, String mdp){
+        ArrayList<Professeur> listProf = new ArrayList<Professeur>();
+        listProf = InfoBDD.selectionListProfesseur(); //recupere la liste des professeurs
+        boolean connexion=false;
+        
+        for (Professeur prof : listProf) {
+            if ((prof.getNomProf()== nomP) && (prof.getPrenomProf() == prenomP) && (prof.getMdpProf()== mdp)){
+                return(true); 
+            }
+        }
+        return(false);
+    }
+    
+    /*
+    * Fonction de connexion pour un professeur
+    * @param prenom P : le prénom du professeur qu'il aura rentré
+    * @param
+    */
+    public void connexionEleve (String prenomP, String nomP, String mdp){
+        ArrayList<Professeur> listProf = new ArrayList<Professeur>();
+        listProf = InfoBDD.selectionListProfesseur(); //recupere
+        
+        
+        
+        
+    }
     
     public static void main(String[] args) {
         InterfaceDebut interfaceDebut = new InterfaceDebut();
