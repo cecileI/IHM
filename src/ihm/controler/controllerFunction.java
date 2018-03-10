@@ -48,5 +48,59 @@ public class controllerFunction {
         Statement stmt = null;
         
         
+//        public void modifier_entreprise(Entreprise entreprise)
+//        {
+//        String requete = null;
+//         
+//        try {
+//             requete = "UPDATE entreprise SET Nom = '"+entreprise.getNom()+"'"
+//             + "WHERE Code = '"+entreprise.getCode()+"'";
+//             Statement state = ocon.createStatement();
+//             state.executeUpdate(requete);
+//             JOptionPane.showMessageDialog(null,"Modification réalisée","ALERTE",JOptionPane.INFORMATION_MESSAGE);
+//               
+//             
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null,"Modification non effectué","ALERTE",JOptionPane.ERROR_MESSAGE);
+//            e.printStackTrace();
+//        }
+
+//  ---------------------------------------------------- autre ex avec modif de Joueur:
+//public static void main(String[] args) {
+// 
+//    try {
+// 
+//      //On va chercher une ligne dans la base de données
+//      String query = "SELECT joueur_nom, joueur_num, joueur_poste FROM joueur " + "WHERE joueur_nom = 'test'";         
+// 
+//      ResultSet res = state.executeQuery(query);
+// 
+//      res.first();
+// 
+//      //On affiche ce que l'on trouve
+//      System.out.println("NOM : " + res.getString("joueur_nom") + " - numero : " + res.getInt("joueur_poste"));
+// 
+//      //On met à jour les champs
+//      res.updateString("joueur_nom", "test");
+//      res.updateInt("joueur_num", "1");
+//      res.updateInt("joueur_poste", "11");
+// 
+//      //On valide
+//      res.updateRow();
+// 
+//      //On affiche les modifications
+//      System.out.println("*********************************");
+//      System.out.println("APRES MODIFICATION : ");
+//      System.out.println("\tNOM : " + res.getString("prof_nom") + " - PRENOM : " + res.getString("prof_prenom") + "\n");
+//      System.out.println("NOM : " + res.getString("joueur_nom") + " - numero : " + res.getInt("joueur_poste"));
+// 
+//      result.close();
+// 
+//      state.close();
+//         
+//    }
+        
+        
+        
     }
 }

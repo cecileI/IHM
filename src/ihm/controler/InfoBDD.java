@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class InfoBDD {
 
     private static ArrayList<Tentative> listeTentative;
-    private static ArrayList<Tentative> listeTentativeNE;
+    private static ArrayList<Tentative> listeTentativeNE; //pour tentatives non-evaluees
     private static ArrayList<Professeur> listeProfesseur;
     private static ArrayList<Eleve> listeEleve,listeEleveClasse;
     private static ArrayList<Classe> listeClasse;
@@ -193,7 +193,7 @@ public class InfoBDD {
     }   
     
     /**
-    * Création de la liste de classe
+    * Création de la liste des classes
     */
     public static ArrayList<Classe> selectionListClasse () {
         
