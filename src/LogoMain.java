@@ -1,6 +1,4 @@
-import ihm.view.InterfaceDebut;
-import ihm.view.InterfaceEleve;
-import ihm.view.View;
+import ihm.view.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,6 +21,7 @@ public class LogoMain{
         
         InterfaceDebut app = new InterfaceDebut();
         //InterfaceEleve app = new InterfaceEleve();
-        
+        //InterfaceProfesseur app = new InterfaceProfesseur();
+        //InterfaceAjoutExercice app = new InterfaceAjoutExercice();
     }
 }

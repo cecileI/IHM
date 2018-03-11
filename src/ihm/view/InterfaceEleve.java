@@ -23,7 +23,7 @@ public class InterfaceEleve extends JFrame {
     
     private JPanel Eleve;
     private JLabel nomEleve;
-    private JLabel prenomEleve;
+    //private JLabel prenomEleve; que Nom et Classe de l'élève? cf schéma
     private JLabel classeEleve;
     
     private JPanel Exercices; 
