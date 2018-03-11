@@ -1,4 +1,5 @@
 import ihm.view.InterfaceDebut;
+import ihm.view.InterfaceEleve;
 import ihm.view.View;
 
 /*
@@ -21,6 +22,7 @@ public class LogoMain{
     public static void main (String[] args){
         
         InterfaceDebut app = new InterfaceDebut();
+        //InterfaceEleve app = new InterfaceEleve();
         
     }
 }
