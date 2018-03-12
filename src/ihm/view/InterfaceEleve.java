@@ -1,8 +1,12 @@
 package ihm.view;
 
+import ihm.controler.*;
+import ihm.model.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -24,7 +28,17 @@ public class InterfaceEleve extends JFrame{
     private JPanel petiteEntete;
     private JPanel exercices;
     private JPanel actionsExo;
-    private JPanel panelGeneral;
+    private JPanel panelBas;
+    private JPanel general;
+    
+    
+    private JLabel mesExercices;
+    private JLabel listeExercices;
+  
+    private JPanel tentative; 
+    private JLabel nexo;
+    private JButton faireTentative;
+    private JButton visualiserTentative;
     
     public InterfaceEleve (String nomEleve, String prenomEleve, String classeEleve){
         
@@ -65,6 +79,71 @@ public class InterfaceEleve extends JFrame{
         entete.add(menu, BorderLayout.CENTER);
         entete.add(deconnexion, BorderLayout.EAST);
         
+        
+        //Partie Mes Exercices
+        exercices = new JPanel();
+        //Exercices.setPreferredSize(new Dimension(350,450)); //largeur hauteur
+        //Exercices.setLayout(new GridLayout(2,1));  
+        
+        mesExercices = new JLabel("Mes Exercices");
+        //MesExercices.setVerticalAlignment(SwingConstants.CENTER);
+        mesExercices.setFont(new Font("Arial",Font.BOLD,30));
+        exercices.add(mesExercices);
+        
+        
+          
+        
+        listeExercices = new JLabel("Liste des Exercices"); //changer pour connection avec BDD! et requete de la liste des exercices
+        //ListeExercices.setVerticalAlignment(SwingConstants.CENTER);
+        listeExercices.setFont(new Font("Arial",Font.BOLD,15));
+        //ListeExercices.setBounds(25, 25, 300, 300);
+        exercices.add(listeExercices);
+                
+        //Partie Tentatives
+        tentative = new JPanel();
+        tentative.setLayout(new GridLayout(3,1));
+              
+        nexo = new JLabel("N° Exercice");
+        tentative.add(nexo);        
+        
+        faireTentative = new JButton("Faire une tentative");
+        faireTentative.addActionListener(new ActionListener () {
+                public void actionPerformed (ActionEvent e) {
+                    //recupere les donnees de l'eleve
+                    InterfaceDebut app = new InterfaceDebut(); //changer pour nouvelle tentative!!
+                }
+            }); 
+              
+        visualiserTentative = new JButton("Visualiser mes tentatives");
+        visualiserTentative.setHorizontalAlignment(SwingConstants.CENTER);
+        visualiserTentative.addActionListener(new ActionListener () {
+                public void actionPerformed (ActionEvent e) {
+                    //recupere les donnees de l'eleve
+                    InterfaceDebut app = new InterfaceDebut(); //changer pour VisualiserTentative!!
+                }
+            }); 
+        
+        tentative.add(faireTentative);
+        tentative.add(visualiserTentative);
+       
+        
+        //Partie du bas         
+        panelBas = new JPanel();
+        panelBas.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
+        panelBas.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
+        panelBas.add(exercices);
+        panelBas.add(tentative);
+        
+        
+        //Partie Général
+        general = new JPanel();
+        general.add(entete,BorderLayout.NORTH);
+        general.add(panelBas,BorderLayout.SOUTH);
+                    
+        this.add(general);
+        
+        
+        
         //
         this.add(entete, BorderLayout.NORTH);
         
@@ -72,6 +151,4 @@ public class InterfaceEleve extends JFrame{
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
-    
 }

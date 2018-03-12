@@ -77,6 +77,7 @@ public class InterfaceDebut extends JFrame {
                         InterfaceEleve interfaceEleve = new InterfaceEleve(nomE,prenomE,classe);
                         //ferme la fenetre de connexion
                         dispose();
+                        //InterfaceEleve app = new InterfaceEleve(); //ouvre le Menu Eleve
                     }else{
                         message.setText("Connexion refusée");
                     }
@@ -138,7 +139,7 @@ public class InterfaceDebut extends JFrame {
         this.add(jeSuis, BorderLayout.NORTH);
         this.add(panelGeneral);
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         

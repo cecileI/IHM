@@ -40,27 +40,27 @@ public class SQLiteJDBCDriverConnection {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Connection recon = connect();
-        Statement stmt = null;
-        String sql = "select IdEleve,NomEleve from Eleve";
-        try{
-        stmt = recon.createStatement();
-        
-        ResultSet rs = stmt.executeQuery(sql);
-        while (rs.next()) {
-            int id = rs.getInt("IdEleve");
-            String nameE = rs.getString("NomEleve");
-            System.out.println(id + "\t" +nameE );
-        }
-        
-                
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        
-    }
+//    public static void main(String[] args) {
+//        Connection recon = connect();
+//        Statement stmt = null;
+//        String sql = "select IdEleve,NomEleve from Eleve";
+//        try{
+//        stmt = recon.createStatement();
+//        
+//        ResultSet rs = stmt.executeQuery(sql);
+//        while (rs.next()) {
+//            int id = rs.getInt("IdEleve");
+//            String nameE = rs.getString("NomEleve");
+//            System.out.println(id + "\t" +nameE );
+//        }
+//        
+//                
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        
+//        
+//    }
 }
 
 
