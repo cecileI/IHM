@@ -91,10 +91,10 @@ public class View extends JFrame{
         if (currentEleve != null) {
             txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
             txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
-            String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
-            txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
+            //String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
+            //txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
             //txtProf.setText(currentEleve.getClasse().getProf()); //Affichage du nom du prof
-            txtNiveau.setText("" + currentEleve.getClasse().getNiveau()); // Affichage du niveau de la classe
+            txtNiveau.setText("" + currentEleve.getNiveau()); // Affichage du niveau de la classe
             //this.viewTable.setData(currentEleve.getClasse()); //mise a jour JTable
             
         }else if(currentClasse!=null){
