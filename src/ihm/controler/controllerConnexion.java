@@ -26,7 +26,7 @@ public class controllerConnexion {
         ArrayList<Professeur> listProf = InfoBDD.selectionListProfesseur(); //recupere la liste des professeurs
 
         for (Professeur prof : listProf) {
-            if ((prof.getNomProf()== nomP) && (prof.getPrenomProf() == prenomP) && (prof.getMdpProf()== mdp)){
+            if ((prof.getNomProf().equals(nomP)) && (prof.getPrenomProf().equals(prenomP)) && (prof.getMdpProf().equals(mdp))){
                 return(true); 
             }
         }

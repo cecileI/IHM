@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -22,16 +24,13 @@ public class MenuEleve extends JFrame{
     
     private JButton deconnexion;
     
-    private JTable mesExos;
-    
     private JPanel entete;
     private JPanel petiteEntete;
     private JPanel exercices;
     private JPanel actionsExo;
     private JPanel panelBas;
     private JPanel general;
-    
-    
+
     private JLabel mesExercices;
     private JLabel listeExercices;
   
@@ -39,6 +38,10 @@ public class MenuEleve extends JFrame{
     private JLabel nexo;
     private JButton faireTentative;
     private JButton visualiserTentative;
+    
+    private ViewTableExercicesEleves maJTable;
+    
+    private Exercice currentExercice;
     
     public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
         
@@ -89,7 +92,11 @@ public class MenuEleve extends JFrame{
         mesExercices = new JLabel("Mes Exercices");
         mesExercices.setVerticalAlignment(SwingConstants.CENTER);
         mesExercices.setFont(new Font("Arial",Font.BOLD,30));
-        exercices.add(mesExercices);
+        
+        this.maJTable = new ViewTableExercicesEleves(this);
+        
+        //exercices.add(mesExercices);
+        exercices.add(maJTable); 
                 
         //Partie Tentatives
         tentative = new JPanel();
@@ -99,6 +106,7 @@ public class MenuEleve extends JFrame{
         tentative.add(nexo);        
         
         faireTentative = new JButton("Faire une tentative");
+        faireTentative.setEnabled(false);
         faireTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //recupere les donnees de l'eleve
@@ -107,6 +115,7 @@ public class MenuEleve extends JFrame{
             }); 
               
         visualiserTentative = new JButton("Visualiser mes tentatives");
+        visualiserTentative.setEnabled(false);
         visualiserTentative.setHorizontalAlignment(SwingConstants.CENTER);
         visualiserTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
@@ -133,14 +142,52 @@ public class MenuEleve extends JFrame{
         general.add(panelBas,BorderLayout.SOUTH);
                     
         this.add(general);
-        
-        
-        
-        //
         this.add(entete, BorderLayout.NORTH);
         
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
+
+    /*
+    * Cette fonction  permet de récupérer l'exercice sélectionné 
+    * dans la JTable
+    *@param MenuEleve : interface menu eleve
+    *@param node : exercice sélectionné
+    */
+    public void afficheInfo(MenuEleve this,Exercice node) {
+	if (node instanceof Exercice) {
+            currentExercice = node;
+            update();
+	}
+    }
+    /*
+    * Cette fonction permet de rendre cliquable les boutons 
+    * Faire Tentative et Visualiser Tentative 
+    * quand on a sélectionné un exercice 
+    */
+    public void update(){
+        if (currentExercice != null){
+            faireTentative.setEnabled(true);
+            visualiserTentative.setEnabled(true);
+        }
+    }
+    
+    /*
+    *@return bouton faire tentative
+    */
+    public JButton getFaireTentative() {
+        return faireTentative;
+    }
+
+    /*
+    *@return bouton visualiser tentative
+    */
+    public JButton getVisualiserTentative() {
+        return visualiserTentative;
+    }
+    
+    
+    
+    
 }

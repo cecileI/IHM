@@ -232,7 +232,7 @@ public class InfoBDD {
         
         String sql = "select IdExercice, Titre, Modele, Consigne, ModeTortue from Exercice";
         
-                try{
+        try{
         stmt = recon.createStatement();
         
         ResultSet rs = stmt.executeQuery(sql); // applique la requête
