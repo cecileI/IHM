@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
 public class controllerFunction {
 
     public controllerFunction() {
-    }
-       
+    }       
      
     /**
     *
