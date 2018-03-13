@@ -12,29 +12,20 @@ import javax.swing.tree.TreeSelectionModel;
  *
  * @author Group7
  */
-public class JTree extends JFrame{
+public class ViewJTree extends JPanel{
     private JTextField txtNombreEleves,txtPrenom,txtNom,txtNiveau,txtProf;
     private JTree tree;
     private DefaultMutableTreeNode racine;
     private Eleve currentEleve;
     private Classe currentClasse;
     
-    public JTree(){
-    // Tree gestion
-            this.getContentPane().setLayout(new BorderLayout()); 
-            this.setTitle("LOGO Groupe 7");
-            this.setSize(750,500);
-            
+    public ViewJTree(){
+            // Tree gestion
             racine = new DefaultMutableTreeNode("Gphy"); // creation racine //model.getEcole().getNom()
             tree = new JTree(racine);  // creation arbre à partir de  racine
             tree.setShowsRootHandles(true);
             tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
             this.add(tree);
-            
-            
-            this.setLocationRelativeTo(null);
-            this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            this.setVisible(true);
     }
     
     /*
@@ -62,7 +53,7 @@ public class JTree extends JFrame{
     }
     
     /*
-    * Cette fonction est appelée apres avoir cliqué sur un élément dans le JTree
+    * Cette fonction est appelée apres avoir cliqué sur un élément dans le ViewJTree
     * La fenetre est mise a jour en fonction de l'élément choisi (Eleve ou Classe)
     * @param selected Node : l'élément choisi dans l'arbre
     */
@@ -84,7 +75,7 @@ public class JTree extends JFrame{
     }
     
     /*
-    *Après avoir cliqué sur un élément (ex : dans le JTree)
+    *Après avoir cliqué sur un élément (ex : dans le ViewJTree)
     *Fonction qui permet la mise a jour de l'interface
     */
     public void update(){
