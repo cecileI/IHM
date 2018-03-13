@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ihm.view;
+package ihm.controler;
 
 /**
  *
  * @author Diane
  */
-public class ListeExercices {
+public class controllerExerciceEleve {
     
 }

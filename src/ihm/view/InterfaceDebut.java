@@ -73,11 +73,11 @@ public class InterfaceDebut extends JFrame {
                     String prenomE = prenomEleve.getText();
                     String nomE = nomEleve.getText();
                     String classe = classeEleve.getText();
+
                     if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
-                        InterfaceEleve interfaceEleve = new InterfaceEleve(nomE,prenomE,classe);
+                        MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
                         //ferme la fenetre de connexion
                         dispose();
-                        //InterfaceEleve app = new InterfaceEleve(); //ouvre le Menu Eleve
                     }else{
                         message.setText("Connexion refusée");
                     }
@@ -116,9 +116,11 @@ public class InterfaceDebut extends JFrame {
                     String prenomP = prenomProf.getText();
                     String nomP = nomProf.getText();
                     String mdp = motDePasse.getText();
+
                     if (controllerConnexion.connexionProf(prenomP, nomP, mdp)==true){
-                        View view = new View();
-                        view.createTree();
+                        
+                        MenuProfesseur app = new MenuProfesseur();  //ouvre Menu Professeur
+ 
                     }else{
                         message.setText("Connexion refusée");
                     }

@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author Group7
  */
-public class InterfaceEleve extends JFrame{
+public class MenuEleve extends JFrame{
     
     private JLabel lblNomEleve;
     private JLabel lblPrenomEleve;
@@ -40,7 +40,7 @@ public class InterfaceEleve extends JFrame{
     private JButton faireTentative;
     private JButton visualiserTentative;
     
-    public InterfaceEleve (String nomEleve, String prenomEleve, String classeEleve){
+    public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
         
         this.getContentPane().setLayout(new BorderLayout()); 
         this.setTitle("LOGO Groupe 7");

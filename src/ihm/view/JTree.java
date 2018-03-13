@@ -12,14 +12,14 @@ import javax.swing.tree.TreeSelectionModel;
  *
  * @author Group7
  */
-public class View extends JFrame{
+public class JTree extends JFrame{
     private JTextField txtNombreEleves,txtPrenom,txtNom,txtNiveau,txtProf;
     private JTree tree;
     private DefaultMutableTreeNode racine;
     private Eleve currentEleve;
     private Classe currentClasse;
     
-    public View(){
+    public JTree(){
     // Tree gestion
             this.getContentPane().setLayout(new BorderLayout()); 
             this.setTitle("LOGO Groupe 7");

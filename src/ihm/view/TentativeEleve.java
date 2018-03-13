@@ -9,6 +9,6 @@ package ihm.view;
  *
  * @author Diane
  */
-public class CreationExercice {
+public class TentativeEleve {
     
 }
