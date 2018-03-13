@@ -28,7 +28,7 @@ public class InfoBDD {
     /**
     * Création de la liste Tentative (tentatives des exercices)
     */
-    public ArrayList<Tentative> selectionListTentative () {
+    public static ArrayList<Tentative> selectionListTentative () {
         
         listeTentative = new ArrayList<Tentative>();
 
@@ -67,7 +67,7 @@ public class InfoBDD {
      /**
     * Création de la liste des Tentatives NON-EVALUEES : StatutTentative non-evalué
     */
-    public ArrayList<Tentative> selectionListTentativeNE () {
+    public static ArrayList<Tentative> selectionListTentativeNE () {
         listeTentativeNE = new ArrayList<Tentative>();
 
         Connection recon = connect();
@@ -223,7 +223,7 @@ public class InfoBDD {
     /**
     * Création de la liste des Exercices
     */
-      public ArrayList<Exercice> selectionListExercice () {
+      public static ArrayList<Exercice> selectionListExercice () {
       
         listeExercice = new ArrayList<Exercice>();
         
@@ -255,14 +255,6 @@ public class InfoBDD {
         return listeExercice;
               
        }
-
-      
-    /**
-    * Récupérer la liste des Exercices
-    */
-        public ArrayList<Exercice> getExercices() {
-		return listeExercice;
-	}
 
         
  

@@ -46,7 +46,7 @@ public class InterfaceDebut extends JFrame {
         panelEleve = new JPanel();
         panelEleve.setLayout(new GridLayout(5,1)); //5lignes et 1 colonne
         
-        unEleve = new JLabel("Un elève");
+        unEleve = new JLabel("Un élève");
         unEleve.setHorizontalAlignment(SwingConstants.CENTER);
         unEleve.setFont(new Font("Arial",Font.BOLD,30));
         panelEleve.add(unEleve);
@@ -73,7 +73,7 @@ public class InterfaceDebut extends JFrame {
                     String prenomE = prenomEleve.getText();
                     String nomE = nomEleve.getText();
                     String classe = classeEleve.getText();
-                    if (connexionEleve(prenomE, nomE, classe)==true){
+                    if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
                         InterfaceEleve interfaceEleve = new InterfaceEleve(nomE,prenomE,classe);
                         //ferme la fenetre de connexion
                         dispose();
@@ -116,7 +116,7 @@ public class InterfaceDebut extends JFrame {
                     String prenomP = prenomProf.getText();
                     String nomP = nomProf.getText();
                     String mdp = motDePasse.getText();
-                    if (connexionProf(prenomP, nomP, mdp)==true){
+                    if (controllerConnexion.connexionProf(prenomP, nomP, mdp)==true){
                         View view = new View();
                         view.createTree();
                     }else{
@@ -144,46 +144,7 @@ public class InterfaceDebut extends JFrame {
         this.setVisible(true);
         
     }
-    
-    /*
-    * Fonction de connexion pour un professeur
-    * @param prenomP : le prénom du professeur qu'il aura rentré
-    * @param nomP : le nom du professeur qu'il aura rentré
-    * @param mdp : le mot de passe qu'il aura rentré
-    * @return boolean : si les identifiants du professeur sont corrects -> true
-    */
-    public boolean connexionProf (String prenomP, String nomP, String mdp){
-        ArrayList<Professeur> listProf = new ArrayList<Professeur>();
-        listProf = InfoBDD.selectionListProfesseur(); //recupere la liste des professeurs
-
-        for (Professeur prof : listProf) {
-            if ((prof.getNomProf()== nomP) && (prof.getPrenomProf() == prenomP) && (prof.getMdpProf()== mdp)){
-                return(true); 
-            }
-        }
-        return(false);
-    }
-    
-    /*
-    * Fonction de connexion pour un professeur
-    * @param prenomE : le prénom de l'eleve qu'il aura rentré
-    * @param nomE : le nom de l'eleve qu'il aura rentré
-    * @param classe : la classe de l'eleve qu'il aura rentré
-    * @return boolean : si les identifiants de l'eleve sont corrects -> true
-    */
-    public boolean connexionEleve (String prenomE, String nomE, String classe){
-        ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
-        listEleve = InfoBDD.selectionListEleve(); //recupere la liste des élèves
-        
-        for (Eleve eleve : listEleve){
-            if ((eleve.getNomEleve().equals(nomE)) && (eleve.getPrenomEleve().equals(prenomE)) && (eleve.getNiveau().equals(classe))){
-                return(true);
-            }
-        }
-        return(false);
-    }
-    
-    
+ 
 }
 
 
