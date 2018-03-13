@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
  *
  * @author Group7
  */
-public class InterfaceAjoutExercice extends JFrame {
+public class AjoutExerciceProf extends JFrame {
     private JPanel General;
     private JPanel Droite;
     
@@ -47,7 +47,7 @@ public class InterfaceAjoutExercice extends JFrame {
     private JLabel lignecode;
    
            
-    public InterfaceAjoutExercice(){
+    public AjoutExerciceProf(){
         this.getContentPane().setLayout(new BorderLayout()); 
         this.setTitle("Ajout Exercice");
         this.setSize(750,500);  //largeur, hauteur
@@ -68,7 +68,7 @@ public class InterfaceAjoutExercice extends JFrame {
         Menu.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //réoriente vers InterfaceDebut
-                    InterfaceProfesseur app = new InterfaceProfesseur();
+                    MenuProfesseur app = new MenuProfesseur();
                 }
             }); 
         

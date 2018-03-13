@@ -4,6 +4,6 @@ package ihm.controler;
  *
  * @author Group7
  */
-public class controllerMenuTentative {
+public class controllerTentative {
     
 }

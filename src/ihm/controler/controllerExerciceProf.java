@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ihm.controler;
 
 import static ihm.SQLiteJDBCDriverConnection.connect;
@@ -11,17 +16,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Goup7
+ * @author Diane
  */
-public class controllerFunction {
-
-    public controllerFunction() {
-    }       
-     
-    /**
-    *
-    * Fonction qui ajoute un nouveau exercice
-    */
+public class controllerExerciceProf {
     public void addExercice (int idE, String titre, String modele, String consigne, String ModeTortue, ArrayList<Exercice> listeExercice) {
         Exercice exo = new Exercice(idE, titre, modele, consigne, ModeTortue);
         Connection recon = connect(); // connexion à la base de données
@@ -40,12 +37,16 @@ public class controllerFunction {
     *
     * Fonction qui modifie un exercice
     */
-    public void modifyExercice(int idE, String titre, String modele, String consigne, String ModeTortue, ArrayList<Exercice> listexercice)
-    {
+    public void modifyExercice(Exercice){
         Connection recon = connect(); // connexion à la base de données
         Statement stmt = null;
+        //execice = new Exercice
         
-        String sql="select Exercice titre, modele, consigne, ModeTortue WHERE idE = 'idexamodifier'";
+        //on ne connait pas l'idE
+        //retrouver exercice avec le titre de l'exercice
+        
+        
+        String sql="select Exercice titre, modele, consigne, ModeTortue WHERE titre = 'nouveautitre'";
         
         //valeurs que le professeur saisit pour mettre à jour l'exercice avec l'idE=idexamodifier:
         //nouveautitre - newmodel - newconsigne - newmode
@@ -74,5 +75,5 @@ public class controllerFunction {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    } 
 }

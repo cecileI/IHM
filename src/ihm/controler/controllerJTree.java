@@ -5,7 +5,7 @@
  */
 package ihm.controler;
 
-import ihm.view.View;
+import ihm.view.JTree;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -17,9 +17,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 public class controllerJTree implements TreeSelectionListener{
     private JTree tree;
-    private View view;
+    private JTree view;
             
-    public controllerJTree (JTree tree, View view){
+    public controllerJTree (JTree tree, JTree view){
         tree = this.tree;
         view = this.view;         
     }
