@@ -11,147 +11,144 @@ import javax.swing.*;
 
 /**
  *
- * @author Goup7
+ * @author Group7
  */
-public class InterfaceEleve extends JFrame {
-   
-    private JPanel General;
-    private JPanel PanelHaut;
-    private JPanel PanelBas;
+public class InterfaceEleve extends JFrame{
     
-    private JLabel Menu;
+    private JLabel lblNomEleve;
+    private JLabel lblPrenomEleve;
+    private JLabel lblClasseEleve;
+    private JLabel menu;
     
-    private JPanel Eleve;
-    private JLabel nomEleve;
-    //private JLabel prenomEleve; que Nom et Classe de l'élève? cf schéma
-    private JLabel classeEleve;
+    private JButton deconnexion;
     
-    private JPanel Exercices; 
-    private JLabel MesExercices;
-    private JLabel ListeExercices;
+    private JTable mesExos;
+    
+    private JPanel entete;
+    private JPanel petiteEntete;
+    private JPanel exercices;
+    private JPanel actionsExo;
+    private JPanel panelBas;
+    private JPanel general;
+    
+    
+    private JLabel mesExercices;
+    private JLabel listeExercices;
   
-    private JPanel Tentative; 
+    private JPanel tentative; 
     private JLabel nexo;
-    private JButton FaireTentative;
-    private JButton VisualiserTentative;
+    private JButton faireTentative;
+    private JButton visualiserTentative;
     
-    //private JPanel Deconnect; 
-    private JButton deconnection;
-   
+    public InterfaceEleve (String nomEleve, String prenomEleve, String classeEleve){
         
-    public InterfaceEleve(){
         this.getContentPane().setLayout(new BorderLayout()); 
-        this.setTitle("Menu Eleve");
-        this.setSize(750,500);  //largeur, hauteur
+        this.setTitle("LOGO Groupe 7");
+        this.setSize(750,500);
         
-        //Partie Eleve
-        Eleve = new JPanel();
-        Eleve.setLayout(new GridLayout(2,1)); //3 lignes et 1 colonne
-                
-        nomEleve = new JLabel("Nom élève");
-        //nomEleve.setHorizontalAlignment(SwingConstants.WEST);
-        //nomEleve.setPreferredSize( new Dimension( 50, 25 ) );
-        //nomEleve.setFont(new Font("Arial",Font.BOLD,10));
-        Eleve.add(nomEleve);
+        //Partie petite entete
+        petiteEntete = new JPanel();
+        petiteEntete.setLayout(new GridLayout(2,2)); //2lignes et 1 colonne
         
-//        prenomEleve = new JLabel("Prénom");
-//        Eleve.add(prenomEleve);
-      
-        classeEleve = new JLabel("Classe élève");
-        Eleve.add(classeEleve);
+        lblNomEleve = new JLabel(nomEleve + "  ");
+        lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
+        lblPrenomEleve = new JLabel(prenomEleve);
+        lblPrenomEleve.setFont(new Font("Arial",Font.BOLD,15));
+        lblClasseEleve = new JLabel(classeEleve);
+        lblClasseEleve.setFont(new Font("Arial",Font.BOLD,15));
+        petiteEntete.add(lblNomEleve);
+        petiteEntete.add(lblPrenomEleve);
+        petiteEntete.add(lblClasseEleve);
         
+        //partie entete
+        entete = new JPanel();
+        entete.setLayout(new BorderLayout());
         
-        //Boutton Deconnection
-        deconnection = new JButton("Deconnection");
-        deconnection.setPreferredSize(new Dimension(20,10));
-             
-       
-        deconnection.addActionListener(new ActionListener () {
+        menu = new JLabel("MENU");
+        menu.setHorizontalAlignment(SwingConstants.CENTER);
+        menu.setFont(new Font("Arial",Font.BOLD,20));
+        
+        deconnexion = new JButton("Deconnexion");
+        deconnexion.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //réoriente vers InterfaceDebut
-                    InterfaceDebut app = new InterfaceDebut();
+                    //appel de linterface fin
                 }
-            }); 
+            });
+        
+        entete.add(petiteEntete, BorderLayout.WEST);
+        entete.add(menu, BorderLayout.CENTER);
+        entete.add(deconnexion, BorderLayout.EAST);
         
         
         //Partie Mes Exercices
-        Exercices = new JPanel();
+        exercices = new JPanel();
         //Exercices.setPreferredSize(new Dimension(350,450)); //largeur hauteur
         //Exercices.setLayout(new GridLayout(2,1));  
         
-        MesExercices = new JLabel("Mes Exercices");
+        mesExercices = new JLabel("Mes Exercices");
         //MesExercices.setVerticalAlignment(SwingConstants.CENTER);
-        MesExercices.setFont(new Font("Arial",Font.BOLD,30));
-        Exercices.add(MesExercices);
+        mesExercices.setFont(new Font("Arial",Font.BOLD,30));
+        exercices.add(mesExercices);
         
         
           
         
-        ListeExercices = new JLabel("Liste des Exercices"); //changer pour connection avec BDD! et requete de la liste des exercices
+        listeExercices = new JLabel("Liste des Exercices"); //changer pour connection avec BDD! et requete de la liste des exercices
         //ListeExercices.setVerticalAlignment(SwingConstants.CENTER);
-        ListeExercices.setFont(new Font("Arial",Font.BOLD,15));
+        listeExercices.setFont(new Font("Arial",Font.BOLD,15));
         //ListeExercices.setBounds(25, 25, 300, 300);
-        Exercices.add(ListeExercices);
+        exercices.add(listeExercices);
                 
         //Partie Tentatives
-        Tentative = new JPanel();
-        Tentative.setLayout(new GridLayout(3,1));
+        tentative = new JPanel();
+        tentative.setLayout(new GridLayout(3,1));
               
         nexo = new JLabel("N° Exercice");
-        Tentative.add(nexo);        
+        tentative.add(nexo);        
         
-        FaireTentative = new JButton("Faire une tentative");
-        FaireTentative.addActionListener(new ActionListener () {
+        faireTentative = new JButton("Faire une tentative");
+        faireTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //recupere les donnees de l'eleve
                     InterfaceDebut app = new InterfaceDebut(); //changer pour nouvelle tentative!!
                 }
             }); 
               
-        VisualiserTentative = new JButton("Visualiser mes tentatives");
-        VisualiserTentative.setHorizontalAlignment(SwingConstants.CENTER);
-        VisualiserTentative.addActionListener(new ActionListener () {
+        visualiserTentative = new JButton("Visualiser mes tentatives");
+        visualiserTentative.setHorizontalAlignment(SwingConstants.CENTER);
+        visualiserTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //recupere les donnees de l'eleve
                     InterfaceDebut app = new InterfaceDebut(); //changer pour VisualiserTentative!!
                 }
             }); 
         
-        Tentative.add(FaireTentative);
-        Tentative.add(VisualiserTentative);
+        tentative.add(faireTentative);
+        tentative.add(visualiserTentative);
        
-        //Partie supérieur de la Frame 
-        PanelHaut = new JPanel();
-        PanelHaut.setPreferredSize(new Dimension(700,50));
-        PanelHaut.setLayout(new GridLayout(1,3));
-        PanelHaut.add(Eleve);
-                
-        Menu = new JLabel("Menu");
-        Menu.setHorizontalAlignment(SwingConstants.CENTER);
-        Menu.setFont(new Font("Arial",Font.BOLD,30));
-        PanelHaut.add(Menu);
-        
-        //this.add(deconnection, BorderLayout.LINE_END);
-        PanelHaut.add(deconnection);
-        
         
         //Partie du bas         
-        PanelBas = new JPanel();
-        PanelBas.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
-        PanelBas.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
-        PanelBas.add(Exercices);
-        PanelBas.add(Tentative);
+        panelBas = new JPanel();
+        panelBas.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
+        panelBas.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
+        panelBas.add(exercices);
+        panelBas.add(tentative);
         
         
         //Partie Général
-        General = new JPanel();
-        General.add(PanelHaut,BorderLayout.NORTH);
-        General.add(PanelBas,BorderLayout.SOUTH);
+        general = new JPanel();
+        general.add(entete,BorderLayout.NORTH);
+        general.add(panelBas,BorderLayout.SOUTH);
                     
-        this.add(General);
+        this.add(general);
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        
+        //
+        this.add(entete, BorderLayout.NORTH);
+        
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
         this.setLocationRelativeTo(null);
-        this.setVisible(true);        
-    }    
+        this.setVisible(true);
+    }
 }

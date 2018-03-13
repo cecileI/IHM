@@ -20,6 +20,7 @@ public class InterfaceDebut extends JFrame {
     private JPanel panelProf;
     
     private JLabel jeSuis;
+    private JLabel message;
     
     private JLabel unEleve;
     private JTextField prenomEleve;
@@ -73,8 +74,7 @@ public class InterfaceDebut extends JFrame {
                     String nomE = nomEleve.getText();
                     String classe = classeEleve.getText();
                     if (connexionEleve(prenomE, nomE, classe)==true){
-                        View view = new View();
-                        view.createTree();
+                        InterfaceEleve interfaceEleve = new InterfaceEleve(nomE,prenomE,classe);
                         //ferme la fenetre de connexion
                         dispose();
                         InterfaceEleve app = new InterfaceEleve(); //ouvre le Menu Eleve
@@ -124,7 +124,7 @@ public class InterfaceDebut extends JFrame {
                         InterfaceProfesseur app = new InterfaceProfesseur();  //ouvre Menu Professeur
  
                     }else{
-                        System.out.println("Connexion refusée");
+                        message.setText("Connexion refusée");
                     }
                 }
             }); 
@@ -170,15 +170,17 @@ public class InterfaceDebut extends JFrame {
     
     /*
     * Fonction de connexion pour un professeur
-    * @param prenom P : le prénom du professeur qu'il aura rentré
-    * @param
+    * @param prenomE : le prénom de l'eleve qu'il aura rentré
+    * @param nomE : le nom de l'eleve qu'il aura rentré
+    * @param classe : la classe de l'eleve qu'il aura rentré
+    * @return boolean : si les identifiants de l'eleve sont corrects -> true
     */
     public boolean connexionEleve (String prenomE, String nomE, String classe){
         ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
         listEleve = InfoBDD.selectionListEleve(); //recupere la liste des élèves
         
         for (Eleve eleve : listEleve){
-            if ((eleve.getNomEleve().equals(nomE)) && (eleve.getPrenomEleve().equals(prenomE)) && (eleve.getClasse().getNiveau().equals(classe))){
+            if ((eleve.getNomEleve().equals(nomE)) && (eleve.getPrenomEleve().equals(prenomE)) && (eleve.getNiveau().equals(classe))){
                 return(true);
             }
         }
