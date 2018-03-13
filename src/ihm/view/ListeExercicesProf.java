@@ -1,14 +1,11 @@
 package ihm.view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -17,17 +14,18 @@ import javax.swing.SwingConstants;
  *
  * @author Group7
  */
-public class ModifExerciceProf extends JPanel {
-    private JPanel ModifExeciceProf;
+public class ListeExercicesProf extends JPanel {
+    private JPanel ListeExeciceProf;
   
     private JPanel Tree; 
     private JLabel Arbre;
   
     private JPanel Exercice; 
+    private JLabel ListeExercices;
     private JButton CreerExercice;
     private JButton ModifierExercice;
            
-    public ModifExerciceProf(){
+    public ListeExerciceProf(){
         //this.getContentPane().setLayout(new BorderLayout()); 
         //this.setTitle("Menu Professeur");
         this.setSize(750,400);  //largeur, hauteur
@@ -67,16 +65,16 @@ public class ModifExerciceProf extends JPanel {
         Exercice.add(ModifierExercice);
        
                 
-        ModifExeciceProf = new JPanel();
-        ModifExeciceProf.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
-        ModifExeciceProf.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
-        ModifExeciceProf.add(Tree);
-        ModifExeciceProf.add(Exercice);
+        ListeExeciceProf = new JPanel();
+        ListeExeciceProf.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
+        ListeExeciceProf.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
+        ListeExeciceProf.add(Tree);
+        ListeExeciceProf.add(Exercice);
                             
-        this.add(ModifExeciceProf);
+        this.add(ListeExeciceProf);
         
         //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //this.setLocationRelativeTo(null);
         //this.setVisible(true);        
-    }    
+    } 
 }

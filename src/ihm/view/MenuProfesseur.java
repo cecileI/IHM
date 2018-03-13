@@ -66,7 +66,7 @@ public class MenuProfesseur extends JFrame {
         CreerExercice.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //recupere les donnees de l'eleve
-                    AjoutExerciceProf app = new AjoutExerciceProf(); //changer pour nouveau exercice! addExercice();
+                    AjoutExerciceProf app = new AjoutExerciceProf();
                 }
             }); 
               
@@ -75,7 +75,8 @@ public class MenuProfesseur extends JFrame {
         ModifierExercice.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //recupere les donnees de l'eleve
-                    ModifExerciceProf app = new ModifExerciceProf(); //changer pour modifyExercice();
+                    ListeExercicesProf panel = new ListeExercicesProf();
+                    
                 }
             }); 
         

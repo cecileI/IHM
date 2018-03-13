@@ -20,8 +20,8 @@ public class LogoMain{
     public static void main (String[] args){
         
         InterfaceDebut app = new InterfaceDebut();
-        //InterfaceEleve app = new InterfaceEleve();
-        //InterfaceProfesseur app = new InterfaceProfesseur();
-        //InterfaceAjoutExercice app = new InterfaceAjoutExercice();
+        //MenuEleve app = new MenuEleve();
+        //MenuProfesseur app = new MenuProfesseur();
+        //MenuAjoutExercice app = new MenuAjoutExercice();
     }
 }
