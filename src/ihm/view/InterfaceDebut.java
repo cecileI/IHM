@@ -77,7 +77,6 @@ public class InterfaceDebut extends JFrame {
                         MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
                         //ferme la fenetre de connexion
                         dispose();
-                        MenuEleve app = new MenuEleve(); //ouvre le Menu Eleve
                     }else{
                         message.setText("Connexion refusée");
                     }
@@ -118,7 +117,7 @@ public class InterfaceDebut extends JFrame {
                     String mdp = motDePasse.getText();
                     
                     if (connexionProf(prenomP, nomP, mdp)==true){
-                        JTree view = new JTree();
+                        ViewJTree view = new ViewJTree();
                         view.createTree();
                         
                         MenuProfesseur app = new MenuProfesseur();  //ouvre Menu Professeur
