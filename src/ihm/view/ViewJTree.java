@@ -21,6 +21,7 @@ public class ViewJTree extends JPanel{
     
     public ViewJTree(){
             // Tree gestion
+            
             racine = new DefaultMutableTreeNode("Gphy"); // creation racine //model.getEcole().getNom()
             tree = new JTree(racine);  // creation arbre à partir de  racine
             tree.setShowsRootHandles(true);

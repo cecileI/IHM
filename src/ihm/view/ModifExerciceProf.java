@@ -17,10 +17,8 @@ import javax.swing.SwingConstants;
  *
  * @author Group7
  */
-public class ModifExerciceProf extends JFrame {
-    private JPanel General;
-    private JPanel PanelHaut;
-    private JPanel PanelBas;
+public class ModifExerciceProf extends JPanel {
+    private JPanel ModifExeciceProf;
   
     private JPanel Tree; 
     private JLabel Arbre;
@@ -28,26 +26,13 @@ public class ModifExerciceProf extends JFrame {
     private JPanel Exercice; 
     private JButton CreerExercice;
     private JButton ModifierExercice;
-
-    private JButton deconnection;
            
     public ModifExerciceProf(){
-        this.getContentPane().setLayout(new BorderLayout()); 
-        this.setTitle("Menu Professeur");
-        this.setSize(750,500);  //largeur, hauteur
+        //this.getContentPane().setLayout(new BorderLayout()); 
+        //this.setTitle("Menu Professeur");
+        this.setSize(750,400);  //largeur, hauteur
         
-        //Boutton Deconnection
-        deconnection = new JButton("Deconnection");
-        deconnection.setPreferredSize(new Dimension(20,10));
-             
-       
-        deconnection.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //réoriente vers InterfaceDebut
-                    InterfaceDebut app = new InterfaceDebut();
-                }
-            }); 
-        
+               
         //Partie JTree
         Tree = new JPanel();
         
@@ -81,35 +66,17 @@ public class ModifExerciceProf extends JFrame {
         Exercice.add(CreerExercice);
         Exercice.add(ModifierExercice);
        
-        //Partie supérieur de la Frame 
-        PanelHaut = new JPanel();
-        PanelHaut.setPreferredSize(new Dimension(700,50));
-        PanelHaut.setLayout(new GridLayout(1,2));
                 
-        JLabel labelBlanc = new JLabel("");
-        labelBlanc.setHorizontalAlignment(SwingConstants.CENTER);
-        PanelHaut.add(labelBlanc);
+        ModifExeciceProf = new JPanel();
+        ModifExeciceProf.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
+        ModifExeciceProf.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
+        ModifExeciceProf.add(Tree);
+        ModifExeciceProf.add(Exercice);
+                            
+        this.add(ModifExeciceProf);
         
-        //this.add(deconnection, BorderLayout.LINE_END);
-        PanelHaut.add(deconnection);
-        
-        //Partie du bas         
-        PanelBas = new JPanel();
-        PanelBas.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
-        PanelBas.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
-        PanelBas.add(Tree);
-        PanelBas.add(Exercice);
-        
-        
-        //Partie Général
-        General = new JPanel();
-        General.add(PanelHaut,BorderLayout.NORTH);
-        General.add(PanelBas,BorderLayout.SOUTH);
-                    
-        this.add(General);
-        
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);        
+        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //this.setLocationRelativeTo(null);
+        //this.setVisible(true);        
     }    
 }
