@@ -137,11 +137,9 @@ public class InfoBDD {
         
         Connection recon = connect();
         Statement stmt = null;            
-        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe, IdProf from Eleve, Classe";
-        
+        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe, IdProf from Eleve, Classe";       
         try{
             stmt = recon.createStatement();
-
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int idEleve = rs.getInt("IdEleve");
@@ -154,7 +152,6 @@ public class InfoBDD {
 
                 listeEleve.add(eleve);                          
             }
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

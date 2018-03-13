@@ -80,24 +80,16 @@ public class InterfaceEleve extends JFrame{
         entete.add(deconnexion, BorderLayout.EAST);
         
         
+        
         //Partie Mes Exercices
         exercices = new JPanel();
         //Exercices.setPreferredSize(new Dimension(350,450)); //largeur hauteur
-        //Exercices.setLayout(new GridLayout(2,1));  
+        exercices.setLayout(new GridLayout(2,1));  
         
         mesExercices = new JLabel("Mes Exercices");
-        //MesExercices.setVerticalAlignment(SwingConstants.CENTER);
+        mesExercices.setVerticalAlignment(SwingConstants.CENTER);
         mesExercices.setFont(new Font("Arial",Font.BOLD,30));
         exercices.add(mesExercices);
-        
-        
-          
-        
-        listeExercices = new JLabel("Liste des Exercices"); //changer pour connection avec BDD! et requete de la liste des exercices
-        //ListeExercices.setVerticalAlignment(SwingConstants.CENTER);
-        listeExercices.setFont(new Font("Arial",Font.BOLD,15));
-        //ListeExercices.setBounds(25, 25, 300, 300);
-        exercices.add(listeExercices);
                 
         //Partie Tentatives
         tentative = new JPanel();
