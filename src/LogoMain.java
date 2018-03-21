@@ -19,9 +19,9 @@ public class LogoMain{
      */
     public static void main (String[] args){
         
-        //InterfaceDebut app = new InterfaceDebut();
+        InterfaceDebut app = new InterfaceDebut();
         //MenuEleve app = new MenuEleve();
-        MenuProfesseur app = new MenuProfesseur();
-        //MenuAjoutExercice app = new MenuAjoutExercice();
+        //MenuProfesseur app = new MenuProfesseur();
+        //AjoutExerciceProf app = new AjoutExerciceProf();
     }
 }

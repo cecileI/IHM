@@ -82,7 +82,7 @@ public class ViewJTree extends JPanel{
     public void update(){
         MenuProfesseur prof = new MenuProfesseur();
         if (currentEleve != null) {
-            prof.gettxtNom().setText(currentEleve.getNomEleve()); // Nom de l'eleve
+            setText(currentEleve.getNomEleve()); // Nom de l'eleve
             //txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
             //String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
             //txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
