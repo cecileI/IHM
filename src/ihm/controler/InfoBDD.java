@@ -145,11 +145,11 @@ public class InfoBDD {
                 int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
+              //  Classe classe = rs.getString("Classe");
                 
-                
-               // Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
+                //Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
 
-               // listeEleve.add(eleve);                          
+                //listeEleve.add(eleve);                          
             }
 
         } catch (SQLException e) {
