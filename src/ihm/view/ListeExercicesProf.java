@@ -26,11 +26,15 @@ public class ListeExercicesProf extends JPanel {
     
     private JPanel listeEx;
     private JLabel listedesExos;
+
+    public JPanel getPanListeExercices() {
+        return panListeExercices;
+    }
     
     public ListeExercicesProf(){
         //MenuProfesseur.getContentPane().setLayout(new BorderLayout());
         //MenuProfesseur.setTitle("test liste des exercices");
-        //this.setSize(750,500);  //largeur, hauteur
+        this.setSize(850,600);  //largeur, hauteur
         
         //Partie Menu en haut = JPanel : panelHaut = un Label + Button retourMenu
         JPanel panelHaut = new JPanel();
@@ -73,6 +77,8 @@ public class ListeExercicesProf extends JPanel {
         
         //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //this.setLocationRelativeTo(null);
-        //this.setVisible(true);        
+        //this.setVisible(true);
+    //return(panListeExercices);    
     } 
+    
 }

@@ -38,7 +38,8 @@ public class MenuProfesseur extends JFrame {
     //JTree
     private ViewJTree panTree; //panel à gauche Jtree
     
-    private ListeExercicesProf modifier;
+    //redimensionner pour refresh
+    private ListeExercicesProf panliste;
            
     public MenuProfesseur(){
               
@@ -67,30 +68,21 @@ public class MenuProfesseur extends JFrame {
                     AjoutExerciceProf app = new AjoutExerciceProf();
                 }
             }); 
+        
+        
             //Bouton modification exercice
         modifierExercice = new JButton("Modifier un Exercice");
-        //ModifierExercice.setHorizontalAlignment(SwingConstants.CENTER);
         modifierExercice.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //MenuProfesseur professeur = new MenuProfesseur();
-                    modifier = new ListeExercicesProf();
-                    add(modifier);
-                   
-                    //panGeneral.add(panTree,BorderLayout.WEST);
+                                     
+                    panliste.getPanListeExercices();
+                    panDroite.add(panliste);                    
                     
-                    //panDroite = new ListeExercicesProf();
-                    //professeur.setContentPane(modifier);
-                    //panGeneral.add(modifier,BorderLayout.EAST);
-                    
-                    
-                    setVisible(true);
-                    //MenuProfesseur.setContentPane(new JPanel());
-                    //professeur.repaint();
-                    validate();
-                    
-                    
+                    //setVisible(true);
+                    //validate();                    
                 }
-            });      
+            });
+        
         
         // En haut : un blanc et bouton deconnection      
         JLabel labelBlanc = new JLabel("");
