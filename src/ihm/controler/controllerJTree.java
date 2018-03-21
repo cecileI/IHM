@@ -20,8 +20,8 @@ public class controllerJTree implements TreeSelectionListener{
     private ViewJTree view;
             
     public controllerJTree (JTree tree, ViewJTree view){
-        tree = this.tree;
-        view = this.view;         
+        this.tree=tree;
+        this.view=view;         
     }
     
     @Override

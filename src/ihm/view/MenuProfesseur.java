@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -35,6 +36,7 @@ public class MenuProfesseur extends JFrame {
     
     //JTree
     private ViewJTree panTree; //panel à gauche Jtree
+    private JTextField txtNom;
            
     public MenuProfesseur(){
               
@@ -74,13 +76,13 @@ public class MenuProfesseur extends JFrame {
                 }
             });      
         // En haut : un blanc et bouton deconnection      
-        JLabel labelBlanc = new JLabel("");
-        labelBlanc.setHorizontalAlignment(SwingConstants.CENTER);
+        txtNom = new JTextField("");
+        txtNom.setHorizontalAlignment(SwingConstants.CENTER);
         
         panHaut = new JPanel();
         panHaut.setPreferredSize(new Dimension(550,50));
         panHaut.setLayout(new GridLayout(1,2));
-        panHaut.add(labelBlanc); //JLabel blanc
+        panHaut.add(txtNom); //JLabel blanc
         panHaut.add(deconnection);   //JPanel Deconnection   
         
         //panExercice qui contient les boutons créer et modifier
@@ -132,4 +134,7 @@ public class MenuProfesseur extends JFrame {
         this.setVisible(true);        
     }    
     
+    public JTextField gettxtNom(){
+        return(txtNom);
+    }
 }
