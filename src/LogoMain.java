@@ -22,6 +22,6 @@ public class LogoMain{
         InterfaceDebut app = new InterfaceDebut();
         //MenuEleve app = new MenuEleve();
         //MenuProfesseur app = new MenuProfesseur();
-        //MenuAjoutExercice app = new MenuAjoutExercice();
+        //AjoutExerciceProf app = new AjoutExerciceProf();
     }
 }

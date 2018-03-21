@@ -6,11 +6,13 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.accessibility.AccessibleContext;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -35,6 +37,8 @@ public class MenuProfesseur extends JFrame {
     
     //JTree
     private ViewJTree panTree; //panel à gauche Jtree
+    
+    private ListeExercicesProf modifier;
            
     public MenuProfesseur(){
               
@@ -68,11 +72,26 @@ public class MenuProfesseur extends JFrame {
         //ModifierExercice.setHorizontalAlignment(SwingConstants.CENTER);
         modifierExercice.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees de l'eleve
-                    ListeExercicesProf panel = new ListeExercicesProf();
+                    //MenuProfesseur professeur = new MenuProfesseur();
+                    modifier = new ListeExercicesProf();
+                    add(modifier);
+                   
+                    //panGeneral.add(panTree,BorderLayout.WEST);
+                    
+                    //panDroite = new ListeExercicesProf();
+                    //professeur.setContentPane(modifier);
+                    //panGeneral.add(modifier,BorderLayout.EAST);
+                    
+                    
+                    setVisible(true);
+                    //MenuProfesseur.setContentPane(new JPanel());
+                    //professeur.repaint();
+                    validate();
+                    
                     
                 }
             });      
+        
         // En haut : un blanc et bouton deconnection      
         JLabel labelBlanc = new JLabel("");
         labelBlanc.setHorizontalAlignment(SwingConstants.CENTER);
@@ -131,5 +150,4 @@ public class MenuProfesseur extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);        
     }    
-    
 }
