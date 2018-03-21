@@ -5,7 +5,8 @@
  */
 package ihm.controler;
 
-import ihm.view.ViewJTree;
+import ihm.model.Eleve;
+import ihm.view.MenuProfesseur;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -17,15 +18,15 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 public class controllerJTree implements TreeSelectionListener{
     private JTree tree;
-    private ViewJTree view;
+    private MenuProfesseur view;
             
-    public controllerJTree (JTree tree, ViewJTree view){
-        this.tree=tree;
-        this.view=view;         
+    public controllerJTree (JTree montree, MenuProfesseur maview){
+        this.tree=montree;
+        this.view=maview;         
     }
     
     @Override
-    public void valueChanged(TreeSelectionEvent event) {
+    public void valueChanged(TreeSelectionEvent arg0) {
         //
         DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 
@@ -34,7 +35,7 @@ public class controllerJTree implements TreeSelectionListener{
         } else {
             Object nodeInfo = selectedNode.getUserObject();
             System.out.println("node info " + nodeInfo);
-            view.controllerJTreeCall(nodeInfo); 
+            view.controllerJTreeCall(nodeInfo);
 	}
 
     }

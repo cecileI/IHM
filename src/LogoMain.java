@@ -1,3 +1,5 @@
+import ihm.controler.InfoBDD;
+import ihm.model.Classe;
 import ihm.view.*;
 
 /*
@@ -18,10 +20,15 @@ public class LogoMain{
      * user with command line version of the application.
      */
     public static void main (String[] args){
-        
-        InterfaceDebut app = new InterfaceDebut();
+        System.out.println(InfoBDD.selectionListClasse());
+        for (Classe laclasse : InfoBDD.selectionListClasse()){
+            System.out.println(InfoBDD.selectionListEleveClasse(laclasse));
+        }
+        //Classe classeCE1=new Classe("CE1");
+        //Classe classeCP=new Classe("CP");
+        //InterfaceDebut app = new InterfaceDebut();
         //MenuEleve app = new MenuEleve();
-        //MenuProfesseur app = new MenuProfesseur();
+        MenuProfesseur app = new MenuProfesseur();
         //AjoutExerciceProf app = new AjoutExerciceProf();
     }
 }
