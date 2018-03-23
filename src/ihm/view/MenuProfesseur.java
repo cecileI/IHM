@@ -56,6 +56,7 @@ public class MenuProfesseur extends JPanel {
     private ListeExercicesProf panliste;
            
     public MenuProfesseur(){
+               
         controllerMenuProfesseur controlProf = new controllerMenuProfesseur(this);
               
         //Partie JTree à gauche 
@@ -136,14 +137,13 @@ public class MenuProfesseur extends JPanel {
         panGeneral.add(panTree,BorderLayout.WEST);     //ajout du JTree au menu (à gauche)
         panGeneral.add(panDroite,BorderLayout.EAST);   //ajout du panel général au menu
         
-        this.add(panGeneral);
+        this.setLayout(new BorderLayout());
+        this.add(panGeneral, BorderLayout.CENTER);
         
+
         //this.getContentPane().setLayout(new BorderLayout()); 
-        this.setTitle("Menu Professeur");
         this.setSize(750,500);  //largeur, hauteur
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
         this.setVisible(true);        
     }    
     

@@ -37,8 +37,10 @@ public class InterfaceDebut extends JFrame {
     private JButton validEleve;
     private JButton validProf;
 
-    
+    private static controllerInterfaceDebut controlInterf;
     public InterfaceDebut(){
+        
+        controlInterf = new controllerInterfaceDebut(this);
         
         this.getContentPane().setLayout(new BorderLayout()); 
         this.setTitle("LOGO Groupe 7");
@@ -66,26 +68,11 @@ public class InterfaceDebut extends JFrame {
         classeEleve.setHorizontalAlignment(SwingConstants.CENTER);
         panelEleve.add(classeEleve);
         
+        message = new JLabel();
         validEleve = new JButton("Valider");
         validEleve.setHorizontalAlignment(SwingConstants.CENTER);
         panelEleve.add(validEleve);
-        validEleve.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees de l'eleve
-                    String prenomE = prenomEleve.getText();
-                    String nomE = nomEleve.getText();
-                    String classe = classeEleve.getText();
-
-                    if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
-                        System.out.println("connexion reussie");
-                        MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
-                        refresh(interfaceEleve);
-                    }else{
-                        message = new JLabel();
-                        message.setText("Connexion refusée");
-                    }
-                }
-            }); 
+        validEleve.addActionListener(controlInterf); 
         
 
         //Partie prof
@@ -113,24 +100,7 @@ public class InterfaceDebut extends JFrame {
         validProf = new JButton("Valider");
         validProf.setHorizontalAlignment(SwingConstants.CENTER);
         panelProf.add(validProf);
-        validProf.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees du prof 
-                    String prenomP = prenomProf.getText();
-                    String nomP = nomProf.getText();
-                    String mdp = motDePasse.getText();
-
-                    if (controllerConnexion.connexionProf(prenomP, nomP, mdp)==true){
-                        System.out.println("connexion reussie");
-                        MenuProfesseur menuProf = new MenuProfesseur();  //ouvre Menu Professeur
-                        //ferme la fenetre de connexion
-                        dispose();
-                    }else{
-                        message = new JLabel();
-                        message.setText("Connexion refusée");
-                    }
-                }
-            }); 
+        validProf.addActionListener(controlInterf); 
         
         //Partie générale
         jeSuis = new JLabel("Je suis");
@@ -167,7 +137,43 @@ public class InterfaceDebut extends JFrame {
         //return(nouvFrame);
     }
 
+    public JButton getvalidEleve(){
+        return validEleve;
+    }
     
+    public JTextField getprenomEleve(){
+        return prenomEleve;
+    }
+    
+    public JTextField getnomEleve(){
+        return nomEleve;
+    }
+    
+    public JTextField getclasseEleve(){
+        return classeEleve;
+    }
+    
+    
+    public JLabel getmessage(){
+        return message;
+    }
+    
+    
+    public JButton getvalidProf(){
+        return validProf;
+    }
+    
+    public JTextField getprenomProf(){
+        return prenomProf;
+    }
+    
+    public JTextField getnomProf(){
+        return nomProf;
+    }
+    
+    public JTextField getmotDePasse(){
+        return motDePasse;
+    }
 }
 
 
