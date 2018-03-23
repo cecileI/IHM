@@ -35,6 +35,8 @@ public class ListeExercicesProf extends JPanel {
         //MenuProfesseur.getContentPane().setLayout(new BorderLayout());
         //MenuProfesseur.setTitle("test liste des exercices");
         //this.setSize(750,500);  //largeur, hauteur
+        this.setLayout(new BorderLayout());    
+        
         
         //Partie Menu en haut = JPanel : panelHaut = un Label + Button retourMenu
         JPanel panelHaut = new JPanel();
