@@ -1,8 +1,10 @@
 package ihm.view;
+
 import ihm.view.*;
 import ihm.controler.*;
-import ihm.model.Exercice;
 import ihm.controler.controllerMenuProfesseur;
+import ihm.model.Exercice;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
