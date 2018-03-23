@@ -2,6 +2,7 @@ package ihm.view;
 
 import ihm.controler.InfoBDD;
 import ihm.controler.controllerJTree;
+import ihm.controler.controllerMenuProfesseur;
 import ihm.model.Classe;
 import ihm.model.Eleve;
 import java.awt.BorderLayout;
@@ -55,6 +56,7 @@ public class MenuProfesseur extends JFrame {
     private ListeExercicesProf panliste;
            
     public MenuProfesseur(){
+        controllerMenuProfesseur controlProf = new controllerMenuProfesseur(this);
               
         //Partie JTree à gauche 
             racine = new DefaultMutableTreeNode("Gphy"); // creation racine
@@ -73,23 +75,13 @@ public class MenuProfesseur extends JFrame {
         //Boutton Deconnection
         deconnexion = new JButton("Deconnexion");
         deconnexion.setPreferredSize(new Dimension(20,10));
-        deconnexion.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //réoriente vers InterfaceDebut
-                    InterfaceDebut app = new InterfaceDebut();
-                }
-            }); 
+        deconnexion.addActionListener(controlProf);
         
 
         //Partie Exercice     
             //Bouton création exercice
         creerExercice = new JButton("Créer un Exercice");
-        creerExercice.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees de l'eleve
-                    AjoutExerciceProf app = new AjoutExerciceProf();
-                }
-            }); 
+        creerExercice.addActionListener(controlProf); 
         
         
             //Bouton modification exercice
@@ -99,29 +91,20 @@ public class MenuProfesseur extends JFrame {
                     
                     panDroite.remove(panHaut);
                     panDroite.remove(panExercice);
-                    
                     panGeneral.remove(panDroite);
-                    
                     panDroite.add(panliste);
-                    
-                    
-                    panGeneral.add(panDroite,BorderLayout.EAST);
+                    panGeneral.add(panDroite,BorderLayout.CENTER);
                     repaint();
-                    //setVisible(true);
-                    //validate();                    
+                    validate();                    
                 }
             });      
+        JLabel blanc0 = new JLabel("");
+        blanc0.setHorizontalAlignment(SwingConstants.CENTER);
         //Le nom et le prénom de l'élève 
-        txtNom = new JTextField();
-        txtNom.setText("Nom");
-        txtPrenom =new JTextField();
-        txtPrenom.setText("Prenom");
-        
         panHaut = new JPanel();
         panHaut.setPreferredSize(new Dimension(550,50));
-        panHaut.setLayout(new GridLayout(1,3));
-        panHaut.add(txtNom);
-        panHaut.add(txtPrenom);
+        panHaut.setLayout(new GridLayout(1,2));
+        panHaut.add(blanc0);
         //panHaut.add(lblEleve);
         panHaut.add(deconnexion);   //JPanel Deconnection   
         
@@ -225,7 +208,15 @@ public class MenuProfesseur extends JFrame {
     public void update(){
         
         if (currentEleve != null) {
-            System.out.println(currentEleve.getNomEleve());
+            txtNom = new JTextField();
+            txtNom.setText("Nom");
+            txtPrenom =new JTextField();
+            txtPrenom.setText("Prenom");
+
+            panHaut.add(txtNom);
+            panHaut.add(txtPrenom);
+            //panHaut.add(lblEleve);
+            panHaut.add(deconnexion);   //JPanel Deconnection   
             
             
             txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
@@ -249,5 +240,12 @@ public class MenuProfesseur extends JFrame {
             System.out.print("Erreur");
         }
     }
-
+    
+    public JButton getDeconnexion(){
+        return deconnexion;
+    }
+    
+    public JButton getcreerExercice(){
+        return creerExercice;
+    }
 }
