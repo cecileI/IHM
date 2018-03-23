@@ -188,6 +188,7 @@ public class MenuProfesseur extends JFrame {
             for (Eleve leleve : InfoBDD.selectionListEleveClasse (laclasse)){
                 //on crée de nouveaux noeuds
                 DefaultMutableTreeNode nodeEleve = new DefaultMutableTreeNode(leleve); //.getNomEleve()
+                
                 //on ajoute les eleves à l'arbre
                 nodeClasse.add(nodeEleve);
             }
