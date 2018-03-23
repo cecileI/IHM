@@ -122,7 +122,8 @@ public class InterfaceDebut extends JFrame {
                     if (controllerConnexion.connexionProf(prenomP, nomP, mdp)==true){
                         System.out.println("connexion reussie");
                         MenuProfesseur menuProf = new MenuProfesseur();  //ouvre Menu Professeur
-                        
+                        //ferme la fenetre de connexion
+                        dispose();
                     }else{
                         message = new JLabel();
                         message.setText("Connexion refusée");

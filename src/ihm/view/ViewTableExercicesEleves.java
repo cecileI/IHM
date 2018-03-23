@@ -44,7 +44,6 @@ public class ViewTableExercicesEleves extends JScrollPane {
     }
 
 
-
     /**
      * Sous-classe pour créer la JTable des exercices propre à un élève
      */
