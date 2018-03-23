@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
  *
@@ -18,6 +19,7 @@ public class InterfaceDebut extends JFrame {
     private JPanel panelGeneral;
     private JPanel panelEleve;
     private JPanel panelProf;
+    private JPanel panelGlobal;
     
     private JLabel jeSuis;
     private JLabel message;
@@ -77,8 +79,7 @@ public class InterfaceDebut extends JFrame {
                     if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
                         System.out.println("connexion reussie");
                         MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
-                        //ferme la fenetre de connexion
-                        dispose();
+                        refresh(interfaceEleve);
                     }else{
                         message = new JLabel();
                         message.setText("Connexion refusée");
@@ -142,8 +143,13 @@ public class InterfaceDebut extends JFrame {
         panelGeneral.add(labelBlanc);
         panelGeneral.add(panelProf);
         
-        this.add(jeSuis, BorderLayout.NORTH);
-        this.add(panelGeneral);
+        panelGlobal = new JPanel();
+        panelGlobal.setLayout(new BorderLayout());
+        panelGlobal.setPreferredSize(new Dimension(750,500));
+        panelGlobal.add(jeSuis, BorderLayout.NORTH);
+        panelGlobal.add(panelGeneral, BorderLayout.CENTER);
+        
+        this.add(panelGlobal);
         
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -151,6 +157,17 @@ public class InterfaceDebut extends JFrame {
         
     }
  
+    public void refresh(JPanel nouveauPanel){
+        JFrame nouvFrame = this;
+        panelGlobal.remove(jeSuis);
+        panelGlobal.remove(panelGeneral);
+        panelGlobal.add(nouveauPanel, BorderLayout.CENTER);
+        nouvFrame.repaint(); 
+        nouvFrame.validate();
+        //return(nouvFrame);
+    }
+
+    
 }
 
 
