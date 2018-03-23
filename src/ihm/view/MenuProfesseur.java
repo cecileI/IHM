@@ -1,5 +1,6 @@
 package ihm.view;
 
+import ihm.view.*;
 import ihm.controler.InfoBDD;
 import ihm.controler.controllerJTree;
 import ihm.controler.controllerMenuProfesseur;
@@ -52,15 +53,20 @@ public class MenuProfesseur extends JPanel {
     private Eleve currentEleve;
     private Classe currentClasse;
     
-    //redimensionner pour refresh
+    //panel pour créer un exercice
+    private AjoutExerciceProf panCreer;
+    
+    //panel pour modifier un exercice
     private ListeExercicesProf panliste;
            
     public MenuProfesseur(){
                
         controllerMenuProfesseur controlProf = new controllerMenuProfesseur(this);
-              
+        panliste = new ListeExercicesProf();
+        panCreer = new AjoutExerciceProf();
+        
         //Partie JTree à gauche 
-            racine = new DefaultMutableTreeNode("Gphy"); // creation racine
+            racine = new DefaultMutableTreeNode("Classes"); // creation racine
             createTree();
             tree = new JTree(racine);  // creation arbre à partir de  racine
             tree.setShowsRootHandles(true);
@@ -72,7 +78,6 @@ public class MenuProfesseur extends JPanel {
             panTree.add(tree);
             //panTree.setPreferredSize(new Dimension(140,450));
 
-            panliste = new ListeExercicesProf();
         //Boutton Deconnection
         deconnexion = new JButton("Deconnexion");
         deconnexion.setPreferredSize(new Dimension(20,10));
@@ -260,4 +265,8 @@ public class MenuProfesseur extends JPanel {
     public JPanel getpanHaut(){
         return panHaut;
     }
+
+    public AjoutExerciceProf getPanCreer() {
+        return panCreer;
+    }      
 }

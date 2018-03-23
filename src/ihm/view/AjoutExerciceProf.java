@@ -1,5 +1,6 @@
 package ihm.view;
 
+import ihm.view.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,17 +18,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- *
+ * Interface pour créer un exercice
  * @author Group7
  */
-public class AjoutExerciceProf extends JFrame {
-    private JPanel General;
+public class AjoutExerciceProf extends JPanel {
     private JPanel Droite;
-    
                 
-    private JPanel Tree; 
-    private JLabel Arbre;
-    
     private JPanel PanelHaut;
     private JLabel CreerExercice;    
     private JButton Menu;
@@ -46,21 +42,8 @@ public class AjoutExerciceProf extends JFrame {
     private JButton Executer;
     private JLabel lignecode;
    
-           
     public AjoutExerciceProf(){
-        this.getContentPane().setLayout(new BorderLayout()); 
-        this.setTitle("Ajout Exercice");
-        this.setSize(750,500);  //largeur, hauteur
-        
-
-        //Partie JTree à gauche 
-        Tree = new JPanel();
-        Tree.setPreferredSize(new Dimension(140,450));
-        Arbre = new JLabel("Affichage du JTree");
-        //Arbre.setVerticalAlignment(SwingConstants.CENTER);
-        //Arbre.setFont(new Font("Arial",Font.BOLD,15));
-        Tree.add(Arbre);     
-        
+        setLayout(new BorderLayout()); 
         
         //Boutton Menu
         Menu = new JButton("Menu");
@@ -70,8 +53,7 @@ public class AjoutExerciceProf extends JFrame {
                     //réoriente vers InterfaceDebut
                     MenuProfesseur app = new MenuProfesseur();
                 }
-            }); 
-        
+            });        
         
 //---------------------------------------------------------
 //               Partie Ajout d'un Exercice
@@ -80,8 +62,7 @@ public class AjoutExerciceProf extends JFrame {
         Exercice.setPreferredSize(new Dimension(550,400));
         Exercice.setLayout(new GridLayout(6,3));
         
-        Titre = new JTextField("Titre");
-        
+        Titre = new JTextField("Titre");        
         
         Valider = new JButton ("Valider Exercice");
         Valider.addActionListener(new ActionListener () {
@@ -156,7 +137,6 @@ public class AjoutExerciceProf extends JFrame {
         lignecode.setHorizontalAlignment(SwingConstants.CENTER);
         lignecode.setFont(new Font("Arial",Font.BOLD,15));
         
-       
         Exercice.add(Titre);
         Exercice.add(Valider);
         Exercice.add(Trapide);
@@ -169,7 +149,6 @@ public class AjoutExerciceProf extends JFrame {
         Exercice.add(Executer);
         Exercice.add(lignecode);        
 
-       
         //Partie droite de la Frame
         Droite = new JPanel();
         Droite.setPreferredSize(new Dimension(550,450));
@@ -185,17 +164,7 @@ public class AjoutExerciceProf extends JFrame {
         
         Droite.add(PanelHaut);
         Droite.add(Exercice);
-                
-        
-        //Partie Général
-        General = new JPanel();
-        General.add(Tree,BorderLayout.WEST);
-        General.add(Droite,BorderLayout.EAST);
                             
-        this.add(General);
-        
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);        
+        add(Droite);       
     }    
 }
