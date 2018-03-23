@@ -5,6 +5,7 @@
  */
 package ihm.controler;
 
+import ihm.model.Classe;
 import ihm.model.Eleve;
 import ihm.model.Professeur;
 import java.util.ArrayList;
@@ -43,8 +44,11 @@ public class controllerConnexion {
     public static boolean connexionEleve (String prenomE, String nomE, String classe){
         ArrayList<Eleve> listEleve = InfoBDD.selectionListEleve(); //recupere la liste des élèves
         
+        System.out.println(classe);
         for (Eleve eleve : listEleve){
-            if ((eleve.getNomEleve().equals(nomE)) && (eleve.getPrenomEleve().equals(prenomE)) && (eleve.getNiveau().equals(classe))){
+            System.out.println(eleve.getPrenomEleve());
+            System.out.println(eleve.getNiveau().getNiveau());
+            if ((eleve.getNomEleve().equals(nomE)) && (eleve.getPrenomEleve().equals(prenomE)) && (eleve.getNiveau().getNiveau().equals(classe))){
                 return(true);
             }
         }

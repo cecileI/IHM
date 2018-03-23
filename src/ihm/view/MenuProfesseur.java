@@ -39,18 +39,19 @@ public class MenuProfesseur extends JFrame {
     //JButton
     private JButton creerExercice; //bouton création exercice
     private JButton modifierExercice; //bouton modification exercice
-    private JButton deconnection; //bouton deconnection
+    private JButton deconnexion; //bouton deconnection
     
     //JTree
     private JPanel panTree; //panel à gauche Jtree
     private JLabel lblEleve;
-    private JTextField txtNom;
+    private JTextField txtNom, txtPrenom;
     private JTree tree;
     private DefaultMutableTreeNode racine;
     private Eleve currentEleve;
     private Classe currentClasse;
     
-    private ListeExercicesProf modifier;
+    //redimensionner pour refresh
+    private ListeExercicesProf panliste;
            
     public MenuProfesseur(){
               
@@ -67,10 +68,11 @@ public class MenuProfesseur extends JFrame {
             panTree.add(tree);
             //panTree.setPreferredSize(new Dimension(140,450));
                        
+            panliste = new ListeExercicesProf();
         //Boutton Deconnection
-        deconnection = new JButton("Deconnection");
-        deconnection.setPreferredSize(new Dimension(20,10));
-        deconnection.addActionListener(new ActionListener () {
+        deconnexion = new JButton("Deconnexion");
+        deconnexion.setPreferredSize(new Dimension(20,10));
+        deconnexion.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //réoriente vers InterfaceDebut
                     InterfaceDebut app = new InterfaceDebut();
@@ -87,44 +89,40 @@ public class MenuProfesseur extends JFrame {
                     AjoutExerciceProf app = new AjoutExerciceProf();
                 }
             }); 
+        
+        
             //Bouton modification exercice
         modifierExercice = new JButton("Modifier un Exercice");
-        //ModifierExercice.setHorizontalAlignment(SwingConstants.CENTER);
         modifierExercice.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //MenuProfesseur professeur = new MenuProfesseur();
-                    modifier = new ListeExercicesProf();
-                    add(modifier);
-                   
-                    //panGeneral.add(panTree,BorderLayout.WEST);
                     
-                    //panDroite = new ListeExercicesProf();
-                    //professeur.setContentPane(modifier);
-                    //panGeneral.add(modifier,BorderLayout.EAST);
+                    panDroite.remove(panHaut);
+                    panDroite.remove(panExercice);
+                    
+                    panGeneral.remove(panDroite);
+                    
+                    panDroite.add(panliste);
                     
                     
-                    setVisible(true);
-                    //MenuProfesseur.setContentPane(new JPanel());
-                    //professeur.repaint();
-                    validate();
-                    
-                    
+                    panGeneral.add(panDroite,BorderLayout.EAST);
+                    repaint();
+                    //setVisible(true);
+                    //validate();                    
                 }
             });      
-        //Le nom de l'élève 
-        //lblEleve=new JLabel("Nom");
+        //Le nom et le prénom de l'élève 
         txtNom = new JTextField();
-        //lblEleve.setLabelFor(txtNom);
         txtNom.setText("Nom");
-        //txtNom.setColumns(20);
-        //txtNom.setHorizontalAlignment(JTextField.CENTER);
+        txtPrenom =new JTextField();
+        txtPrenom.setText("Prenom");
         
         panHaut = new JPanel();
         panHaut.setPreferredSize(new Dimension(550,50));
-        panHaut.setLayout(new GridLayout(1,2));
+        panHaut.setLayout(new GridLayout(1,3));
         panHaut.add(txtNom);
+        panHaut.add(txtPrenom);
         //panHaut.add(lblEleve);
-        panHaut.add(deconnection);   //JPanel Deconnection   
+        panHaut.add(deconnexion);   //JPanel Deconnection   
         
         //panExercice qui contient les boutons créer et modifier
         JLabel blanc1 = new JLabel("");
@@ -230,7 +228,7 @@ public class MenuProfesseur extends JFrame {
             
             
             txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
-            //txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
+            txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
             //String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
             //txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
             //txtProf.setText(currentEleve.getClasse().getProf()); //Affichage du nom du prof

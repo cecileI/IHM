@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
  *
  * @author Group7
  */
-public class ModifExerciceProf extends JPanel {
+public class ModifExerciceProf extends JPanel{
     private JPanel ModifExeciceProf;
   
     private JPanel Tree; 
@@ -75,8 +75,8 @@ public class ModifExerciceProf extends JPanel {
                             
         this.add(ModifExeciceProf);
         
-        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //this.setLocationRelativeTo(null);
-        //this.setVisible(true);        
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.setLocationRelativeTo(null);
+//        this.setVisible(true);        
     }    
 }

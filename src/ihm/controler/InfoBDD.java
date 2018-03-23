@@ -148,7 +148,7 @@ public class InfoBDD {
                 String  niveau = rs.getString("Classe");
                 
                 for (Classe laclasse : selectionListClasse()){
-                    if(laclasse.getNiveau()==niveau){
+                    if(laclasse.getNiveau().equals(niveau)){
                         Eleve eleve = new Eleve(idEleve, nomEleve,  prenomEleve, laclasse);
                         listeEleve.add(eleve);
                     }

@@ -27,8 +27,12 @@ public class LogoMain{
         //Classe classeCE1=new Classe("CE1");
         //Classe classeCP=new Classe("CP");
          //InterfaceDebut app = new InterfaceDebut();
-         MenuEleve app = new MenuEleve();
+         //MenuEleve app = new MenuEleve();
+
+        InterfaceDebut app = new InterfaceDebut();
+        //MenuEleve app = new MenuEleve();
         //MenuProfesseur app = new MenuProfesseur();
         //AjoutExerciceProf app = new AjoutExerciceProf();
+        //ModifExerciceProf app = new ModifExerciceProf();
     }
 }
