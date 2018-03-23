@@ -1,4 +1,6 @@
 package ihm.view;
+import ihm.controler.*;
+import ihm.model.Exercice;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -6,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
@@ -19,13 +22,13 @@ import javax.swing.SwingConstants;
  * @author Group7
  */
 public class ListeExercicesProf extends JPanel {
-    private JPanel panListeExercices;
     private JPanel panelHaut; 
     private JLabel labelBlanc;
     private JButton retourMenu;
     
     private JPanel listeEx;
     private JLabel listedesExos;
+    private ArrayList <Exercice> listeExo;
     
     public ListeExercicesProf(){
         //MenuProfesseur.getContentPane().setLayout(new BorderLayout());
@@ -56,23 +59,13 @@ public class ListeExercicesProf extends JPanel {
         listeEx = new JPanel();
         listeEx.setPreferredSize(new Dimension(550,400));
         listedesExos = new JLabel("Liste des exercices");
-        //ListedesExos.setVerticalAlignment(SwingConstants.CENTER);
-        //ListedesExos.setFont(new Font("Arial",Font.BOLD,15));
-        listeEx.add(listedesExos);                      
+        //this.listeExo = InfoBDD.selectionListExercice();
+        
+        //listedesExos.setVerticalAlignment(SwingConstants.CENTER);
+        //listedesExos.setFont(new Font("Arial",Font.BOLD,15));
+        listeEx.add(listedesExos);   
  
-        //Panel Liste des Exercices final = panListeExercices
-        panListeExercices = new JPanel();
-        //panListeExercices.setSize(750,400);  //largeur, hauteur       
-        
-        //panListeExercices.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
-        
-        panListeExercices.add(panelHaut,BorderLayout.NORTH);             
-        panListeExercices.add(listeEx,BorderLayout.SOUTH); 
-        
-        //this.add(panListeExercices);
-        
-        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //this.setLocationRelativeTo(null);
-        //this.setVisible(true);        
-    } 
+        this.add(panelHaut,BorderLayout.NORTH);
+        this.add(listeEx,BorderLayout.SOUTH);
+    }
 }

@@ -42,6 +42,7 @@ public class MenuEleve extends JFrame{
     private ViewTableExercicesEleves maJTable;
     
     private Exercice currentExercice;
+    private Tentative currentTentative;
     
     public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
         
@@ -72,12 +73,13 @@ public class MenuEleve extends JFrame{
         menu.setFont(new Font("Arial",Font.BOLD,20));
         
         deconnexion = new JButton("Deconnexion");
+        //Boutton Deconnection
         deconnexion.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut();
                     dispose();
                 }
-            });
+            }); 
         
         entete.add(petiteEntete, BorderLayout.WEST);
         entete.add(menu, BorderLayout.CENTER);
@@ -112,7 +114,7 @@ public class MenuEleve extends JFrame{
         faireTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //recupere les donnees de l'eleve
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour nouvelle tentative!!
+                    TentativeEleve tent = new TentativeEleve(nomEleve, prenomEleve, classeEleve); 
                 }
             }); 
               
@@ -161,6 +163,13 @@ public class MenuEleve extends JFrame{
 	if (node instanceof Exercice) {
             currentExercice = node;
             nexo.setText(currentExercice.getTitre());
+            update();
+	}
+    }
+    
+        public void afficheInfoTentative(MenuEleve this,Tentative node) {
+	if (node instanceof Tentative) {
+            currentTentative = node;
             update();
 	}
     }

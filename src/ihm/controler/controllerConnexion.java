@@ -43,11 +43,14 @@ public class controllerConnexion {
     */
     public static boolean connexionEleve (String prenomE, String nomE, String classe){
         ArrayList<Eleve> listEleve = InfoBDD.selectionListEleve(); //recupere la liste des élèves
-        
+
         Classe classeEleve = new Classe(classe);
-        
+
         for (Eleve eleve : listEleve){
-            if ((eleve.getNomEleve().equals(nomE)) && (eleve.getPrenomEleve().equals(prenomE)) && (eleve.getNiveau().equals(classeEleve.getNiveau()))){
+            System.out.println(eleve.getPrenomEleve());
+            System.out.println(eleve.getNiveau().getNiveau());
+            if ((eleve.getNomEleve().equals(nomE)) && (eleve.getPrenomEleve().equals(prenomE)) && (eleve.getNiveau().getNiveau().equals(classe))){
+
                 return(true);
             }
         }

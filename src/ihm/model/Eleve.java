@@ -8,11 +8,11 @@ public class Eleve {
     private int idEleve;
     private String nomEleve;
     private String prenomEleve;
-    private String niveau;
+    private Classe niveau;
 
 
     //Constructeur de la classe Eleve
-    public Eleve(int idEleve, String nomEleve, String prenomEleve, String niveau) {
+    public Eleve(int idEleve, String nomEleve, String prenomEleve, Classe niveau) {
         this.idEleve = idEleve;
         this.nomEleve = nomEleve;
         this.prenomEleve = prenomEleve;
@@ -44,12 +44,15 @@ public class Eleve {
         this.prenomEleve = prenomEleve;
     }
 
-    public String getNiveau() {
+    public Classe getNiveau() {
         return niveau;
     }
 
-    public void setNiveau(String niveau) {
+    public void setNiveau(Classe niveau) {
         this.niveau = niveau;
     }
     
+    public String toString (){
+        return (prenomEleve +" "+ nomEleve);
+    }
 }
