@@ -72,11 +72,13 @@ public class MenuEleve extends JFrame{
         menu.setFont(new Font("Arial",Font.BOLD,20));
         
         deconnexion = new JButton("Deconnexion");
+        //Boutton Deconnection
         deconnexion.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //appel de linterface fin
+                    //réoriente vers InterfaceDebut
+                    InterfaceDebut app = new InterfaceDebut();
                 }
-            });
+            }); 
         
         entete.add(petiteEntete, BorderLayout.WEST);
         entete.add(menu, BorderLayout.CENTER);
