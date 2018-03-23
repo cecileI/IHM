@@ -68,7 +68,7 @@ public class MenuProfesseur extends JFrame {
             panTree=new JPanel();
             panTree.add(tree);
             //panTree.setPreferredSize(new Dimension(140,450));
-                       
+
             panliste = new ListeExercicesProf();
         //Boutton Deconnection
         deconnexion = new JButton("Deconnexion");
@@ -91,15 +91,15 @@ public class MenuProfesseur extends JFrame {
                 }
             }); 
         
-        
             //Bouton modification exercice
         modifierExercice = new JButton("Modifier un Exercice");
         modifierExercice.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    
+                public void actionPerformed (ActionEvent e) {               
+                    //Superposition du panel : ListeExercicesProf 
                     panDroite.remove(panHaut);
                     panDroite.remove(panExercice);
                     panGeneral.remove(panDroite);
+                    //le panel ListeExercicesProf prend la place du panDroite
                     panDroite.add(panliste);
                     panGeneral.add(panDroite,BorderLayout.CENTER);
                     repaint();
