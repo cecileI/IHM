@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Group7
  */
-public class MenuEleve extends JFrame{
+public class MenuEleve extends JPanel{
     
     private JLabel lblNomEleve;
     private JLabel lblPrenomEleve;
@@ -44,10 +44,12 @@ public class MenuEleve extends JFrame{
     private Exercice currentExercice;
     private Tentative currentTentative;
     
+    private static controllerMenuEleve controlEleve;
+    
     public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
         
-        this.getContentPane().setLayout(new BorderLayout()); 
-        this.setTitle("LOGO Groupe 7");
+        this.setLayout(new BorderLayout()); 
+        //this.setTitle("LOGO Groupe 7");
         this.setSize(750,500);
         
         //Partie petite entete
@@ -74,12 +76,8 @@ public class MenuEleve extends JFrame{
         
         deconnexion = new JButton("Deconnexion");
         //Boutton Deconnection
-        deconnexion.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut();
-                    dispose();
-                }
-            }); 
+        controlEleve = new controllerMenuEleve(this);
+        deconnexion.addActionListener(controlEleve);
         
         entete.add(petiteEntete, BorderLayout.WEST);
         entete.add(menu, BorderLayout.CENTER);
@@ -145,11 +143,11 @@ public class MenuEleve extends JFrame{
         general.add(entete,BorderLayout.NORTH);
         general.add(panelBas,BorderLayout.SOUTH);
                     
-        this.add(general);
+        this.add(general, BorderLayout.CENTER);
         this.add(entete, BorderLayout.NORTH);
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
-        this.setLocationRelativeTo(null);
+        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
+        //this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
@@ -190,6 +188,13 @@ public class MenuEleve extends JFrame{
     */
     public JButton getFaireTentative() {
         return faireTentative;
+    }
+    
+    /*
+    *@return bouton faire tentative
+    */
+    public JButton getDeconnexion() {
+        return deconnexion;
     }
 
     /*

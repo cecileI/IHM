@@ -2,6 +2,7 @@ package ihm.view;
 
 import ihm.controler.InfoBDD;
 import ihm.controler.controllerJTree;
+import ihm.controler.controllerMenuProfesseur;
 import ihm.model.Classe;
 import ihm.model.Eleve;
 import java.awt.BorderLayout;
@@ -29,7 +30,7 @@ import javax.swing.tree.TreeSelectionModel;
  *  Cette classe permet de créé une fenetre qui permettra a l'élève d'acceder à ces fonctionnalitées
  * @author Goup7
  */
-public class MenuProfesseur extends JFrame {
+public class MenuProfesseur extends JPanel {
    
     //JPanel
     private JPanel panGeneral; //panel général qui regroupe toutes les informations de la Jframe
@@ -55,6 +56,8 @@ public class MenuProfesseur extends JFrame {
     private ListeExercicesProf panliste;
            
     public MenuProfesseur(){
+               
+        controllerMenuProfesseur controlProf = new controllerMenuProfesseur(this);
               
         //Partie JTree à gauche 
             racine = new DefaultMutableTreeNode("Gphy"); // creation racine
@@ -73,39 +76,18 @@ public class MenuProfesseur extends JFrame {
         //Boutton Deconnection
         deconnexion = new JButton("Deconnexion");
         deconnexion.setPreferredSize(new Dimension(20,10));
-        deconnexion.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //réoriente vers InterfaceDebut
-                    InterfaceDebut app = new InterfaceDebut();
-                }
-            }); 
+        deconnexion.addActionListener(controlProf);
         
 
         //Partie Exercice     
             //Bouton création exercice
         creerExercice = new JButton("Créer un Exercice");
-        creerExercice.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees de l'eleve
-                    AjoutExerciceProf app = new AjoutExerciceProf();
-                }
-            }); 
+        creerExercice.addActionListener(controlProf); 
         
             //Bouton modification exercice
         modifierExercice = new JButton("Modifier un Exercice");
-        modifierExercice.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {               
-                    //Superposition du panel : ListeExercicesProf 
-                    panDroite.remove(panHaut);
-                    panDroite.remove(panExercice);
-                    panGeneral.remove(panDroite);
-                    //le panel ListeExercicesProf prend la place du panDroite
-                    panDroite.add(panliste);
-                    panGeneral.add(panDroite,BorderLayout.CENTER);
-                    repaint();
-                    validate();                    
-                }
-            });      
+        modifierExercice.addActionListener(controlProf);
+        
         JLabel blanc0 = new JLabel("");
         blanc0.setHorizontalAlignment(SwingConstants.CENTER);
         //Le nom et le prénom de l'élève 
@@ -154,14 +136,13 @@ public class MenuProfesseur extends JFrame {
         panGeneral.add(panTree,BorderLayout.WEST);     //ajout du JTree au menu (à gauche)
         panGeneral.add(panDroite,BorderLayout.EAST);   //ajout du panel général au menu
         
-        this.add(panGeneral);
+        this.setLayout(new BorderLayout());
+        this.add(panGeneral, BorderLayout.CENTER);
         
+
         //this.getContentPane().setLayout(new BorderLayout()); 
-        this.setTitle("Menu Professeur");
         this.setSize(750,500);  //largeur, hauteur
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
         this.setVisible(true);        
     }    
     
@@ -248,5 +229,35 @@ public class MenuProfesseur extends JFrame {
             System.out.print("Erreur");
         }
     }
-
+    
+    public JButton getDeconnexion(){
+        return deconnexion;
+    }
+    
+    public JButton getcreerExercice(){
+        return creerExercice;
+    }
+    public JButton getmodifierExercice(){
+        return modifierExercice;
+    }
+    
+    public JPanel getpanDroite(){
+        return panDroite;
+    }
+    
+    public JPanel getpanGeneral(){
+        return panGeneral;
+    }
+    
+    public JPanel getpanliste(){
+        return panliste;
+    }
+    
+    public JPanel getpanExercice(){
+        return panExercice;
+    }
+    
+    public JPanel getpanHaut(){
+        return panHaut;
+    }
 }

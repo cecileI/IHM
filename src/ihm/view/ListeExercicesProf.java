@@ -36,9 +36,6 @@ public class ListeExercicesProf extends JPanel {
     private Exercice currentExercice;
     
     public ListeExercicesProf(){
-        //MenuProfesseur.getContentPane().setLayout(new BorderLayout());
-        //MenuProfesseur.setTitle("test liste des exercices");
-        //this.setSize(750,500);  //largeur, hauteur
         this.setLayout(new BorderLayout());
         
         //Partie Menu en haut = JPanel : panelHaut = un Label + Button retourMenu
@@ -57,7 +54,6 @@ public class ListeExercicesProf extends JPanel {
                     MenuProfesseur app = new MenuProfesseur();
                 }
             });
-        
         panelHaut.add(labelBlanc);
         panelHaut.add(retourMenu); 
         
@@ -65,15 +61,11 @@ public class ListeExercicesProf extends JPanel {
         listeEx = new JPanel();
         listeEx.setPreferredSize(new Dimension(550,400));
         listedesExos = new JLabel("Liste des exercices");
-        //this.listeExo = InfoBDD.selectionListExercice();
         
-        this.maJTable = new ViewTableExercices(this);        
-        listeEx.add(maJTable); 
+        this.maJTable = new ViewTableExercices(this);
+        listeEx.add(listedesExos);
+        listeEx.add(maJTable);
         
-        //listedesExos.setVerticalAlignment(SwingConstants.CENTER);
-        //listedesExos.setFont(new Font("Arial",Font.BOLD,15));
-        listeEx.add(listedesExos);   
- 
         this.add(panelHaut,BorderLayout.NORTH);
         this.add(listeEx,BorderLayout.SOUTH);
     }
@@ -92,8 +84,7 @@ public class ListeExercicesProf extends JPanel {
     }
     
     /*
-    * Cette fonction permet de rendre cliquable les boutons 
-    * Faire Tentative et Visualiser Tentative 
+    * Cette fonction permet d'ouvrir le panel ModifExerciceProf pour l'exercice selectionné!
     * quand on a sélectionné un exercice 
     */
     public void update(){
