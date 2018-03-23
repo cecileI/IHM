@@ -51,7 +51,8 @@ public class controllerExerciceEleve implements ListSelectionListener{
            int selectligne = selectmodel.getMinSelectionIndex();
            Exercice selectExercice = exercices.get(jtable.convertRowIndexToModel(selectligne));
            System.out.println("La ligne"+ selectExercice.toString()+" est sélectionnée");
-           menuEleve.afficheInfo(selectExercice); //effectue les actions voulues
+           
+           menuEleve.afficheInfo(selectExercice); //effectue les actions voulues, ici, fait apparaitre les boutons faire ou visualiser tentatives
         }
      
     }   

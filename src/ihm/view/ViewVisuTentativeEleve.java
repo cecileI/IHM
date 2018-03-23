@@ -1,8 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ihm.view;
 
 import ihm.controler.InfoBDD;
-import ihm.controler.controllerExerciceEleve;
-import ihm.model.Exercice;
+import ihm.controler.controllerTentative;
+import ihm.model.Eleve;
+import ihm.model.Tentative;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -11,22 +17,29 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Clara
+ * @author Cécile
  */
-public class ViewTableExercicesEleves extends JScrollPane {
+public class ViewVisuTentativeEleve extends JScrollPane {
     
     private TableMod tableMod;
     private JTable jtable;
     private MenuEleve menuEleve;
     private ListSelectionModel listSelectionModel;
-    
+    private static Eleve eleve;
+    private String nomEleve, prenomEleve,classeEleve;
+        
     
      /**
       * Constructeur de la view de la jtable
      * Cette fonction permet de créer une JTable des exercices dans le menu Eleve
      * @param menuEleve : l'interface du menu eleve
      */
-    public ViewTableExercicesEleves(MenuEleve menuEleve){
+    public ViewVisuTentativeEleve(MenuEleve menuEleve){
+        eleve.setNomEleve(nomEleve);
+        eleve.setPrenomEleve(prenomEleve);
+        eleve.setNiveau(classeEleve); 
+        
+        
         this.menuEleve = menuEleve;
         tableMod = new TableMod(); //création de la tableMod
         jtable = new JTable(tableMod); //création de la jtable
@@ -40,8 +53,9 @@ public class ViewTableExercicesEleves extends JScrollPane {
         
         //pour avoir une action lorque l'on clique sur un élément dans la jtable
         listSelectionModel = jtable.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new controllerExerciceEleve(jtable,tableMod.getExercices(),menuEleve));
+        listSelectionModel.addListSelectionListener(new controllerTentative(jtable,tableMod.getTentatives(),menuEleve));
     }
+
 
 
     /**
@@ -49,22 +63,22 @@ public class ViewTableExercicesEleves extends JScrollPane {
      */
     public static class TableMod extends AbstractTableModel {
         
-        private ArrayList<Exercice> exercices;
-        private String[] menubar = {"Exercices"};
+        private ArrayList<Tentative> tentatives;
+        private String[] menubar = {"N°","Statut"};
         
         /**
          * Constructeur de tablemod
          */
         public TableMod(){
-            this.exercices = InfoBDD.selectionListExercice();
+            this.tentatives = InfoBDD.selectionListTentativeUnEleve(eleve);
         }
 
         /**
          * getter de la liste des exercices
          * @return la liste des exercices
          */
-        public ArrayList<Exercice> getExercices() {
-            return exercices;
+        public ArrayList<Tentative> getTentatives() {
+            return tentatives;
         }
 
         public String getColumnName (int columnIndex) {
@@ -72,7 +86,7 @@ public class ViewTableExercicesEleves extends JScrollPane {
         }
                 
         public int getRowCount() {
-          return exercices.size();
+          return tentatives.size();
         }
 
         public int getColumnCount() {
@@ -85,15 +99,22 @@ public class ViewTableExercicesEleves extends JScrollPane {
          * @param columnIndex num de la colonne
          * @return Object
          */
-        public Object getValueAt(int rowIndex, int columnIndex) {
+        public Object getValueAtTentative(int rowIndex, int columnIndex) {
 
 	    if  (columnIndex==0) {
-		return exercices.get(rowIndex).getTitre();}
+		return tentatives.get(rowIndex).getIdTentative();}
+            else if (columnIndex==1) {
+		return tentatives.get(rowIndex).getStatutTentative();}
             else { 
                 System.out.println("erreur");
                 return null;
             }
        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
     /**
      * Getter de la JTable

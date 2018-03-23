@@ -42,6 +42,7 @@ public class MenuEleve extends JFrame{
     private ViewTableExercicesEleves maJTable;
     
     private Exercice currentExercice;
+    private Tentative currentTentative;
     
     public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
         
@@ -75,8 +76,8 @@ public class MenuEleve extends JFrame{
         //Boutton Deconnection
         deconnexion.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //réoriente vers InterfaceDebut
                     InterfaceDebut app = new InterfaceDebut();
+                    dispose();
                 }
             }); 
         
@@ -97,7 +98,7 @@ public class MenuEleve extends JFrame{
         
         this.maJTable = new ViewTableExercicesEleves(this);
         
-        //exercices.add(mesExercices);
+        exercices.add(mesExercices);
         exercices.add(maJTable); 
                 
         //Partie Tentatives
@@ -105,6 +106,7 @@ public class MenuEleve extends JFrame{
         tentative.setLayout(new GridLayout(3,1));
               
         nexo = new JLabel("N° Exercice");
+        nexo.setVerticalAlignment(SwingConstants.CENTER);
         tentative.add(nexo);        
         
         faireTentative = new JButton("Faire une tentative");
@@ -112,7 +114,7 @@ public class MenuEleve extends JFrame{
         faireTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     //recupere les donnees de l'eleve
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour nouvelle tentative!!
+                    TentativeEleve tent = new TentativeEleve(nomEleve, prenomEleve, classeEleve); 
                 }
             }); 
               
@@ -160,6 +162,14 @@ public class MenuEleve extends JFrame{
     public void afficheInfo(MenuEleve this,Exercice node) {
 	if (node instanceof Exercice) {
             currentExercice = node;
+            nexo.setText(currentExercice.getTitre());
+            update();
+	}
+    }
+    
+        public void afficheInfoTentative(MenuEleve this,Tentative node) {
+	if (node instanceof Tentative) {
+            currentTentative = node;
             update();
 	}
     }

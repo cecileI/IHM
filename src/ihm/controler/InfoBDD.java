@@ -20,6 +20,7 @@ public class InfoBDD {
 
     private static ArrayList<Tentative> listeTentative;
     private static ArrayList<Tentative> listeTentativeNE; //pour tentatives non-evaluees
+    private static ArrayList<Tentative> listeTentativeUnEleve; //pour tentative d'un élève précis
     private static ArrayList<Professeur> listeProfesseur;
     private static ArrayList<Eleve> listeEleve,listeEleveClasse;
     private static ArrayList<Classe> listeClasse;
@@ -145,7 +146,8 @@ public class InfoBDD {
                 int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
-                String  niveau = rs.getString("Classe");
+                String niveau = rs.getString("Classe");
+                     
                 
                 for (Classe laclasse : selectionListClasse()){
                     if(laclasse.getNiveau().equals(niveau)){
@@ -154,6 +156,7 @@ public class InfoBDD {
                     }
                 }
                                          
+
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -222,6 +225,42 @@ public class InfoBDD {
         return listeClasse;
     }   
 
+    /**
+     * Création d'une liste de tentatives avec leurs statuts pour un elève donné 
+     */
+    public static ArrayList<Tentative> selectionListTentativeUnEleve (Eleve el){
+        listeTentativeUnEleve = new ArrayList<Tentative>();
+        
+        Connection recon = connect();
+        Statement stmt = null;
+        String Nom = el.getNomEleve();
+        String sql = "select IdTentative,StatutTentative,IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve='Nom'";       
+        
+        try{
+        stmt = recon.createStatement();
+        
+        ResultSet rs = stmt.executeQuery(sql); // applique la requête
+        while (rs.next()) { // Parcours de la liste d'exercices 
+            int idT = rs.getInt("IdTentative");
+            String StatutTentative = rs.getString("StatutTentative");
+            int idE = rs.getInt("IdEleve");
+            int idExo = rs.getInt("IdExercice");
+            int idP = rs.getInt("IdProf");
+            String ModeleE = rs.getString("ModeleEleve");
+            //String NomEleve = rs.getString(Nom);
+            Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
+                    
+            listeTentativeUnEleve.add(tent); 
+                }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return listeTentativeUnEleve;
+              
+       }
+    
+    
     
     /**
     * Création de la liste des Exercices
