@@ -99,16 +99,11 @@ public class MenuProfesseur extends JFrame {
                     
                     panDroite.remove(panHaut);
                     panDroite.remove(panExercice);
-                    
                     panGeneral.remove(panDroite);
-                    
                     panDroite.add(panliste);
-                    
-                    
-                    panGeneral.add(panDroite,BorderLayout.EAST);
+                    panGeneral.add(panDroite,BorderLayout.CENTER);
                     repaint();
-                    //setVisible(true);
-                    //validate();                    
+                    validate();                    
                 }
             });      
         JLabel blanc0 = new JLabel("");
