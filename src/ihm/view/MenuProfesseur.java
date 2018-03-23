@@ -30,7 +30,7 @@ import javax.swing.tree.TreeSelectionModel;
  *  Cette classe permet de créé une fenetre qui permettra a l'élève d'acceder à ces fonctionnalitées
  * @author Goup7
  */
-public class MenuProfesseur extends JFrame {
+public class MenuProfesseur extends JPanel {
    
     //JPanel
     private JPanel panGeneral; //panel général qui regroupe toutes les informations de la Jframe
@@ -86,18 +86,8 @@ public class MenuProfesseur extends JFrame {
         
             //Bouton modification exercice
         modifierExercice = new JButton("Modifier un Exercice");
-        modifierExercice.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    
-                    panDroite.remove(panHaut);
-                    panDroite.remove(panExercice);
-                    panGeneral.remove(panDroite);
-                    panDroite.add(panliste);
-                    panGeneral.add(panDroite,BorderLayout.CENTER);
-                    repaint();
-                    validate();                    
-                }
-            });      
+        modifierExercice.addActionListener(controlProf);
+        
         JLabel blanc0 = new JLabel("");
         blanc0.setHorizontalAlignment(SwingConstants.CENTER);
         //Le nom et le prénom de l'élève 
@@ -247,5 +237,28 @@ public class MenuProfesseur extends JFrame {
     
     public JButton getcreerExercice(){
         return creerExercice;
+    }
+    public JButton getmodifierExercice(){
+        return modifierExercice;
+    }
+    
+    public JPanel getpanDroite(){
+        return panDroite;
+    }
+    
+    public JPanel getpanGeneral(){
+        return panGeneral;
+    }
+    
+    public JPanel getpanliste(){
+        return panliste;
+    }
+    
+    public JPanel getpanExercice(){
+        return panExercice;
+    }
+    
+    public JPanel getpanHaut(){
+        return panHaut;
     }
 }
