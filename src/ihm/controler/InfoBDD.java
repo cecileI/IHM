@@ -19,16 +19,17 @@ import java.util.ArrayList;
 public class InfoBDD {
 
     private static ArrayList<Tentative> listeTentative;
-    private static ArrayList<Tentative> listeTentativeNE;
+    private static ArrayList<Tentative> listeTentativeNE; //pour tentatives non-evaluees
+    private static ArrayList<Tentative> listeTentativeUnEleve; //pour tentative d'un élève précis
     private static ArrayList<Professeur> listeProfesseur;
-    private static ArrayList<Eleve> listeEleve;
+    private static ArrayList<Eleve> listeEleve,listeEleveClasse;
     private static ArrayList<Classe> listeClasse;
     private static ArrayList<Exercice>listeExercice;
 
     /**
     * Création de la liste Tentative (tentatives des exercices)
     */
-    public ArrayList<Tentative> selectionListTentative () {
+    public static ArrayList<Tentative> selectionListTentative () {
         
         listeTentative = new ArrayList<Tentative>();
 
@@ -67,12 +68,12 @@ public class InfoBDD {
      /**
     * Création de la liste des Tentatives NON-EVALUEES : StatutTentative non-evalué
     */
-    public ArrayList<Tentative> selectionListTentativeNE () {
+    public static ArrayList<Tentative> selectionListTentativeNE () {
         listeTentativeNE = new ArrayList<Tentative>();
 
         Connection recon = connect();
         Statement stmt = null;
-        String sql = "select IdTentative, IdEleve, IdExercice, StatutTentative, IdProf, ModelEleve from Tentative where StatutTentative='Non-Evalue'";
+        String sql = "select IdTentative, IdEleve, IdExercice, StatutTentative, IdProf, ModelEleve from Tentative where StatutTentative='non-evalue'";
         try{
             stmt = recon.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -114,8 +115,10 @@ public class InfoBDD {
                 String  nomProf = rs.getString("NomProf"); 
                 String  prenomProf = rs.getString("PrenomProf");
                 String  mdpProf = rs.getString("MdpProf"); 
-                
-                Professeur prof = new Professeur(idProf,nomProf,  prenomProf, mdpProf);
+                System.out.println(nomProf);
+                System.out.println(prenomProf);
+                System.out.println(mdpProf);
+                Professeur prof = new Professeur(idProf, nomProf,  prenomProf, mdpProf);
 
                 listeProfesseur.add(prof);                          
             }
@@ -135,8 +138,45 @@ public class InfoBDD {
         
         Connection recon = connect();
         Statement stmt = null;            
-        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe from Eleve";
+        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe, IdProf from Eleve, Classe";       
+        try{
+            stmt = recon.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idEleve = rs.getInt("IdEleve");
+                String  nomEleve = rs.getString("NomEleve"); 
+                String  prenomEleve = rs.getString("PrenomEleve");
+              //  Classe classe = rs.getString("Classe");
+
+                //Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
+
+
+
+                String niveau = rs.getString("Classe");
+                
+                Eleve eleve = new Eleve(idEleve, nomEleve,  prenomEleve, niveau);
+//listeEleve.add(eleve);                          
+
+                listeEleve.add(eleve);                          
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return listeEleve;
+    }
+    
+    /**
+    * Création de la liste des élèves d'une classe
+    */
+    public static ArrayList<Eleve> selectionListEleveClasse (String niveau) {
         
+        listeEleveClasse = new ArrayList<Eleve>();
+        
+        Connection recon = connect();
+        Statement stmt = null;            
+        String sql = "select IdEleve, NomEleve, PrenomEleve, Classe from Eleve where Classe="+'"'+niveau+'"';
+
         try{
             stmt = recon.createStatement();
 
@@ -145,21 +185,20 @@ public class InfoBDD {
                 int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
-              //  Classe classe = rs.getString("Classe");
                 
-                //Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
-
-                //listeEleve.add(eleve);                          
+                
+               Eleve eleve = new Eleve(idEleve,nomEleve,prenomEleve,niveau);
+               listeEleveClasse.add(eleve);                          
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return listeEleve;
-    }
+        return listeEleveClasse;
+    }   
     
     /**
-    * Création de la liste de classe
+    * Création de la liste des classes
     */
     public static ArrayList<Classe> selectionListClasse () {
         
@@ -167,17 +206,17 @@ public class InfoBDD {
         
         Connection recon = connect();
         Statement stmt = null;            
-        String sql = "select Niveau IdProf from Classe";
+        String sql = "select niveau,IdProf from Classe";
         
         try{
             stmt = recon.createStatement(); //permet de faire la connection
 
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                String  nomClasse = rs.getString("Niveau");
-                int prof = rs.getInt("Prof");
+                String  nomClasse = rs.getString("niveau");
+                int prof = rs.getInt("IdProf");
                 
-                Classe classe = new Classe(nomClasse,prof);
+                Classe classe = new Classe(nomClasse);
 
                 listeClasse.add(classe);                          
             }
@@ -188,20 +227,56 @@ public class InfoBDD {
         return listeClasse;
     }   
 
+    /**
+     * Création d'une liste de tentatives avec leurs statuts pour un elève donné 
+     */
+    public static ArrayList<Tentative> selectionListTentativeUnEleve (Eleve el){
+        listeTentativeUnEleve = new ArrayList<Tentative>();
+        
+        Connection recon = connect();
+        Statement stmt = null;
+        String Nom = el.getNomEleve();
+        String sql = "select IdTentative,StatutTentative,IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve='Nom'";       
+        
+        try{
+        stmt = recon.createStatement();
+        
+        ResultSet rs = stmt.executeQuery(sql); // applique la requête
+        while (rs.next()) { // Parcours de la liste d'exercices 
+            int idT = rs.getInt("IdTentative");
+            String StatutTentative = rs.getString("StatutTentative");
+            int idE = rs.getInt("IdEleve");
+            int idExo = rs.getInt("IdExercice");
+            int idP = rs.getInt("IdProf");
+            String ModeleE = rs.getString("ModeleEleve");
+            //String NomEleve = rs.getString(Nom);
+            Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
+                    
+            listeTentativeUnEleve.add(tent); 
+                }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return listeTentativeUnEleve;
+              
+       }
+    
+    
     
     /**
     * Création de la liste des Exercices
     */
-      public ArrayList<Exercice> selectionListExercice () {
+      public static ArrayList<Exercice> selectionListExercice () {
       
         listeExercice = new ArrayList<Exercice>();
         
         Connection recon = connect(); // connexion à la base de données
         Statement stmt = null;
         
-        String sql = "select IdExercice, Titre, Modele, Consigne, ModeTortue form Exercice";
+        String sql = "select IdExercice, Titre, Modele, Consigne, ModeTortue from Exercice";
         
-                try{
+        try{
         stmt = recon.createStatement();
         
         ResultSet rs = stmt.executeQuery(sql); // applique la requête
@@ -224,14 +299,6 @@ public class InfoBDD {
         return listeExercice;
               
        }
-
-      
-    /**
-    * Récupérer la liste des Exercices
-    */
-        public ArrayList<Exercice> getExercices() {
-		return listeExercice;
-	}
 
         
  

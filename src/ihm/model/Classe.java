@@ -5,6 +5,8 @@
  */
 package ihm.model;
 
+import ihm.controler.InfoBDD;
+import static ihm.controler.InfoBDD.selectionListEleveClasse;
 import java.util.ArrayList;
 
 /**
@@ -14,27 +16,26 @@ import java.util.ArrayList;
 public class Classe {
 	private ArrayList<Eleve> listEleve;
 	private String niveau;
-	private int prof;
 
 	/**
 	 * @param niveau
 	 * @param prof
 	 */
-	public Classe(String niveau, int prof) {
+	public Classe(String niveau) {
 
 		this.niveau = niveau;
-		this.prof = prof;
-		this.listEleve = new ArrayList<Eleve>();
+		this.listEleve = InfoBDD.selectionListEleveClasse(niveau);
 	}
 
         
-	public Object getNiveau() {
+	public String getNiveau() {
 		return this.niveau;
 	}
 
-	public ArrayList<Eleve> getEleves() {
-		return this.listEleve;
+	public ArrayList<Eleve> getElevesClasse() {
+		return listEleve;
 	}
+        
 
 	/*
 	 * (non-Javadoc)
@@ -53,10 +54,6 @@ public class Classe {
 		return this.listEleve.size();
 	}
 
-	public int getProf() {
-		return this.prof;
-	}
-
 	public boolean contains(Eleve eleve) {
 		return this.listEleve.contains(eleve);
 	}
@@ -68,14 +65,6 @@ public class Classe {
 	public Eleve get(int index) {
 
 		return listEleve.get(index);
-	}
-
-	/**
-	 * @param prof
-	 *            the prof to set
-	 */
-	public void setProf(int prof) {
-		this.prof = prof;
 	}
 
 	/**

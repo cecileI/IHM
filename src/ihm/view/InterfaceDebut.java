@@ -20,6 +20,7 @@ public class InterfaceDebut extends JFrame {
     private JPanel panelProf;
     
     private JLabel jeSuis;
+    private JLabel message;
     
     private JLabel unEleve;
     private JTextField prenomEleve;
@@ -45,21 +46,21 @@ public class InterfaceDebut extends JFrame {
         panelEleve = new JPanel();
         panelEleve.setLayout(new GridLayout(5,1)); //5lignes et 1 colonne
         
-        unEleve = new JLabel("Un elève");
+        unEleve = new JLabel("Un élève");
         unEleve.setHorizontalAlignment(SwingConstants.CENTER);
         unEleve.setFont(new Font("Arial",Font.BOLD,30));
         panelEleve.add(unEleve);
         
-        prenomEleve = new JTextField("Mon Prénom");
+        prenomEleve = new JTextField("Xavier");
         prenomEleve.setHorizontalAlignment(SwingConstants.CENTER);
         prenomEleve.setPreferredSize( new Dimension( 100, 50 ) );
         panelEleve.add(prenomEleve);
         
-        nomEleve = new JTextField("Mon Nom");
+        nomEleve = new JTextField("Poalon");
         nomEleve.setHorizontalAlignment(SwingConstants.CENTER);
         panelEleve.add(nomEleve);
         
-        classeEleve = new JTextField("Ma Classe");
+        classeEleve = new JTextField("CE1");
         classeEleve.setHorizontalAlignment(SwingConstants.CENTER);
         panelEleve.add(classeEleve);
         
@@ -68,13 +69,23 @@ public class InterfaceDebut extends JFrame {
         panelEleve.add(validEleve);
         validEleve.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees du prof et appelle la fonction de verif pour connexion
+                    //recupere les donnees de l'eleve
                     String prenomE = prenomEleve.getText();
                     String nomE = nomEleve.getText();
                     String classe = classeEleve.getText();
-                    connexionEleve(prenomE, nomE, classe);
+
+                    if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
+                        MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
+                        //ferme la fenetre de connexion
+                        System.out.println("connexion reussie");
+                        dispose();
+                    }else{
+                        message = new JLabel();
+                        message.setText("Connexion refusée");
+                    }
                 }
             }); 
+        
 
         //Partie prof
         panelProf = new JPanel();
@@ -85,16 +96,16 @@ public class InterfaceDebut extends JFrame {
         unProfesseur.setFont(new Font("Arial",Font.BOLD,30));
         panelProf.add(unProfesseur);
         
-        prenomProf = new JTextField("Prénom");
+        prenomProf = new JTextField("Charles");
         prenomProf.setHorizontalAlignment(SwingConstants.CENTER);
         prenomProf.setPreferredSize( new Dimension( 100, 50 ) );
         panelProf.add(prenomProf);
         
-        nomProf = new JTextField("Nom");
+        nomProf = new JTextField("Abot");
         nomProf.setHorizontalAlignment(SwingConstants.CENTER);
         panelProf.add(nomProf);
         
-        motDePasse = new JTextField("Mot de passe");
+        motDePasse = new JTextField("1234");
         motDePasse.setHorizontalAlignment(SwingConstants.CENTER);
         panelProf.add(motDePasse);
         
@@ -107,11 +118,14 @@ public class InterfaceDebut extends JFrame {
                     String prenomP = prenomProf.getText();
                     String nomP = nomProf.getText();
                     String mdp = motDePasse.getText();
-                    if (connexionProf(prenomP, nomP, mdp)==true){
-                        View view = new View();
-                        view.createTree();
+
+                    if (controllerConnexion.connexionProf(prenomP, nomP, mdp)==true){
+                        System.out.println("connexion reussie");
+                        MenuProfesseur menuProf = new MenuProfesseur();  //ouvre Menu Professeur
+                        
                     }else{
-                        System.out.println("Connexion refusée");
+                        message = new JLabel();
+                        message.setText("Connexion refusée");
                     }
                 }
             }); 
@@ -130,53 +144,12 @@ public class InterfaceDebut extends JFrame {
         this.add(jeSuis, BorderLayout.NORTH);
         this.add(panelGeneral);
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         
     }
-    
-    /*
-    * Fonction de connexion pour un professeur
-    * @param prenomP : le prénom du professeur qu'il aura rentré
-    * @param nomP : le nom du professeur qu'il aura rentré
-    * @param mdp : le mot de passe qu'il aura rentré
-    * @return boolean : si les identifiants du professeur sont corrects -> true
-    */
-    public boolean connexionProf (String prenomP, String nomP, String mdp){
-        ArrayList<Professeur> listProf = new ArrayList<Professeur>();
-        listProf = InfoBDD.selectionListProfesseur(); //recupere la liste des professeurs
-
-        for (Professeur prof : listProf) {
-            if ((prof.getNomProf()== nomP) && (prof.getPrenomProf() == prenomP) && (prof.getMdpProf()== mdp)){
-                return(true); 
-            }
-        }
-        return(false);
-    }
-    
-    /*
-    * Fonction de connexion pour un professeur
-    * @param prenom P : le prénom du professeur qu'il aura rentré
-    * @param
-    */
-    public boolean connexionEleve (String prenomE, String nomE, String classe){
-        ArrayList<Eleve> listEleve = new ArrayList<Eleve>();
-        listEleve = InfoBDD.selectionListEleve(); //recupere la liste des élèves
-        
-        for (Eleve eleve : listEleve){
-            if ((eleve.getNomEleve()==nomE) && (eleve.getPrenomEleve()==prenomE) && (eleve.getClasse().getNiveau()==classe)){
-                return(true);
-            }
-        }
-        return(false);
-    }
-    
-    public static void main(String[] args) {
-        InterfaceDebut interfaceDebut = new InterfaceDebut();
-    }
-    
-    
+ 
 }
 
 
