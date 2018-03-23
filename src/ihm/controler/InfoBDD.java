@@ -146,18 +146,16 @@ public class InfoBDD {
                 int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
-              //  Classe classe = rs.getString("Classe");
-
-                //Eleve eleve = new Eleve(idEleve,nomEleve,  prenomEleve, classe);
-
-
-
                 String niveau = rs.getString("Classe");
+                     
                 
-                Eleve eleve = new Eleve(idEleve, nomEleve,  prenomEleve, niveau);
-//listeEleve.add(eleve);                          
-
-                listeEleve.add(eleve);                          
+                for (Classe laclasse : selectionListClasse()){
+                    if(laclasse.getNiveau().equals(niveau)){
+                        Eleve eleve = new Eleve(idEleve, nomEleve,  prenomEleve, laclasse);
+                        listeEleve.add(eleve);
+                    }
+                }
+                                         
 
             }
         } catch (SQLException e) {
@@ -169,12 +167,13 @@ public class InfoBDD {
     /**
     * Création de la liste des élèves d'une classe
     */
-    public static ArrayList<Eleve> selectionListEleveClasse (String niveau) {
+    public static ArrayList<Eleve> selectionListEleveClasse (Classe maclasse) {
         
         listeEleveClasse = new ArrayList<Eleve>();
         
         Connection recon = connect();
-        Statement stmt = null;            
+        Statement stmt = null;
+        String niveau = maclasse.getNiveau();
         String sql = "select IdEleve, NomEleve, PrenomEleve, Classe from Eleve where Classe="+'"'+niveau+'"';
 
         try{
@@ -186,9 +185,8 @@ public class InfoBDD {
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
                 
-                
-               Eleve eleve = new Eleve(idEleve,nomEleve,prenomEleve,niveau);
-               listeEleveClasse.add(eleve);                          
+                Eleve eleve = new Eleve(idEleve,nomEleve,prenomEleve,maclasse);
+                listeEleveClasse.add(eleve);
             }
 
         } catch (SQLException e) {

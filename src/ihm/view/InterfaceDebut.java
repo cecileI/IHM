@@ -75,9 +75,9 @@ public class InterfaceDebut extends JFrame {
                     String classe = classeEleve.getText();
 
                     if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
+                        System.out.println("connexion reussie");
                         MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
                         //ferme la fenetre de connexion
-                        System.out.println("connexion reussie");
                         dispose();
                     }else{
                         message = new JLabel();
