@@ -48,9 +48,10 @@ public class MenuEleve extends JPanel{
     
     public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
         
-        this.setLayout(new BorderLayout()); 
-        //this.setTitle("LOGO Groupe 7");
+        this.setLayout(new BorderLayout());
         this.setSize(750,500);
+        
+        controlEleve = new controllerMenuEleve(this);
         
         //Partie petite entete
         petiteEntete = new JPanel();
@@ -74,9 +75,8 @@ public class MenuEleve extends JPanel{
         menu.setHorizontalAlignment(SwingConstants.CENTER);
         menu.setFont(new Font("Arial",Font.BOLD,20));
         
+        //bouton deconnexion
         deconnexion = new JButton("Deconnexion");
-        //Boutton Deconnection
-        controlEleve = new controllerMenuEleve(this);
         deconnexion.addActionListener(controlEleve);
         
         entete.add(petiteEntete, BorderLayout.WEST);
@@ -95,7 +95,6 @@ public class MenuEleve extends JPanel{
         mesExercices.setFont(new Font("Arial",Font.BOLD,30));
         
         this.maJTable = new ViewTableExercicesEleves(this);
-        
         exercices.add(mesExercices);
         exercices.add(maJTable); 
                 
@@ -109,22 +108,19 @@ public class MenuEleve extends JPanel{
         
         faireTentative = new JButton("Faire une tentative");
         faireTentative.setEnabled(false);
+        //faireTentative.addActionListener(controlEleve);
         faireTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees de l'eleve
-                    TentativeEleve tent = new TentativeEleve(nomEleve, prenomEleve, classeEleve); 
+                    
+                    TentativeEleve tent = new TentativeEleve(nomEleve, prenomEleve,classeEleve);
+                    
                 }
             }); 
-              
+        
         visualiserTentative = new JButton("Visualiser mes tentatives");
         visualiserTentative.setEnabled(false);
         visualiserTentative.setHorizontalAlignment(SwingConstants.CENTER);
-        visualiserTentative.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //recupere les donnees de l'eleve
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour VisualiserTentative!!
-                }
-            }); 
+        visualiserTentative.addActionListener(controlEleve);
         
         tentative.add(faireTentative);
         tentative.add(visualiserTentative);

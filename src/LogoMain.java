@@ -14,6 +14,7 @@ import ihm.view.*;
  */
 public class LogoMain{
     
+    private static InterfaceDebut interfaceDebut;
     /**
      * The constructor of the class LogoMain
      * @param args The user do not have to put argument. This parameter is for 
