@@ -23,5 +23,6 @@ public class LogoMain{
         //MenuEleve app = new MenuEleve();
         //MenuProfesseur app = new MenuProfesseur();
         //AjoutExerciceProf app = new AjoutExerciceProf();
+        //ModifExerciceProf app = new ModifExerciceProf();
     }
 }
