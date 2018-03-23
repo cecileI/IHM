@@ -74,7 +74,8 @@ public class MenuEleve extends JFrame{
         deconnexion = new JButton("Deconnexion");
         deconnexion.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
-                    //appel de linterface fin
+                    InterfaceDebut app = new InterfaceDebut();
+                    dispose();
                 }
             });
         
@@ -95,7 +96,7 @@ public class MenuEleve extends JFrame{
         
         this.maJTable = new ViewTableExercicesEleves(this);
         
-        //exercices.add(mesExercices);
+        exercices.add(mesExercices);
         exercices.add(maJTable); 
                 
         //Partie Tentatives
@@ -103,6 +104,7 @@ public class MenuEleve extends JFrame{
         tentative.setLayout(new GridLayout(3,1));
               
         nexo = new JLabel("N° Exercice");
+        nexo.setVerticalAlignment(SwingConstants.CENTER);
         tentative.add(nexo);        
         
         faireTentative = new JButton("Faire une tentative");
@@ -158,6 +160,7 @@ public class MenuEleve extends JFrame{
     public void afficheInfo(MenuEleve this,Exercice node) {
 	if (node instanceof Exercice) {
             currentExercice = node;
+            nexo.setText(currentExercice.getTitre());
             update();
 	}
     }

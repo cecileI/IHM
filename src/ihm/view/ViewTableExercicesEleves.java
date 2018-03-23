@@ -51,7 +51,7 @@ public class ViewTableExercicesEleves extends JScrollPane {
     public static class TableMod extends AbstractTableModel {
         
         private ArrayList<Exercice> exercices;
-        private String[] menubar = {"N°","Exercice"};
+        private String[] menubar = {"Exercices"};
         
         /**
          * Constructeur de tablemod
@@ -89,8 +89,6 @@ public class ViewTableExercicesEleves extends JScrollPane {
         public Object getValueAt(int rowIndex, int columnIndex) {
 
 	    if  (columnIndex==0) {
-		return exercices.get(rowIndex).getIdEx();}
-            else if (columnIndex==1) {
 		return exercices.get(rowIndex).getTitre();}
             else { 
                 System.out.println("erreur");

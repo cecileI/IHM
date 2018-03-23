@@ -75,7 +75,10 @@ public class InterfaceDebut extends JFrame {
                     String classe = classeEleve.getText();
 
                     if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
-                        MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
+                        //MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
+                        
+                        TentativeEleve tent = new TentativeEleve(nomE,prenomE,classe);
+                        
                         //ferme la fenetre de connexion
                         System.out.println("connexion reussie");
                         dispose();
