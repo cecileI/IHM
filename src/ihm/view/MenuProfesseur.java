@@ -110,17 +110,13 @@ public class MenuProfesseur extends JFrame {
                     //validate();                    
                 }
             });      
+        JLabel blanc0 = new JLabel("");
+        blanc0.setHorizontalAlignment(SwingConstants.CENTER);
         //Le nom et le prénom de l'élève 
-        txtNom = new JTextField();
-        txtNom.setText("Nom");
-        txtPrenom =new JTextField();
-        txtPrenom.setText("Prenom");
-        
         panHaut = new JPanel();
         panHaut.setPreferredSize(new Dimension(550,50));
-        panHaut.setLayout(new GridLayout(1,3));
-        panHaut.add(txtNom);
-        panHaut.add(txtPrenom);
+        panHaut.setLayout(new GridLayout(1,2));
+        panHaut.add(blanc0);
         //panHaut.add(lblEleve);
         panHaut.add(deconnexion);   //JPanel Deconnection   
         
@@ -224,7 +220,15 @@ public class MenuProfesseur extends JFrame {
     public void update(){
         
         if (currentEleve != null) {
-            System.out.println(currentEleve.getNomEleve());
+            txtNom = new JTextField();
+            txtNom.setText("Nom");
+            txtPrenom =new JTextField();
+            txtPrenom.setText("Prenom");
+
+            panHaut.add(txtNom);
+            panHaut.add(txtPrenom);
+            //panHaut.add(lblEleve);
+            panHaut.add(deconnexion);   //JPanel Deconnection   
             
             
             txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
