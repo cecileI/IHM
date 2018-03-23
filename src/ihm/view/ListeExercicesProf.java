@@ -29,6 +29,7 @@ public class ListeExercicesProf extends JPanel {
     private JPanel listeEx;
     private JLabel listedesExos;
     private ArrayList <Exercice> listeExo;
+    //private ViewTableExercicesEleves maJTable;
     
     public ListeExercicesProf(){
         //MenuProfesseur.getContentPane().setLayout(new BorderLayout());
@@ -60,6 +61,9 @@ public class ListeExercicesProf extends JPanel {
         listeEx.setPreferredSize(new Dimension(550,400));
         listedesExos = new JLabel("Liste des exercices");
         //this.listeExo = InfoBDD.selectionListExercice();
+        
+
+        //listeEx.add(maJTable); 
         
         //listedesExos.setVerticalAlignment(SwingConstants.CENTER);
         //listedesExos.setFont(new Font("Arial",Font.BOLD,15));
