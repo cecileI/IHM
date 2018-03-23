@@ -52,4 +52,7 @@ public class Eleve {
         this.niveau = niveau;
     }
     
+    public String toString (){
+        return (prenomEleve +" "+ nomEleve);
+    }
 }
