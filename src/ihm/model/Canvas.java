@@ -32,7 +32,7 @@ public class Canvas extends JFrame
     public static Canvas getCanvas()
     {
         if(canvasSingleton == null) {
-            canvasSingleton = new Canvas("Tortue LOGO", 600, 600, 
+            canvasSingleton = new Canvas("Tortue LOGO", 700, 450, 
                                          Color.white);
         }
         canvasSingleton.setCanvasVisible(false);
@@ -70,7 +70,7 @@ public class Canvas extends JFrame
         Container c = this.getContentPane();
         this.add (canvass, BorderLayout.CENTER);
         this.setTitle(title);
-        this.setLocation(30, 30);
+        this.setLocation(0, 0);
         canvass.setPreferredSize(new Dimension(width, height));
         backgroundColor = bgColor;
         this.pack();

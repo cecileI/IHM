@@ -14,6 +14,7 @@ import ihm.view.*;
  */
 public class LogoMain{
     
+    private static InterfaceDebut interfaceDebut;
     /**
      * The constructor of the class LogoMain
      * @param args The user do not have to put argument. This parameter is for 
@@ -21,15 +22,13 @@ public class LogoMain{
      */
     public static void main (String[] args){
 
-        
-        
         System.out.println(InfoBDD.selectionListClasse());
         for (Classe laclasse : InfoBDD.selectionListClasse()){
             System.out.println(InfoBDD.selectionListEleveClasse(laclasse));
         }
         //Classe classeCE1=new Classe("CE1");
         //Classe classeCP=new Classe("CP");
-        InterfaceDebut app = new InterfaceDebut();
+        interfaceDebut = new InterfaceDebut();
         //MenuEleve app = new MenuEleve();
 
         //InterfaceDebut app = new InterfaceDebut();

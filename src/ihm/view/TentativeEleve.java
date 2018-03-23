@@ -5,6 +5,7 @@
  */
 package ihm.view;
 
+import ihm.controler.controllerTentativeEleve;
 import ihm.model.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -59,13 +60,20 @@ public class TentativeEleve extends JFrame{
     private JButton executer;
     
     private TortueG tortueG;
+    private TortueCouleur tortueCoul;
+    private TortueRapide tortueRap;
 
+    private Canvas myCanvas;
+    
+    private controllerTentativeEleve controlTentEl;
            
     public TentativeEleve(String nomE, String prenomE, String classeE){
         
-        this.getContentPane().setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout());
         this.setSize(750,500);  //largeur, hauteur
-  
+        
+        controlTentEl = new controllerTentativeEleve(this);
+        
         //------------------------------------
         // Partie entete 
         //------------------------------------
@@ -73,12 +81,8 @@ public class TentativeEleve extends JFrame{
         //Bouton Menu
         menu = new JButton("Menu");
         menu.setPreferredSize(new Dimension(20,10));   
-        menu.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //réoriente vers le menu élève
-                    //MenuEleve menueleve = new MenuEleve();
-                }
-            }); 
+        menu.addActionListener(controlTentEl); 
+        
         //infos élève
         lblNomEleve = new JLabel(nomE + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
@@ -101,50 +105,33 @@ public class TentativeEleve extends JFrame{
 //---------------------------------------------------------
 //               Partie Faire une tentative
 //---------------------------------------------------------
-        tentative = new JPanel();
-        tentative.setPreferredSize(new Dimension(550,400));
-        tentative.setLayout(new GridLayout(2,3)); //2lignes 3 colonne
-        
-        
         //modèle du professeur
         JLabel modele = new JLabel("Le modele");
-        
         
         //lignes de code produites par l'élève
         lignesCode = new JTextArea();
         
+        tentative = new JPanel();
+        tentative.setPreferredSize(new Dimension(200,100));
+        tentative.setLayout(new GridLayout(2,1));
         
-        //visualisation directe de la tentative de l'élève
+        tentative.add(modele);
+        tentative.add(lignesCode);
         
-        tortueG = new TortueG();
-        
-        JPanel tentativeEleve = new JPanel();
-        tentativeEleve = ihm.model.Canvas.getCanvasPanel();      
-        tentativeEleve.setPreferredSize(new Dimension(400,300));
-       
-        
+        //visualisation directe de la tentative de l'élève      
+        tortueG = new TortueG(); //creation d'une tortue classique
+        JPanel canv = Canvas.getCanvasPanel();  
+
         
         //petit panel de boutons
         tourner = new JButton("Tourner");
-        tourner.addActionListener(new ActionListener () {
-            public void actionPerformed (ActionEvent e) {
-                //
-            }
-        });
+        tourner.addActionListener(controlTentEl); 
         
         avancer = new JButton("Avancer");
-        avancer.addActionListener(new ActionListener () {
-            public void actionPerformed (ActionEvent e) {
-                //
-            }
-        });
+        avancer.addActionListener(controlTentEl); 
         
         ecrire = new JButton("Ecrire");
-        ecrire.addActionListener(new ActionListener () {
-            public void actionPerformed (ActionEvent e) {
-                //
-            }
-        });
+        ecrire.addActionListener(controlTentEl); 
         
         
         petitPanelBoutons = new JPanel();
@@ -156,30 +143,16 @@ public class TentativeEleve extends JFrame{
         panelBoutons.add(petitPanelBoutons);
         panelBoutons.add(ecrire);
         
-        
-        
-        
+ 
         // Grand panel de boutons
         tortueRapide = new JButton ("Tortue Rapide");
-        tortueRapide.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //changer pour Trapide();
-                }
-            }); 
+        tortueRapide.addActionListener(controlTentEl); 
     
         tortueClassique = new JButton ("Tortue Classique");
-        tortueClassique.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //changer pour Tclassique();
-                }
-            }); 
+        tortueClassique.addActionListener(controlTentEl); 
     
         tortueCouleur = new JButton ("Tortue Couleur");
-        tortueCouleur.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //changer pour Tcouleur();
-                }
-            }); 
+        tortueCouleur.addActionListener(controlTentEl); 
         
         couleurs = new JComboBox();
 		//Couleur.setFont(font);
@@ -189,54 +162,98 @@ public class TentativeEleve extends JFrame{
 		couleurs.addItem("green");
 		couleurs.addItem("yellow");
 		couleurs.addItem("magenta");
-	
-    
+
         executer = new JButton ("Executer");
-        executer.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //changer execute();
-                }
-            }); 
+        executer.addActionListener(controlTentEl); 
         
         valider = new JButton ("Valider");
-        valider.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //changer execute();
-                }
-            }); 
+        valider.addActionListener(controlTentEl); 
         
         
         
         grandPanelBoutons = new JPanel();
-        grandPanelBoutons.setLayout(new GridLayout(4,1));//7llignes 1 colonne
+        grandPanelBoutons.setLayout(new GridLayout(6,1));//6llignes 1 colonne
         grandPanelBoutons.add(tortueRapide);
         grandPanelBoutons.add(tortueClassique);
         grandPanelBoutons.add(tortueCouleur);
         grandPanelBoutons.add(couleurs);
         
-        panelBasBoutons = new JPanel();
-        panelBasBoutons.setLayout(new GridLayout(2,1));
-        panelBasBoutons.add(executer);
-        panelBasBoutons.add(valider);
+        //panelBasBoutons = new JPanel();
+        //panelBasBoutons.setLayout(new GridLayout(2,1));
+        grandPanelBoutons.add(executer);
+        grandPanelBoutons.add(valider);
 
-        tentative.add(modele);
-        tentative.add(tentativeEleve);
-        tentative.add(grandPanelBoutons);
+        //tentative.add(modele);
+        //tentative.add(canv);
+        //tentative.add(grandPanelBoutons);
         
-        tentative.add(lignesCode);
-        tentative.add(panelBoutons);
-        tentative.add(panelBasBoutons);
+        //tentative.add(lignesCode);
+        //tentative.add(panelBoutons);
+        //tentative.add(panelBasBoutons);
         
-        
+        this.add(tentative, BorderLayout.WEST);
+        this.add(canv, BorderLayout.CENTER);
+        this.add(panelBoutons, BorderLayout.SOUTH);
+        this.add(grandPanelBoutons, BorderLayout.EAST);
         this.add(entete, BorderLayout.NORTH);
-        this.add(tentative, BorderLayout.SOUTH);
-       
-        this.setVisible(true); 
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-    
+        
+        this.setVisible(true); 
+
     }
+
+    
+    
+    public JButton getMenu() {
+        return menu;
+    }
+
+    public JButton getTourner() {
+        return tourner;
+    }
+
+    public JButton getEcrire() {
+        return ecrire;
+    }
+    
+    public JButton getAvancer() {
+        return avancer;
+    }
+    
+    public JButton getTortueRapide() {
+        return tortueRapide;
+    }
+
+    public JButton getTortueClassique() {
+        return tortueClassique;
+    }
+
+    public JButton getTortueCouleur() {
+        return tortueCouleur;
+    }
+
+    public JButton getValider() {
+        return valider;
+    }
+
+    public JButton getExecuter() {
+        return executer;
+    }
+
+    public TortueG getTortueG() {
+        return tortueG;
+    }
+
+    public TortueCouleur getTortueCoul() {
+        return tortueCoul;
+    }
+
+    public TortueRapide getTortueRap() {
+        return tortueRap;
+    }
+
+    
+    
     
     
 }

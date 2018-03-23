@@ -2,6 +2,7 @@ package ihm.controler;
 
 import ihm.view.InterfaceDebut;
 import ihm.view.MenuEleve;
+import ihm.view.TentativeEleve;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -24,8 +25,14 @@ public class controllerMenuEleve implements ActionListener{
     public void actionPerformed (ActionEvent e) {
         
         if (e.getSource()== menuEleve.getDeconnexion()){
-            System.out.println("sout");
-            InterfaceDebut app = new InterfaceDebut();
+            InterfaceDebut interfaceDebut = new InterfaceDebut();
+            
+        }else if(e.getSource()==menuEleve.getFaireTentative()){
+            //getEleve
+            //TentativeEleve tent = new TentativeEleve(Eleve);
+            
+        }else if(e.getSource()==menuEleve.getVisualiserTentative()){
+            //VisuTentativeEleve visuTentEleve = new visuTentativeEleve();
         }
     }
     
