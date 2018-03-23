@@ -42,6 +42,7 @@ public class MenuEleve extends JFrame{
     private ViewTableExercicesEleves maJTable;
     
     private Exercice currentExercice;
+    private Tentative currentTentative;
     
     public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
         
@@ -160,6 +161,13 @@ public class MenuEleve extends JFrame{
     public void afficheInfo(MenuEleve this,Exercice node) {
 	if (node instanceof Exercice) {
             currentExercice = node;
+            update();
+	}
+    }
+    
+        public void afficheInfoTentative(MenuEleve this,Tentative node) {
+	if (node instanceof Tentative) {
+            currentTentative = node;
             update();
 	}
     }
