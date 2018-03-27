@@ -2,7 +2,9 @@ package ihm.controler;
 
 import ihm.view.InterfaceDebut;
 import ihm.view.MenuEleve;
+import ihm.model.Eleve;
 import ihm.view.TentativeEleve;
+import java.awt.BorderLayout;
 import ihm.view.VisuTentativeEleve;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,10 +32,14 @@ public class controllerMenuEleve implements ActionListener{
             
         }else if(e.getSource()==menuEleve.getFaireTentative()){
             //getEleve
-            //TentativeEleve tent = new TentativeEleve(Eleve);
+            TentativeEleve tent = new TentativeEleve(menuEleve.getCurrentEleve(),menuEleve.getCurrentExercice());
+            menuEleve.remove(menuEleve.getGeneral());
+            menuEleve.add(tent);
+            menuEleve.repaint();
+            menuEleve.validate();
             
         }else if(e.getSource()==menuEleve.getVisualiserTentative()){
-            VisuTentativeEleve visuTentEleve = new VisuTentativeEleve(menuEleve.getCurrentEleve(),menuEleve.getCurrentExercice());
+            VisuTentativeEleve visuTentEleve = new VisuTentativeEleve(menuEleve.getCurrentEleve(),menuEleve.getCurrentExercice().getTitre());
             menuEleve.remove(menuEleve.getGeneral());
             menuEleve.add(visuTentEleve);
             menuEleve.repaint();

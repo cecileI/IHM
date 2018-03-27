@@ -21,6 +21,7 @@ public class MenuEleve extends JPanel{
     private JLabel lblPrenomEleve;
     private JLabel lblClasseEleve;
     private JLabel menu;
+    private JLabel imageTortue;
     
     private JButton deconnexion;
     
@@ -30,7 +31,9 @@ public class MenuEleve extends JPanel{
     private JPanel actionsExo;
     private JPanel panelBas;
     private JPanel general;
-
+    private JPanel imageEntete;
+    private JPanel texteEntete;
+            
     private JLabel mesExercices;
     private JLabel listeExercices;
   
@@ -41,50 +44,68 @@ public class MenuEleve extends JPanel{
     
     private ViewTableExercicesEleves maJTable;
     
+    private Eleve currentEleve;
     private Exercice currentExercice;
     private Tentative currentTentative;
-    private Eleve monCurrentEleve;
     
     private static controllerMenuEleve controlEleve;
     
     public MenuEleve (Eleve currentEleve){
         
         this.setLayout(new BorderLayout());
-        this.setSize(750,500);
-        
-        monCurrentEleve = currentEleve;
+        this.setSize(900,600);
         
         controlEleve = new controllerMenuEleve(this);
         
         //Partie petite entete
-        petiteEntete = new JPanel();
-        petiteEntete.setLayout(new GridLayout(2,2)); //2lignes et 1 colonne
         
+        imageEntete = new JPanel();
+        texteEntete = new JPanel();
+        texteEntete.setLayout(new GridLayout(3,2)); 
+        
+        
+       
+        
+        imageTortue = new JLabel();
+        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
+        imageTortue.setHorizontalAlignment(SwingConstants.CENTER);
         lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
         lblPrenomEleve = new JLabel(currentEleve.getPrenomEleve());
         lblPrenomEleve.setFont(new Font("Arial",Font.BOLD,15));
         lblClasseEleve = new JLabel(currentEleve.getNiveau().getNiveau());
         lblClasseEleve.setFont(new Font("Arial",Font.BOLD,15));
-        petiteEntete.add(lblNomEleve);
-        petiteEntete.add(lblPrenomEleve);
-        petiteEntete.add(lblClasseEleve);
+        JLabel blanc = new JLabel("");
+        JLabel blanc2 = new JLabel("");
+        imageEntete.add(imageTortue);
+        texteEntete.add(lblNomEleve);
+        texteEntete.add(lblPrenomEleve);
+        texteEntete.add(blanc);
+        texteEntete.add(blanc2);
+        texteEntete.add(lblClasseEleve);
+        
+        petiteEntete = new JPanel();
+        petiteEntete.add(imageEntete,BorderLayout.WEST);
+        petiteEntete.add(texteEntete,BorderLayout.EAST);
+        
+        
+        
         
         //partie entete
         entete = new JPanel();
-        entete.setLayout(new BorderLayout());
+        entete.setLayout(new FlowLayout(FlowLayout.RIGHT, 140, 0)); 
+       // entete.setLayout(new BorderLayout());
         
         menu = new JLabel("MENU");
-        menu.setHorizontalAlignment(SwingConstants.CENTER);
-        menu.setFont(new Font("Arial",Font.BOLD,20));
+        menu.setFont(new Font("Arial",Font.BOLD,30));
         
         //bouton deconnexion
         deconnexion = new JButton("Deconnexion");
         deconnexion.addActionListener(controlEleve);
         
-        entete.add(petiteEntete, BorderLayout.WEST);
-        entete.add(menu, BorderLayout.CENTER);
-        entete.add(deconnexion, BorderLayout.EAST);
+        entete.add(petiteEntete);
+        entete.add(menu);
+        entete.add(deconnexion);
         
         
         
@@ -166,7 +187,7 @@ public class MenuEleve extends JPanel{
 	}
     }
     
-        public void afficheInfoTentative(MenuEleve this,Tentative node) {
+    public void afficheInfoTentative(MenuEleve this,Tentative node) {
 	if (node instanceof Tentative) {
             currentTentative = node;
             update();
@@ -182,6 +203,10 @@ public class MenuEleve extends JPanel{
             faireTentative.setEnabled(true);
             visualiserTentative.setEnabled(true);
         }
+    }
+
+    public JPanel getGeneral() {
+        return general;
     }
     
     /*
@@ -204,17 +229,13 @@ public class MenuEleve extends JPanel{
     public JButton getVisualiserTentative() {
         return visualiserTentative;
     }
-    
-    public Eleve getCurrentEleve(){
-        return monCurrentEleve;
+
+    public Eleve getCurrentEleve() {
+        return currentEleve;
     }
     
-    public String getCurrentExercice(){
-        return currentExercice.getTitre();
-    }
-    
-    public JPanel getGeneral(){
-        return general;
+    public Exercice getCurrentExercice(){
+        return currentExercice;
     }
     
 }
