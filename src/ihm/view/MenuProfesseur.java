@@ -36,7 +36,7 @@ import javax.swing.tree.TreeSelectionModel;
 public class MenuProfesseur extends JPanel {
    
     //JPanel
-    private JPanel panGeneral; //panel général qui regroupe toutes les informations de la Jframe
+    private JPanel panGeneral; //panel général qui regroupe toutes les informations du JPanel
     private JPanel panDroite; //panel à droite qui sera modifier par des nouveaux panel
     private JPanel panHaut; //panel de deconnection et panel blanc puis label prenom et nom élève
     private JPanel panExercice; //panel qui regroupe les boutons création et modification exercice
@@ -231,8 +231,7 @@ public class MenuProfesseur extends JPanel {
     
     public JButton getDeconnexion(){
         return deconnexion;
-    }
-    
+    }    
     public JButton getcreerExercice(){
         return creerExercice;
     }

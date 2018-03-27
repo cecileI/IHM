@@ -1,6 +1,7 @@
 package ihm.controler;
 
 import ihm.view.*;
+import java.awt.BorderLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +21,17 @@ public class controllerAjoutExerciceProf implements ActionListener {
    @Override
     public void actionPerformed (ActionEvent e) {
         
-        //if (e.getSource()== monmenu.getDeconnexion()){
-            InterfaceDebut interfaceDebut = new InterfaceDebut();            
+        //JButton Menu: ouvre le panel du MenuProfesseur à la place du panel AjoutExerciceProf(retour au Menu)
+        if (e.getSource() == monmenu.getMenu()){
+            monmenu.getPanelHaut().remove(monmenu.getPanelHaut());
+            monmenu.getGauche().remove(monmenu.getGauche());
+            monmenu.getCentre().remove(monmenu.getCentre());
+            monmenu.getDroite().remove(monmenu.getDroite());
+            monmenu.getBas().remove(monmenu.getBas());
+            //monmenu.add(monmenu.getPanDroite(),BorderLayout.CENTER);           
+            monmenu.repaint();
+            monmenu.validate();
+        }
         //}else if(e.getSource()==monmenu.getFaireTentative()){
             //getEleve
             //TentativeEleve tent = new TentativeEleve(Eleve);       

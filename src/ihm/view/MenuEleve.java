@@ -82,8 +82,7 @@ public class MenuEleve extends JPanel{
         entete.add(petiteEntete, BorderLayout.WEST);
         entete.add(menu, BorderLayout.CENTER);
         entete.add(deconnexion, BorderLayout.EAST);
-        
-        
+                
         
         //Partie Mes Exercices
         exercices = new JPanel();

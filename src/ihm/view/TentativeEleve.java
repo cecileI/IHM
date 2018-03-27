@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.view;
 
 import ihm.controler.controllerTentativeEleve;
@@ -62,7 +57,6 @@ public class TentativeEleve extends JFrame{
     private String modeTortue;
     private TortueG currentTortue;
 
-    private Canvas myCanvas;
     
     private controllerTentativeEleve controlTentEl;
            
