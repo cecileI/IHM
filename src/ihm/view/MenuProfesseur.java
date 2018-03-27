@@ -36,7 +36,7 @@ public class MenuProfesseur extends JPanel {
     //JPanel
     private JPanel panGeneral; //panel général qui regroupe toutes les informations de la Jframe
     private JPanel panDroite; //panel à droite qui sera modifier par des nouveaux panel
-    private JPanel panHaut; //panel de deconnection et panel blanc
+    private JPanel panHaut; //panel de deconnection et panel blanc puis label prenom et nom élève
     private JPanel panExercice; //panel qui regroupe les boutons création et modification exercice
     
     //JButton
@@ -47,7 +47,7 @@ public class MenuProfesseur extends JPanel {
     //JTree
     private JPanel panTree; //panel à gauche Jtree
     private JLabel lblEleve;
-    private JTextField txtNom, txtPrenom;
+    private JLabel txtNom, txtPrenom;
     private JTree tree;
     private DefaultMutableTreeNode racine;
     private Eleve currentEleve;
@@ -80,7 +80,7 @@ public class MenuProfesseur extends JPanel {
 
         //Boutton Deconnection
         deconnexion = new JButton("Deconnexion");
-        deconnexion.setPreferredSize(new Dimension(20,10));
+        deconnexion.setPreferredSize(new Dimension(150,150));
         deconnexion.addActionListener(controlProf);
         
 
@@ -95,13 +95,22 @@ public class MenuProfesseur extends JPanel {
         
         JLabel blanc0 = new JLabel("");
         blanc0.setHorizontalAlignment(SwingConstants.CENTER);
-        //Le nom et le prénom de l'élève 
+        
+        //Panel de déconnexion qui sera modifier avec le panel du nom et du prenom de l'élève
         panHaut = new JPanel();
         panHaut.setPreferredSize(new Dimension(550,50));
-        panHaut.setLayout(new GridLayout(1,2));
-        panHaut.add(blanc0);
+        panHaut.setLayout(new BorderLayout(1,3));
+        panHaut.add(blanc0, BorderLayout.CENTER);
         //panHaut.add(lblEleve);
-        panHaut.add(deconnexion);   //JPanel Deconnection   
+        panHaut.add(deconnexion, BorderLayout.EAST);   //JPanel Deconnection  
+        
+            //Panel du nom et du prenom qui s'affiche quand on sélectionne un élève dans le JTree
+            txtNom = new JLabel();
+            txtNom.setText("Nom");
+            txtNom.setPreferredSize(new Dimension(150,150));
+            txtPrenom =new JLabel();
+            txtPrenom.setText("Prenom");
+            txtPrenom.setPreferredSize(new Dimension(150,150));
         
         //panExercice qui contient les boutons créer et modifier
         JLabel blanc1 = new JLabel("");
@@ -202,33 +211,19 @@ public class MenuProfesseur extends JPanel {
     public void update(){
         
         if (currentEleve != null) {
-            txtNom = new JTextField();
-            txtNom.setText("Nom");
-            txtPrenom =new JTextField();
-            txtPrenom.setText("Prenom");
-
-            panHaut.add(txtNom);
-            panHaut.add(txtPrenom);
-            //panHaut.add(lblEleve);
-            panHaut.add(deconnexion);   //JPanel Deconnection   
-            
+           
+            panHaut.remove(txtNom);
+            panHaut.remove(txtPrenom);
             
             txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
             txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
-            //String taille = "" + (currentEleve.getClasse().getNombreEleves() + ""); //Calcul de la taille de la classe
-            //txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
-            //txtProf.setText(currentEleve.getClasse().getProf()); //Affichage du nom du prof
-            //txtNiveau.setText("" + currentEleve.getNiveau()); // Affichage du niveau de la classe
-            //this.viewTable.setData(currentEleve.getClasse()); //mise a jour JTable
             
-        //}else if(currentClasse!=null){
-            //String taille = "" + (currentClasse.getNombreEleves()); //Calcul de la taille de la classe
-            //txtNombreEleves.setText(taille); //Affichage du nombre d'eleves dans la classe
-            //txtProf.setText(currentClasse.getProf()); //Affichage du nom du prof
-            //txtNiveau.setText("" + currentClasse.getNiveau()); // Affichage du niveau de la classe
-            //this.viewTable.setData(currentClasse); //mise a jour JTable
-            //txtNom.setText(""); //Vide le champ nom
-            //txtPrenom.setText(""); //Vide le champ prenom
+            panHaut.add(txtNom, BorderLayout.WEST);
+            panHaut.add(txtPrenom, BorderLayout.CENTER);
+            panHaut.add(deconnexion, BorderLayout.EAST);   //JPanel Deconnection  
+            
+            this.repaint();
+            this.validate();
             
         }else{
             System.out.print("Erreur");
