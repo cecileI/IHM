@@ -22,7 +22,11 @@ public class controllerTentativeEleve implements ActionListener{
         
         //Ne concerne pas les tortues
         if (e.getSource()==tentativeEleve.getMenu()){ //en appuyant sur le bouton menu
-            //MenuEleve menuEleve = new MenuEleve(); 
+            MenuEleve interfaceEleve = new MenuEleve(tentativeEleve.getCurrentEleve());
+            tentativeEleve.remove(tentativeEleve.getGeneral());
+            tentativeEleve.add(interfaceEleve);
+            tentativeEleve.repaint();
+            tentativeEleve.validate();
             
         }else if(e.getSource()==tentativeEleve.getExecuter()){ // en selectionnant executer
             //

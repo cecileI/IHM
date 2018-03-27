@@ -3,6 +3,7 @@ package ihm.view;
 import ihm.controler.controllerTentativeEleve;
 import ihm.model.*;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -64,6 +66,12 @@ public class TentativeEleve extends JPanel{
     private TortueG currentTortue;
     private TortueCouleur currentTortueCoul;
 
+    private JPanel general;
+    
+    private Eleve currentEleve;
+    
+    private Canvas myCanvas;
+    
     
     private controllerTentativeEleve controlTentEl;
            
@@ -71,6 +79,8 @@ public class TentativeEleve extends JPanel{
         
         this.setLayout(new BorderLayout());
         this.setSize(750,500);  //largeur, hauteur
+        
+        this.currentEleve = currentEleve;
         
         controlTentEl = new controllerTentativeEleve(this);
         
@@ -124,12 +134,33 @@ public class TentativeEleve extends JPanel{
         
         couleurs = new JPanel();
         couleurs.setLayout(new GridLayout(3,2));
-        black = new JButton("noir");
-        red = new JButton("rouge");
-        blue = new JButton("bleu");
-        green = new JButton("vert");
-        yellow = new JButton("jaune");
-        magenta = new JButton("magenta");
+        black = new JButton();
+            black.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue_noire.png")));
+            black.setContentAreaFilled(false);
+        red = new JButton();
+            red.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue_rouge.png")));
+            red.setContentAreaFilled(false);
+        blue = new JButton();
+            blue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue_bleue.png")));
+            blue.setContentAreaFilled(false);
+        green = new JButton();
+            green.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue_verte.png")));
+            green.setContentAreaFilled(false);
+        yellow = new JButton();
+            yellow.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue_jaune.png")));
+            yellow.setContentAreaFilled(false);
+        magenta = new JButton();
+            magenta.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue_magenta.png")));
+            magenta.setContentAreaFilled(false);
+        
+//        validEleve.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/valider.png")));
+//        validEleve.setEnabled(true);
+//        validEleve.setBackground(Color.white);
+//        validEleve.setHorizontalAlignment(SwingConstants.CENTER); 
+//        validEleve.setOpaque(false);
+//        validEleve.setContentAreaFilled(false);
+//        validEleve.setBorderPainted(false);
+        
         
         couleurs.add(black);
         couleurs.add(red);
@@ -221,12 +252,16 @@ public class TentativeEleve extends JPanel{
         //tentative.add(panelBoutons);
         //tentative.add(panelBasBoutons);
         
-        this.add(tentative, BorderLayout.WEST);
-        this.add(canv, BorderLayout.CENTER);
-        this.add(panelBoutons, BorderLayout.SOUTH);
-        this.add(grandPanelBoutons, BorderLayout.EAST);
-        this.add(entete, BorderLayout.NORTH);
+        general = new JPanel();
+        general.setLayout(new BorderLayout());
         
+        general.add(tentative, BorderLayout.WEST);
+        general.add(canv, BorderLayout.CENTER);
+        general.add(panelBoutons, BorderLayout.SOUTH);
+        general.add(grandPanelBoutons, BorderLayout.EAST);
+        general.add(entete, BorderLayout.NORTH);
+        
+        this.add(general);
         
         this.setVisible(true); 
 
@@ -236,7 +271,10 @@ public class TentativeEleve extends JPanel{
         return modeTortue;
     }
 
-    
+    public Eleve getCurrentEleve() {
+        return currentEleve;
+    }
+
     public JButton getMenu() {
         return menu;
     }
@@ -292,8 +330,12 @@ public class TentativeEleve extends JPanel{
     public JButton getMagenta() {
         return magenta;
     }
-    
 
+    public JPanel getGeneral() {
+        return general;
+    }
+    
+    
     
             
 }
