@@ -5,6 +5,8 @@ import ihm.model.Eleve;
 import ihm.model.Exercice;
 import ihm.model.Tentative;
 import ihm.view.MenuEleve;
+import ihm.view.VisuTentativeEleve;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -55,7 +57,22 @@ public class controllerTentative implements ListSelectionListener{
            menuEleve.afficheInfoTentative(selectTentative); //effectue les actions voulues
         }
      
-    }   
+    }  
+    /* 
+    * action performed pour retourner au menu élève
+    */
+     //public void actionPerformed (ActionEvent e) {
+        
+      // if (e.getSource()== VisuTentativeEleve.getMenu()){ //en appuyant sur le bouton menu
+            //MenuEleve interfaceEleve = new MenuEleve(VisuTentativeEleve.getCurrentEleve());
+           // VisuTentativeEleve.remove(VisuTentativeEleve);
+            //VisuTentativeEleve.add(interfaceEleve);
+            //VisuTentativeEleve.repaint();
+           //VisuTentativeEleve.validate();
+        //}else{
+           
+       //}
+     //}
 
 }
 
