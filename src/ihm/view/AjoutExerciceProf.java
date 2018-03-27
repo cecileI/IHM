@@ -1,6 +1,9 @@
 package ihm.view;
 
 import ihm.view.*;
+import ihm.model.*;
+import ihm.controler.*;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,7 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- * Interface pour permettre au professeur de créer un exercice
+ * Interface pour permettre au Professeur de créer un Exercice
+ * Les boutons sont: Valider, Menu, 
  * @author Group7
  */
 public class AjoutExerciceProf extends JPanel {
@@ -43,7 +47,10 @@ public class AjoutExerciceProf extends JPanel {
     private JLabel lignecode;
    
     public AjoutExerciceProf(){
+        //pour instancier le controllerAjoutExerciceProf et appeler les ActionEvent en cliquant sur les boutons
+        controllerAjoutExerciceProf controlProf = new controllerAjoutExerciceProf(this);   
         setLayout(new BorderLayout()); 
+        
         
         //Boutton Menu
         Menu = new JButton("Menu");
@@ -59,7 +66,7 @@ public class AjoutExerciceProf extends JPanel {
 //               Partie Ajout d'un Exercice
 //---------------------------------------------------------
         Exercice = new JPanel();
-        Exercice.setPreferredSize(new Dimension(550,400));
+        Exercice.setPreferredSize(new Dimension(600,500));
         Exercice.setLayout(new GridLayout(6,3));
         
         Titre = new JTextField("Titre");        
@@ -151,9 +158,9 @@ public class AjoutExerciceProf extends JPanel {
 
         //Partie droite de la Frame
         Droite = new JPanel();
-        Droite.setPreferredSize(new Dimension(550,450));
+        Droite.setPreferredSize(new Dimension(600,500));
         PanelHaut = new JPanel();
-        PanelHaut.setPreferredSize(new Dimension(550,50));
+        PanelHaut.setPreferredSize(new Dimension(600,50));
         PanelHaut.setLayout(new GridLayout(1,2));
                 
         CreerExercice = new JLabel("Creer un Exercice");

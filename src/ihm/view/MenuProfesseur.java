@@ -6,10 +6,10 @@ import ihm.controler.controllerJTree;
 import ihm.controler.controllerMenuProfesseur;
 import ihm.model.Classe;
 import ihm.model.Eleve;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +28,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 /**
- *  Cette classe permet de créé une fenetre qui permettra a l'élève d'acceder à ces fonctionnalitées
+ * Cette classe permet de créer un panel deuis l'InterfaceDebut permettant au Professeur d'accéder à son Menu
+ * Cela permet au professeur de choisir entre Créer un Exercice ou Modifier un Exercice 
+ * et donc d'ouvrir le panel correspondant
  * @author Goup7
  */
 public class MenuProfesseur extends JPanel {
@@ -53,14 +55,14 @@ public class MenuProfesseur extends JPanel {
     private Eleve currentEleve;
     private Classe currentClasse;
     
-    //panel pour créer un exercice
+    //panel pour Créer un exercice
     private AjoutExerciceProf panCreer;
     
-    //panel pour modifier un exercice
+    //panel pour Modifier un exercice
     private ListeExercicesProf panliste;
            
     public MenuProfesseur(){
-               
+        //pour instancier le controllerMenuProfesseur et appeler les ActionEvent en cliquant sur les boutons
         controllerMenuProfesseur controlProf = new controllerMenuProfesseur(this);
         panliste = new ListeExercicesProf();
         panCreer = new AjoutExerciceProf();
@@ -124,11 +126,10 @@ public class MenuProfesseur extends JPanel {
         JLabel blanc5 = new JLabel("");
         blanc5.setHorizontalAlignment(SwingConstants.CENTER);
         JLabel blanc6 = new JLabel("");
-        blanc6.setHorizontalAlignment(SwingConstants.CENTER);
-        
+        blanc6.setHorizontalAlignment(SwingConstants.CENTER);        
         
         panExercice = new JPanel();
-        panExercice.setPreferredSize(new Dimension(550,400));
+        panExercice.setPreferredSize(new Dimension(550,500));
         panExercice.setLayout(new GridLayout(4,2));
         panExercice.add(blanc1);
         panExercice.add(blanc2);
@@ -141,7 +142,7 @@ public class MenuProfesseur extends JPanel {
         
         //panDroite qui contient panHaut et panExercice
         panDroite = new JPanel();
-        panDroite.setPreferredSize(new Dimension(550,450));
+        panDroite.setPreferredSize(new Dimension(550,500));
         panDroite.add(panHaut);
         panDroite.add(panExercice);
         
@@ -151,12 +152,10 @@ public class MenuProfesseur extends JPanel {
         panGeneral.add(panDroite,BorderLayout.EAST);   //ajout du panel général au menu
         
         this.setLayout(new BorderLayout());
-        this.add(panGeneral, BorderLayout.CENTER);
-        
+        this.add(panGeneral, BorderLayout.CENTER);        
 
         //this.getContentPane().setLayout(new BorderLayout()); 
-        this.setSize(750,500);  //largeur, hauteur
-        
+                
         this.setVisible(true);        
     }    
     
