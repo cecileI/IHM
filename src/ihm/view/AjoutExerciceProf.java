@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- * Interface pour créer un exercice
+ * Interface pour permettre au professeur de créer un exercice
  * @author Group7
  */
 public class AjoutExerciceProf extends JPanel {
