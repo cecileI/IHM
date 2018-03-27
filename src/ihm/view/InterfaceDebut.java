@@ -1,5 +1,4 @@
 package ihm.view;
-
 import ihm.controler.*;
 import ihm.model.*;
 
@@ -11,7 +10,8 @@ import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
- *
+ * La Classe InterfaceDebut de type JFrame permet de lancer la première fenêtre de l'application
+ * Cette JFrame permet de se connecter sur l'application en tant qu'élève ou professeur
  * @author Group7
  */
 public class InterfaceDebut extends JFrame {
@@ -43,13 +43,13 @@ public class InterfaceDebut extends JFrame {
     public InterfaceDebut(){
         
         this.getContentPane().setLayout(new BorderLayout()); 
-        this.setTitle("LOGO Groupe 7");
-        this.setSize(900,600);
-        this.setResizable(false);
-        
+        this.setTitle("LOGO Groupe 7"); //Titre de la JFrame 
+        this.setSize(900,600);          //largeur, hauteur
+        this.setResizable(false);       //impossible de changer la taille de la JFrame
+        //pour instancier le controllerInterfaceDebut et appeler les ActionEvent en cliquant sur les boutons
         controllerInterfaceDebut controlinterf = new controllerInterfaceDebut(this);
 
-        //Partie eleve
+        //Partie ELEVE, à gauche
         panelEleve = new JPanel();
         panelEleve.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 3)); 
         
@@ -93,14 +93,13 @@ public class InterfaceDebut extends JFrame {
         validEleve.addActionListener(controlinterf); 
         
 
-        //Partie prof
+        //Partie PROFESSEUR, à droite
         panelProf = new JPanel();
         panelProf.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 3));  
         unProfesseur = new JLabel("Un professeur");
         unProfesseur.setHorizontalAlignment(SwingConstants.CENTER);
         unProfesseur.setFont(new Font("Arial",Font.BOLD,30));
-        panelProf.add(unProfesseur);
-        
+        panelProf.add(unProfesseur);        
         
         imageProf = new JLabel();
         imageProf.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/prof.png")));
@@ -136,7 +135,7 @@ public class InterfaceDebut extends JFrame {
         panelProf.add(validProf);
         validProf.addActionListener(controlinterf); 
         
-        //Partie générale
+        //Partie générale: Haut et Elève/Professeur
         jeSuis = new JLabel("Je suis");
         jeSuis.setHorizontalAlignment(SwingConstants.CENTER);
         jeSuis.setFont(new Font("Arial",Font.BOLD,50));
@@ -171,6 +170,7 @@ public class InterfaceDebut extends JFrame {
         //return(nouvFrame);
     }
     
+    //getters
     public JButton getvalidEleve(){
         return validEleve;
     }
@@ -185,14 +185,12 @@ public class InterfaceDebut extends JFrame {
     
     public JTextField getclasseEleve(){
         return classeEleve;
-    }
-    
+    }    
     
     public JLabel getmessage(){
         return message;
     }
-    
-    
+        
     public JButton getvalidProf(){
         return validProf;
     }
@@ -207,6 +205,5 @@ public class InterfaceDebut extends JFrame {
     
     public JTextField getmotDePasse(){
         return motDePasse;
-    }
- 
+    } 
 }
