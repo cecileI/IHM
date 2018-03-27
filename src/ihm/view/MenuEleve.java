@@ -104,7 +104,7 @@ public class MenuEleve extends JPanel{
         //bouton deconnexion
         deconnexion = new JButton("Deconnexion");
         deconnexion.addActionListener(controlEleve);
-        
+                
         entete.add(petiteEntete);
         entete.add(menu);
         entete.add(deconnexion);
