@@ -75,7 +75,7 @@ public class MenuEleve extends JPanel{
        
         
         imageTortue = new JLabel();
-//        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
+        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
         imageTortue.setHorizontalAlignment(SwingConstants.CENTER);
         lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
@@ -111,8 +111,12 @@ public class MenuEleve extends JPanel{
         JLabel blanc3 = new JLabel(" ");
         
         //bouton deconnexion
-        deconnexion = new JButton("Deconnexion");
-        deconnexion.setPreferredSize(new Dimension(150,50));
+        deconnexion = new JButton("");
+        deconnexion.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/quit.png")));
+        deconnexion.setHorizontalAlignment(SwingConstants.CENTER); 
+        deconnexion.setOpaque(false);
+        deconnexion.setContentAreaFilled(false);
+        deconnexion.setBorderPainted(false);   
         deconnexion.addActionListener(controlEleve);
                 
         entete.add(petiteEntete);
@@ -141,8 +145,6 @@ public class MenuEleve extends JPanel{
         tentative = new JPanel();
         tentative.setPreferredSize(new Dimension(200,150));
         tentative.setLayout(new BorderLayout());
-        //tentative.setLayout(new FlowLayout(FlowLayout.CENTER, 400, 20)); 
-        //tentative.setLayout(new GridLayout(2,2));
               
         nexo = new JLabel("N° Exercice");
         nexo.setFont(new Font("Arial",Font.BOLD,20));
