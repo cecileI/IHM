@@ -13,6 +13,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -52,10 +54,14 @@ public class TentativeEleve extends JFrame{
     //grand panel de boutons
     private JPanel grandPanelBoutons;
     private JPanel panelBasBoutons;
-    private JButton tortueRapide;
-    private JButton tortueClassique;
-    private JButton tortueCouleur;
-    private JComboBox couleurs;
+    private JPanel couleurs;
+    private JButton black;
+    private JButton red;
+    private JButton blue;
+    private JButton green;
+    private JButton yellow;
+    private JButton magenta;
+    
     private JButton valider;
     private JButton executer;
     
@@ -105,11 +111,13 @@ public class TentativeEleve extends JFrame{
 //               Partie Faire une tentative
 //---------------------------------------------------------
         //modèle du professeur
+        //pas encore effectif
         JLabel modele = new JLabel("Le modele");
         
         //lignes de code produites par l'élève
         lignesCode = new JTextArea();
         
+        //panel de gauche avec le modele du prof et les lignes de code produites par l'élève
         tentative = new JPanel();
         tentative.setPreferredSize(new Dimension(200,100));
         tentative.setLayout(new GridLayout(2,1));
@@ -118,16 +126,21 @@ public class TentativeEleve extends JFrame{
         tentative.add(lignesCode);
         
         //visualisation directe de la tentative de l'élève  
+        
+        //récupération du type de la tortue pour cet exercice
         modeTortue = currentExercice.getModeTortue();
         //creation de la tortue
-        if (modeTortue.equals("normal")){
+        if(modeTortue.equals("normal")){
             currentTortue = new TortueG(); //creation d'une tortue classique
+            
         }else if(modeTortue.equals("couleur")){
             currentTortue = new TortueCouleur(); //creation d'une tortue couleur
-        }else if(modeTortue.equals("couleur")){
+            couleurs.setEnabled(true); //mise à dispo du choix de la couleur
             
+        }else if(modeTortue.equals("rapide")){
+            currentTortue = new TortueRapide(); //creation d'une tortue couleur
         }
-        
+        //création du canvas
         JPanel canv = Canvas.getCanvasPanel();  
 
         
@@ -153,14 +166,24 @@ public class TentativeEleve extends JFrame{
         
 
         //Grand panel Boutons
-        couleurs = new JComboBox();
-		//Couleur.setFont(font);
-		couleurs.addItem("black");
-		couleurs.addItem("red");
-		couleurs.addItem("blue");
-		couleurs.addItem("green");
-		couleurs.addItem("yellow");
-		couleurs.addItem("magenta");
+        
+        couleurs = new JPanel();
+        couleurs.setLayout(new GridLayout(3,2));
+        black = new JButton("noir");
+        red = new JButton("rouge");
+        blue = new JButton("bleu");
+        green = new JButton("vert");
+        yellow = new JButton("jaune");
+        magenta = new JButton("magenta");
+        
+        couleurs.add(black);
+        couleurs.add(red);
+        couleurs.add(blue);
+        couleurs.add(green);
+        couleurs.add(yellow);
+        couleurs.add(magenta);
+        
+        couleurs.setEnabled(false);
 
         executer = new JButton ("Executer");
         executer.addActionListener(controlTentEl); 
@@ -197,6 +220,10 @@ public class TentativeEleve extends JFrame{
 
     }
 
+    public String getModeTortue() {
+        return modeTortue;
+    }
+
     
     
     public JButton getMenu() {
@@ -214,18 +241,6 @@ public class TentativeEleve extends JFrame{
     public JButton getAvancer() {
         return avancer;
     }
-    
-    public JButton getTortueRapide() {
-        return tortueRapide;
-    }
-
-    public JButton getTortueClassique() {
-        return tortueClassique;
-    }
-
-    public JButton getTortueCouleur() {
-        return tortueCouleur;
-    }
 
     public JButton getValider() {
         return valider;
@@ -235,9 +250,35 @@ public class TentativeEleve extends JFrame{
         return executer;
     }
 
+    public TortueG getTortue(){
+        return currentTortue;
+    }
+
+    public JButton getBlack() {
+        return black;
+    }
+
+    public JButton getRed() {
+        return red;
+    }
+
+    public JButton getBlue() {
+        return blue;
+    }
+
+    public JButton getGreen() {
+        return green;
+    }
+
+    public JButton getYellow() {
+        return yellow;
+    }
+
+    public JButton getMagenta() {
+        return magenta;
+    }
+    
 
     
-    
-    
-    
+            
 }

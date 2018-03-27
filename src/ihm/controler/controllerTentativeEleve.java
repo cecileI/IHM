@@ -28,23 +28,39 @@ public class controllerTentativeEleve implements ActionListener{
             //MenuEleve menuEleve = new MenuEleve(); 
             
         }else if(e.getSource()==tentativeEleve.getTourner()){ // en appuyant sur le bouton tourner
-            tentativeEleve.getTortueG().tourner();
+            tentativeEleve.getTortue().tourner();
             
         }else if(e.getSource()==tentativeEleve.getAvancer()){ // en appuyant sur le bouton avancer
-            tentativeEleve.getTortueG().avancer();
+            tentativeEleve.getTortue().avancer();
             //.append("avancer")
             
         }else if(e.getSource()==tentativeEleve.getEcrire()){ // en appuyant sur le bouton ecrire
-            if (tentativeEleve.getTortueG().enTrace()==false){
-                tentativeEleve.getTortueG().tracer(true);
+            if (tentativeEleve.getTortue().enTrace()==false){
+                tentativeEleve.getTortue().tracer(true);
             }else{
-                tentativeEleve.getTortueG().tracer(false);
+                tentativeEleve.getTortue().tracer(false);
             }
-      
-        }else if(e.getSource()==tentativeEleve.getExecuter()){ // en selectionnant la tortue rapide
+        }else if(e.getSource()==tentativeEleve.getExecuter()){ // en selectionnant executer
             //
-        }else if(e.getSource()==tentativeEleve.getValider()){ // en selectionnant la tortue rapide
+        }else if(e.getSource()==tentativeEleve.getValider()){ // en selectionnant valider
             //
+        }
+        if (tentativeEleve.getModeTortue()=="couleur"){
+                        
+            if(e.getSource()==tentativeEleve.getBlack()){
+                tentativeEleve.getTortue().setCouleur("black");
+            }else if(e.getSource()==tentativeEleve.getBlue()){
+                tentativeEleve.getTortue().setCouleur("blue");
+            }else if(e.getSource()==tentativeEleve.getGreen()){
+                tentativeEleve.getTortue().setCouleur("green");
+            }else if(e.getSource()==tentativeEleve.getRed()){
+                tentativeEleve.getTortue().setCouleur("red");
+            }else if(e.getSource()==tentativeEleve.getMagenta()){
+                tentativeEleve.getTortue().setCouleur("magenta");
+            }else if(e.getSource()==tentativeEleve.getYellow()){
+                tentativeEleve.getTortue().setCouleur("yellow");
+
+            }
         }
         
     }
