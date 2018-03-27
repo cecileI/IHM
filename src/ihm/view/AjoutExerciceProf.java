@@ -57,18 +57,33 @@ public class AjoutExerciceProf extends JPanel {
     private JButton executer;
     private JButton valider;
     
+    //panel pour couleur    
+    private JPanel couleurs;
+    private JButton black;
+    private JButton red;
+    private JButton blue;
+    private JButton green;
+    private JButton yellow;
+    private JButton magenta;
+
     //panel en bas
     private JPanel bas;
     private JTextArea ligneCode;   
     
+    
     private String modeTortue;
     private TortueG currentTortue;
-
-    private Canvas myCanvas;
     
     //panel pour retourner au MenuProfesseur
     private MenuProfesseur panDroite;
     
+    //private String modeTortue;
+    //private TortueG currentTortue;
+    private TortueCouleur currentTortueCoul;
+    private Exercice currentExercice;
+    
+    
+    private controllerAjoutExerciceProf controlexprof;
    
     public AjoutExerciceProf(){
         //pour instancier le controllerAjoutExerciceProf et appeler les ActionEvent en cliquant sur les boutons
@@ -89,7 +104,7 @@ public class AjoutExerciceProf extends JPanel {
 
         menu = new JButton("Menu");
         menu.setPreferredSize(new Dimension(20,10));   
-        menu.addActionListener(controlProf); //ne fonctionne pas!!! à revoir!
+        menu.addActionListener(controlexprof); //ne fonctionne pas!!! à revoir!
              
         panelHaut.add(creerExercice,BorderLayout.CENTER);
         panelHaut.add(menu);
@@ -99,36 +114,21 @@ public class AjoutExerciceProf extends JPanel {
 //---------------------------------------------------------
         gauche = new JPanel();
         gauche.setPreferredSize(new Dimension(200,400));
-        gauche.setLayout(new GridLayout(5,1)); //5 lignes, 1 colonne
+        gauche.setLayout(new GridLayout(6,2)); //5 lignes, 1 colonne
 
-        titre = new JTextField("Titre");
-        
-       
+        titre = new JTextField("Titre");      
     
         tRapide = new JButton ("Tortue Rapide");
-        tRapide.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour Trapide();
-                }
-            }); 
+        tRapide.addActionListener(controlexprof);
     
         tClassique = new JButton ("Tortue Classique");
-        tClassique.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour Tclassique();
-                }
-            }); 
-    
+        tClassique.addActionListener(controlexprof);
+            
         tCouleur = new JButton ("Tortue Couleur");
-        tCouleur.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour Tcouleur();
-                }
-            }); 
+        tCouleur.addActionListener(controlexprof);        
         
         couleur = new JComboBox();
-		//Couleur.setFont(font);
-		couleur.addItem("Rouge");
+		couleur.addItem("Rouge");                
 		couleur.addItem("Bleu");
 		couleur.addItem("Vert");
 		couleur.addItem("Cyan");
@@ -136,15 +136,62 @@ public class AjoutExerciceProf extends JPanel {
 		couleur.addItem("Jaune");
 		couleur.addItem("Violet");
 		couleur.addItem("Noir");
-		couleur.addItem("Blanc");       
+		couleur.addItem("Blanc");
+        couleur.addActionListener(controlexprof);
+        
+
+//Ajout des Couleurs!
+     
+        red = new JButton("rouge");
+        magenta = new JButton("magenta");
+        yellow = new JButton("jaune");
+        green = new JButton("vert");
+        blue = new JButton("bleu");
+        black = new JButton ("noir");
+        
+        black.setEnabled(false); //mise à dispo du choix de la couleur
+        red.setEnabled(false);
+        yellow.setEnabled(false);
+        blue.setEnabled(false);
+        green.setEnabled(false);
+        magenta.setEnabled(false);
+        
+        //récupération du type de la tortue pour cet exercice
+//        modeTortue = currentExercice.getModeTortue();
+//                
+//        //creation de la tortue
+//        if(modeTortue.equals("normal")){
+//            currentTortue = new TortueG(); //creation d'une tortue classique
+//            
+//        }else if(modeTortue.equals("couleur")){
+//            currentTortueCoul = new TortueCouleur(); //creation d'une tortue couleur
+//            black.setEnabled(true); //mise à dispo du choix de la couleur
+//            black.addActionListener(controlexprof);
+//            red.setEnabled(true);
+//            red.addActionListener(controlexprof);
+//            yellow.setEnabled(true);
+//            yellow.addActionListener(controlexprof);
+//            blue.setEnabled(true);
+//            blue.addActionListener(controlexprof);
+//            green.setEnabled(true);
+//            green.addActionListener(controlexprof);
+//            magenta.setEnabled(true);
+//            magenta.addActionListener(controlexprof);
+//        }else if(modeTortue.equals("rapide")){
+//            currentTortue = new TortueRapide(); //creation d'une tortue couleur
+//        }
         
         gauche.add(titre);
         gauche.add(tRapide);
         gauche.add(tClassique);
         gauche.add(tCouleur);
         gauche.add(couleur);
-        
-             
+        gauche.add(red);
+        gauche.add(magenta);
+        gauche.add(yellow);
+        gauche.add(green);
+        gauche.add(blue);
+        gauche.add(black);
         
 //---------------------------------------------------------
 //               Ajout d'un Exercice: panelCentral
@@ -164,40 +211,20 @@ public class AjoutExerciceProf extends JPanel {
         droite.setPreferredSize(new Dimension(100,400));
         droite.setLayout(new GridLayout(5,1)); //5 lignes, 1 colonne
         
-          tourner = new JButton ("Tourner");
-        tourner.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); // changer pour turn();
-                }
-            }); 
-    
+        tourner = new JButton ("Tourner");
+        tourner.addActionListener(controlexprof);
+        
         avancer = new JButton ("Avancer");
-        avancer.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour avance();
-                }
-            }); 
+        avancer.addActionListener(controlexprof);
     
         ecrire = new JButton ("Ecrire");
-        ecrire.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer tracer();
-                }
-            }); 
+        ecrire.addActionListener(controlexprof);
     
         executer = new JButton ("Executer");
-        executer.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer execute();
-                }
-            });
-        
+        executer.addActionListener(controlexprof);
+                
         valider = new JButton ("VALIDER");
-        valider.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour nouveau exercice! addExercice();
-                }
-            }); 
+        valider.addActionListener(controlexprof);
 
         droite.add(tourner);
         droite.add(avancer);
@@ -205,6 +232,8 @@ public class AjoutExerciceProf extends JPanel {
         droite.add(executer);
         droite.add(valider);
         
+        
+
 //---------------------------------------------------------
 //               Ajout d'un Exercice: panelBas
 //---------------------------------------------------------
@@ -224,6 +253,7 @@ public class AjoutExerciceProf extends JPanel {
         add(gauche,BorderLayout.WEST);
         add(centre,BorderLayout.CENTER);
         add(droite,BorderLayout.EAST);
+  
         add(bas,BorderLayout.SOUTH);
         
         this.setVisible(true); 
@@ -296,6 +326,46 @@ public class AjoutExerciceProf extends JPanel {
     }
     public JTextArea getLigneCode() {
         return ligneCode;
-    }    
+    }
+    
+    
+    //concerne la tortue
+    
+    public TortueG getTortue(){
+        return currentTortue;
+    }
+    
+     public String getModeTortue() {
+        return modeTortue;
+    }
+     
+     public TortueCouleur getTortueCoul(){
+        return currentTortueCoul;
+    }
+
+    public JButton getBlack() {
+        return black;
+    }
+
+    public JButton getRed() {
+        return red;
+    }
+
+    public JButton getBlue() {
+        return blue;
+    }
+
+    public JButton getGreen() {
+        return green;
+    }
+
+    public JButton getYellow() {
+        return yellow;
+    }
+
+    public JButton getMagenta() {
+        return magenta;
+    } 
+
     
 }
