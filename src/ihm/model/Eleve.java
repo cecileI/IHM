@@ -5,28 +5,18 @@ package ihm.model;
  * @author Group7
  */
 public class Eleve {
-    private int idEleve;
     private String nomEleve;
     private String prenomEleve;
     private Classe niveau;
 
 
     //Constructeur de la classe Eleve
-    public Eleve(int idEleve, String nomEleve, String prenomEleve, Classe niveau) {
-        this.idEleve = idEleve;
+    public Eleve(String nomEleve, String prenomEleve, Classe niveau) {
         this.nomEleve = nomEleve;
         this.prenomEleve = prenomEleve;
         this.niveau = niveau;
     }
-
-    //getters-setters des paramètres
-    public int getIdEleve() {
-        return idEleve;
-    }
-
-    public void setIdEleve(int idEleve) {
-        this.idEleve = idEleve;
-    }
+    
 
     public String getNomEleve() {
         return nomEleve;

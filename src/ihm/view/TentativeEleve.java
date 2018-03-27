@@ -59,15 +59,14 @@ public class TentativeEleve extends JFrame{
     private JButton valider;
     private JButton executer;
     
-    private TortueG tortueG;
-    private TortueCouleur tortueCoul;
-    private TortueRapide tortueRap;
+    private String modeTortue;
+    private TortueG currentTortue;
 
     private Canvas myCanvas;
     
     private controllerTentativeEleve controlTentEl;
            
-    public TentativeEleve(String nomE, String prenomE, String classeE){
+    public TentativeEleve(Eleve currentEleve, Exercice currentExercice){
         
         this.setLayout(new BorderLayout());
         this.setSize(750,500);  //largeur, hauteur
@@ -84,11 +83,11 @@ public class TentativeEleve extends JFrame{
         menu.addActionListener(controlTentEl); 
         
         //infos élève
-        lblNomEleve = new JLabel(nomE + "  ");
+        lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
-        lblPrenomEleve = new JLabel(prenomE);
+        lblPrenomEleve = new JLabel(currentEleve.getPrenomEleve());
         lblPrenomEleve.setFont(new Font("Arial",Font.BOLD,15));
-        lblClasseEleve = new JLabel(classeE);
+        lblClasseEleve = new JLabel(currentEleve.getNiveau().getNiveau());
         lblClasseEleve.setFont(new Font("Arial",Font.BOLD,15));
         
         petiteEntete = new JPanel();
@@ -118,8 +117,17 @@ public class TentativeEleve extends JFrame{
         tentative.add(modele);
         tentative.add(lignesCode);
         
-        //visualisation directe de la tentative de l'élève      
-        tortueG = new TortueG(); //creation d'une tortue classique
+        //visualisation directe de la tentative de l'élève  
+        modeTortue = currentExercice.getModeTortue();
+        //creation de la tortue
+        if (modeTortue.equals("normal")){
+            currentTortue = new TortueG(); //creation d'une tortue classique
+        }else if(modeTortue.equals("couleur")){
+            currentTortue = new TortueCouleur(); //creation d'une tortue couleur
+        }else if(modeTortue.equals("couleur")){
+            
+        }
+        
         JPanel canv = Canvas.getCanvasPanel();  
 
         
@@ -143,17 +151,8 @@ public class TentativeEleve extends JFrame{
         panelBoutons.add(petitPanelBoutons);
         panelBoutons.add(ecrire);
         
- 
-        // Grand panel de boutons
-        tortueRapide = new JButton ("Tortue Rapide");
-        tortueRapide.addActionListener(controlTentEl); 
-    
-        tortueClassique = new JButton ("Tortue Classique");
-        tortueClassique.addActionListener(controlTentEl); 
-    
-        tortueCouleur = new JButton ("Tortue Couleur");
-        tortueCouleur.addActionListener(controlTentEl); 
-        
+
+        //Grand panel Boutons
         couleurs = new JComboBox();
 		//Couleur.setFont(font);
 		couleurs.addItem("black");
@@ -169,13 +168,9 @@ public class TentativeEleve extends JFrame{
         valider = new JButton ("Valider");
         valider.addActionListener(controlTentEl); 
         
-        
-        
+       
         grandPanelBoutons = new JPanel();
-        grandPanelBoutons.setLayout(new GridLayout(6,1));//6llignes 1 colonne
-        grandPanelBoutons.add(tortueRapide);
-        grandPanelBoutons.add(tortueClassique);
-        grandPanelBoutons.add(tortueCouleur);
+        grandPanelBoutons.setLayout(new GridLayout(3,1));//4llignes 1 colonne
         grandPanelBoutons.add(couleurs);
         
         //panelBasBoutons = new JPanel();
@@ -240,17 +235,6 @@ public class TentativeEleve extends JFrame{
         return executer;
     }
 
-    public TortueG getTortueG() {
-        return tortueG;
-    }
-
-    public TortueCouleur getTortueCoul() {
-        return tortueCoul;
-    }
-
-    public TortueRapide getTortueRap() {
-        return tortueRap;
-    }
 
     
     

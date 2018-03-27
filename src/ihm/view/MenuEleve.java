@@ -46,7 +46,7 @@ public class MenuEleve extends JPanel{
     
     private static controllerMenuEleve controlEleve;
     
-    public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
+    public MenuEleve (Eleve currentEleve){
         
         this.setLayout(new BorderLayout());
         this.setSize(750,500);
@@ -57,11 +57,11 @@ public class MenuEleve extends JPanel{
         petiteEntete = new JPanel();
         petiteEntete.setLayout(new GridLayout(2,2)); //2lignes et 1 colonne
         
-        lblNomEleve = new JLabel(nomEleve + "  ");
+        lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
-        lblPrenomEleve = new JLabel(prenomEleve);
+        lblPrenomEleve = new JLabel(currentEleve.getPrenomEleve());
         lblPrenomEleve.setFont(new Font("Arial",Font.BOLD,15));
-        lblClasseEleve = new JLabel(classeEleve);
+        lblClasseEleve = new JLabel(currentEleve.getNiveau().getNiveau());
         lblClasseEleve.setFont(new Font("Arial",Font.BOLD,15));
         petiteEntete.add(lblNomEleve);
         petiteEntete.add(lblPrenomEleve);
@@ -112,7 +112,7 @@ public class MenuEleve extends JPanel{
         faireTentative.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     
-                    TentativeEleve tent = new TentativeEleve(nomEleve, prenomEleve,classeEleve);
+                    TentativeEleve tent = new TentativeEleve(currentEleve, currentExercice);
                     
                 }
             }); 
