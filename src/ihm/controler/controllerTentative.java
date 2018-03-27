@@ -26,7 +26,7 @@ public class controllerTentative implements ListSelectionListener{
     /**
      * Constructeur du controller pour la jtable des exercices dans le menu élève
      * @param jtable la jtable regroupant les différents exercices
-     * @param exercices liste des exercices
+     * @param tentatives liste des tentatives
      * @param menuEleve interface du menu eleve
      */
     public controllerTentative(JTable jtable, ArrayList<Tentative> tentative, MenuEleve menuEleve) {
