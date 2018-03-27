@@ -32,6 +32,7 @@ public class ViewVisuTentativeEleve extends JScrollPane {
       * Constructeur de la view de la jtable
      * Cette fonction permet de créer une JTable des exercices dans le menu Eleve
      * @param menuEleve : l'interface du menu eleve
+     * @param currentEleve: l'élève sur lequel on travaille
      */
     public ViewVisuTentativeEleve(MenuEleve menuEleve,Eleve currentEleve){
              
@@ -65,8 +66,9 @@ public class ViewVisuTentativeEleve extends JScrollPane {
          * Constructeur de tablemod
          */
         public TableMod(Eleve currentEleve){
-            eleve = currentEleve; 
-            this.tentatives = InfoBDD.selectionListTentativeUnEleve(currentEleve);
+            System.out.println("tablemod :");
+            System.out.println(currentEleve.getNomEleve());
+            this.tentatives = InfoBDD.selectionListTentativeUnEleve(currentEleve); // sélectionne la liste de tentatives de l'élève courant
         }
 
         /**

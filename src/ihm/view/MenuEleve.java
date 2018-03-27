@@ -50,9 +50,9 @@ public class MenuEleve extends JPanel{
     
     private ViewTableExercicesEleves maJTable;
     
+    private Eleve currentEleve;
     private Exercice currentExercice;
     private Tentative currentTentative;
-    private Eleve monCurrentEleve;
     
     private static controllerMenuEleve controlEleve;
     
@@ -61,7 +61,7 @@ public class MenuEleve extends JPanel{
         this.setLayout(new BorderLayout());
         this.setSize(900,600);
         
-        monCurrentEleve = currentEleve;
+        this.currentEleve = currentEleve;
         
         controlEleve = new controllerMenuEleve(this);
         
@@ -75,7 +75,7 @@ public class MenuEleve extends JPanel{
        
         
         imageTortue = new JLabel();
-        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
+//        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
         imageTortue.setHorizontalAlignment(SwingConstants.CENTER);
         lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
@@ -114,7 +114,7 @@ public class MenuEleve extends JPanel{
         deconnexion = new JButton("Deconnexion");
         deconnexion.setPreferredSize(new Dimension(150,50));
         deconnexion.addActionListener(controlEleve);
-        
+                
         entete.add(petiteEntete);
         entete.add(menu);     
         entete.add(deconnexion);
@@ -162,13 +162,7 @@ public class MenuEleve extends JPanel{
         faireTentative.setContentAreaFilled(false);
         faireTentative.setBorderPainted(false);     
         //faireTentative.addActionListener(controlEleve);
-        faireTentative.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    
-                    TentativeEleve tent = new TentativeEleve(currentEleve, currentExercice);
-                    
-                }
-            }); 
+        faireTentative.addActionListener(controlEleve); 
         
         visualiserTentative = new JButton("");
         visualiserTentative.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/visualiser.png")));
@@ -225,7 +219,7 @@ public class MenuEleve extends JPanel{
 	}
     }
     
-        public void afficheInfoTentative(MenuEleve this,Tentative node) {
+    public void afficheInfoTentative(MenuEleve this,Tentative node) {
 	if (node instanceof Tentative) {
             currentTentative = node;
             update();
@@ -241,6 +235,10 @@ public class MenuEleve extends JPanel{
             faireTentative.setEnabled(true);
             visualiserTentative.setEnabled(true);
         }
+    }
+
+    public JPanel getGeneral() {
+        return general;
     }
     
     /*
@@ -263,17 +261,13 @@ public class MenuEleve extends JPanel{
     public JButton getVisualiserTentative() {
         return visualiserTentative;
     }
-    
-    public Eleve getCurrentEleve(){
-        return monCurrentEleve;
+
+    public Eleve getCurrentEleve() {
+        return currentEleve;
     }
     
-    public String getCurrentExercice(){
-        return currentExercice.getTitre();
-    }
-    
-    public JPanel getGeneral(){
-        return general;
+    public Exercice getCurrentExercice(){
+        return currentExercice;
     }
     
 }

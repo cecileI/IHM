@@ -232,24 +232,30 @@ public class InfoBDD {
         Connection recon = connect();
         Statement stmt = null;
         String Nom = el.getNomEleve();
-        String sql = "select IdTentative,StatutTentative,IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve='Nom'";       
+        System.out.println(Nom);
+        String sq = "select IdTentative,Eleve.IdEleve,IdExercice,StatutTentative,IdProf,ModeleEleve from Tentative,Eleve where NomEleve="+'"'+Nom+'"';       
         
         try{
-        stmt = recon.createStatement();
+            System.out.println("try");
+            stmt = recon.createStatement();
         
-        ResultSet rs = stmt.executeQuery(sql); // applique la requête
-        while (rs.next()) { // Parcours de la liste d'exercices 
-            int idT = rs.getInt("IdTentative");
-            String StatutTentative = rs.getString("StatutTentative");
-            int idE = rs.getInt("IdEleve");
-            int idExo = rs.getInt("IdExercice");
-            int idP = rs.getInt("IdProf");
-            String ModeleE = rs.getString("ModeleEleve");
-            //String NomEleve = rs.getString(Nom);
-            Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
+            ResultSet rs = stmt.executeQuery(sq); // applique la requête
+            System.out.println(rs);
+            while (rs.next()) { // Parcours de la liste d'exercices 
+                System.out.println("while");
+                int idT = rs.getInt("IdTentative");
+                String StatutTentative = rs.getString("StatutTentative");
+                System.out.println("infobdd :");
+                System.out.println(StatutTentative);
+                int idE = rs.getInt("IdEleve");
+                int idExo = rs.getInt("IdExercice");
+                int idP = rs.getInt("IdProf");
+                String ModeleE = rs.getString("ModeleEleve");
+                //String NomEleve = rs.getString(Nom);
+                Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
                     
-            listeTentativeUnEleve.add(tent); 
-                }
+                listeTentativeUnEleve.add(tent); 
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

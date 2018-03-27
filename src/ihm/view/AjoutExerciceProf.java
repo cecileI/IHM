@@ -17,161 +17,285 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
  * Interface pour permettre au Professeur de créer un Exercice
  * Les boutons sont: Valider, Menu, 
- * @author Group7
+ * @author Diane
  */
 public class AjoutExerciceProf extends JPanel {
-    private JPanel Droite;
-                
-    private JPanel PanelHaut;
-    private JLabel CreerExercice;    
-    private JButton Menu;
+    //panel final appelé par le controllerMenuProfesseur (tout sauf le JTree)
+    private JPanel general;
     
-    private JPanel Exercice; 
-    private JTextField Titre;
-    private JButton Valider;
-    private JButton Trapide;
-    private JButton Tclassique;
-    private JButton Tcouleur;
-    private JComboBox Couleur;
+    //entête avec Menu et Titre "Créer un Exercice"
+    private JPanel panelHaut;
+    private JLabel creerExercice;
+    private JButton menu;
+    
+    
+    //Pour la Création de l'exercice
+    //Panel à gauche
+    private JPanel gauche;
+    private JTextField titre; 
+    private JButton tRapide;
+    private JButton tClassique;
+    private JButton tCouleur;
+    private JComboBox couleur;
+    
+    //panel central
+    private JPanel centre;
+    private JPanel canv;
+    
+    //panel à droite
+    private JPanel droite;
+    private JButton tourner;
+    private JButton avancer;
+    private JButton ecrire;
+    private JButton executer;
+    private JButton valider;
+    
+    //panel en bas
+    private JPanel bas;
+    private JTextArea ligneCode;   
+    
+    private String modeTortue;
+    private TortueG currentTortue;
 
-    private JButton Tourner;
-    private JButton Avancer;
-    private JButton Ecrire;
-    private JButton Executer;
-    private JLabel lignecode;
+    private Canvas myCanvas;
+    
+    //panel pour retourner au MenuProfesseur
+    private MenuProfesseur panDroite;
+    
    
     public AjoutExerciceProf(){
         //pour instancier le controllerAjoutExerciceProf et appeler les ActionEvent en cliquant sur les boutons
         controllerAjoutExerciceProf controlProf = new controllerAjoutExerciceProf(this);   
-        setLayout(new BorderLayout()); 
+        setLayout(new BorderLayout());        
         
+        
+//---------------------------------------------------------
+//                      Entête: panelHaut
+//---------------------------------------------------------
+        panelHaut = new JPanel();
+        panelHaut.setPreferredSize(new Dimension(600,50));
+        panelHaut.setLayout(new GridLayout(1,2));
         
         //Boutton Menu
-        Menu = new JButton("Menu");
-        Menu.setPreferredSize(new Dimension(20,10));   
-        Menu.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    //réoriente vers InterfaceDebut
-                    MenuProfesseur app = new MenuProfesseur();
-                }
-            });        
+        creerExercice = new JLabel ("Création d'un Exercice");
+        creerExercice.setFont(new Font("Arial",Font.BOLD,20));
+
+        menu = new JButton("Menu");
+        menu.setPreferredSize(new Dimension(20,10));   
+        menu.addActionListener(controlProf); //ne fonctionne pas!!! à revoir!
+             
+        panelHaut.add(creerExercice,BorderLayout.CENTER);
+        panelHaut.add(menu);
         
 //---------------------------------------------------------
-//               Partie Ajout d'un Exercice
+//               Ajout d'un Exercice: panelGauche
 //---------------------------------------------------------
-        Exercice = new JPanel();
-        Exercice.setPreferredSize(new Dimension(600,500));
-        Exercice.setLayout(new GridLayout(6,3));
+        gauche = new JPanel();
+        gauche.setPreferredSize(new Dimension(200,400));
+        gauche.setLayout(new GridLayout(5,1)); //5 lignes, 1 colonne
+
+        titre = new JTextField("Titre");
         
-        Titre = new JTextField("Titre");        
-        
-        Valider = new JButton ("Valider Exercice");
-        Valider.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    InterfaceDebut app = new InterfaceDebut(); //changer pour nouveau exercice! addExercice();
-                }
-            }); 
+       
     
-        Trapide = new JButton ("Tortue Rapide");
-        Trapide.addActionListener(new ActionListener () {
+        tRapide = new JButton ("Tortue Rapide");
+        tRapide.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut(); //changer pour Trapide();
                 }
             }); 
     
-        Tclassique = new JButton ("Tortue Classique");
-        Tclassique.addActionListener(new ActionListener () {
+        tClassique = new JButton ("Tortue Classique");
+        tClassique.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut(); //changer pour Tclassique();
                 }
             }); 
     
-        Tcouleur = new JButton ("Tortue Couleur");
-        Tcouleur.addActionListener(new ActionListener () {
+        tCouleur = new JButton ("Tortue Couleur");
+        tCouleur.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut(); //changer pour Tcouleur();
                 }
             }); 
         
-        Couleur = new JComboBox();
+        couleur = new JComboBox();
 		//Couleur.setFont(font);
-		Couleur.addItem("Rouge");
-		Couleur.addItem("Bleu");
-		Couleur.addItem("Vert");
-		Couleur.addItem("Cyan");
-		Couleur.addItem("Orange");
-		Couleur.addItem("Jaune");
-		Couleur.addItem("Violet");
-		Couleur.addItem("Noir");
-		Couleur.addItem("Blanc");
-		
-    
-        Tourner = new JButton ("Tourner");
-        Tourner.addActionListener(new ActionListener () {
+		couleur.addItem("Rouge");
+		couleur.addItem("Bleu");
+		couleur.addItem("Vert");
+		couleur.addItem("Cyan");
+		couleur.addItem("Orange");
+		couleur.addItem("Jaune");
+		couleur.addItem("Violet");
+		couleur.addItem("Noir");
+		couleur.addItem("Blanc");       
+        
+        gauche.add(titre);
+        gauche.add(tRapide);
+        gauche.add(tClassique);
+        gauche.add(tCouleur);
+        gauche.add(couleur);
+        
+             
+        
+//---------------------------------------------------------
+//               Ajout d'un Exercice: panelCentral
+//--------------------------------------------------------- 
+        centre = new JPanel();
+        centre.setPreferredSize(new Dimension(300,400));
+        centre.setLayout(new GridLayout(1,1)); //2 lignes, 1 colonne
+       
+        JPanel canv = Canvas.getCanvasPanel();  
+
+        centre.add(canv);
+        
+//---------------------------------------------------------
+//               Ajout d'un Exercice: panelDroite
+//---------------------------------------------------------
+        droite = new JPanel();
+        droite.setPreferredSize(new Dimension(100,400));
+        droite.setLayout(new GridLayout(5,1)); //5 lignes, 1 colonne
+        
+          tourner = new JButton ("Tourner");
+        tourner.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut(); // changer pour turn();
                 }
             }); 
     
-        Avancer = new JButton ("Avancer");
-        Avancer.addActionListener(new ActionListener () {
+        avancer = new JButton ("Avancer");
+        avancer.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut(); //changer pour avance();
                 }
             }); 
     
-        Ecrire = new JButton ("Ecrire");
-        Ecrire.addActionListener(new ActionListener () {
+        ecrire = new JButton ("Ecrire");
+        ecrire.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut(); //changer tracer();
                 }
             }); 
     
-        Executer = new JButton ("Executer");
-        Executer.addActionListener(new ActionListener () {
+        executer = new JButton ("Executer");
+        executer.addActionListener(new ActionListener () {
                 public void actionPerformed (ActionEvent e) {
                     InterfaceDebut app = new InterfaceDebut(); //changer execute();
                 }
+            });
+        
+        valider = new JButton ("VALIDER");
+        valider.addActionListener(new ActionListener () {
+                public void actionPerformed (ActionEvent e) {
+                    InterfaceDebut app = new InterfaceDebut(); //changer pour nouveau exercice! addExercice();
+                }
             }); 
-        
-        lignecode = new JLabel("ligne de code");
-        lignecode.setHorizontalAlignment(SwingConstants.CENTER);
-        lignecode.setFont(new Font("Arial",Font.BOLD,15));
-        
-        Exercice.add(Titre);
-        Exercice.add(Valider);
-        Exercice.add(Trapide);
-        Exercice.add(Tclassique);
-        Exercice.add(Tcouleur);
-        Exercice.add(Couleur);
-        Exercice.add(Tourner);
-        Exercice.add(Avancer);
-        Exercice.add(Ecrire);
-        Exercice.add(Executer);
-        Exercice.add(lignecode);        
 
-        //Partie droite de la Frame
-        Droite = new JPanel();
-        Droite.setPreferredSize(new Dimension(600,500));
-        PanelHaut = new JPanel();
-        PanelHaut.setPreferredSize(new Dimension(600,50));
-        PanelHaut.setLayout(new GridLayout(1,2));
-                
-        CreerExercice = new JLabel("Creer un Exercice");
-        CreerExercice.setHorizontalAlignment(SwingConstants.CENTER);
-        CreerExercice.setFont(new Font("Arial",Font.BOLD,20));
-        PanelHaut.add(CreerExercice);
-        PanelHaut.add(Menu);
+        droite.add(tourner);
+        droite.add(avancer);
+        droite.add(ecrire);
+        droite.add(executer);
+        droite.add(valider);
         
-        Droite.add(PanelHaut);
-        Droite.add(Exercice);
+//---------------------------------------------------------
+//               Ajout d'un Exercice: panelBas
+//---------------------------------------------------------
+        bas = new JPanel();
+        bas.setPreferredSize(new Dimension(400,100));
+        bas.setLayout(new GridLayout(1,1)); //1 ligne, 1 colonne
+        
+        //lignes de code produites par l'élève
+        ligneCode = new JTextArea();              
+        
+        bas.add(ligneCode);        
+//---------------------------------------------------------
+//               Assemblage final de tous les panels
+//---------------------------------------------------------    
                             
-        add(Droite);       
+        add(panelHaut,BorderLayout.NORTH);
+        add(gauche,BorderLayout.WEST);
+        add(centre,BorderLayout.CENTER);
+        add(droite,BorderLayout.EAST);
+        add(bas,BorderLayout.SOUTH);
+        
+        this.setVisible(true); 
+
+        
+        
     }    
+
+    //getters pout les panels
+
+    public JPanel getPanelHaut() {
+        return panelHaut;
+    }
+    public JPanel getGauche() {
+        return gauche;
+    }
+    public JPanel getCentre() {
+        return centre;
+    }
+    public JPanel getDroite() {
+        return droite;
+    }
+    public JPanel getBas() {
+        return bas;
+    }
+    public JPanel getCanv() {
+        return canv;
+    }    
+    public JPanel getGeneral() {
+        return general;
+    }
+    public JPanel getPanDroite() {
+        return panDroite;
+    }
+    
+    //getters pour les buttons
+
+    public JButton getMenu() {
+        return menu;
+    }
+    public JTextField getTitre() {
+        return titre;
+    }
+    public JButton gettRapide() {
+        return tRapide;
+    }
+    public JButton gettClassique() {
+        return tClassique;
+    }
+    public JButton gettCouleur() {
+        return tCouleur;
+    }
+    public JComboBox getCouleur() {
+        return couleur;
+    }
+    public JButton getValider() {
+        return valider;
+    }
+    public JButton getTourner() {
+        return tourner;
+    }
+    public JButton getAvancer() {
+        return avancer;
+    }
+    public JButton getEcrire() {
+        return ecrire;
+    }
+    public JButton getExecuter() {
+        return executer;
+    }
+    public JTextArea getLigneCode() {
+        return ligneCode;
+    }    
+    
 }

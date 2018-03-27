@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm.view;
 
 import ihm.controler.*;
@@ -31,10 +26,10 @@ public class VisuTentativeEleve extends JPanel{
     private MenuEleve menuEleve;
     private Eleve eleve;
     
-public VisuTentativeEleve(Eleve eleve,String titreExercice) {
+    public VisuTentativeEleve(Eleve eleve,String titreExercice) {
                   
-     this.setLayout(new BorderLayout()); 
-     this.setSize(750,500);
+        this.setLayout(new BorderLayout()); 
+        this.setPreferredSize(new Dimension(500,500));
      
         entete=new JPanel();
         
@@ -66,12 +61,12 @@ public VisuTentativeEleve(Eleve eleve,String titreExercice) {
             });
         entete.add(numeroExercice);
         entete.add(retourMenu);
-        
         this.maJTable = new ViewVisuTentativeEleve(menuEleve,eleve);
-        this.add(maJTable);
-        this.add(entete);
         
-        
+        this.setLayout(new BorderLayout());
+        this.add(entete, BorderLayout.NORTH);
+        this.add(maJTable, BorderLayout.CENTER);
+
         this.setVisible(true);
 }    
 }
