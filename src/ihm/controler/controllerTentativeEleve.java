@@ -32,6 +32,7 @@ public class controllerTentativeEleve implements ActionListener{
             
         }else if(e.getSource()==tentativeEleve.getAvancer()){ // en appuyant sur le bouton avancer
             tentativeEleve.getTortueG().avancer();
+            //.append("avancer")
             
         }else if(e.getSource()==tentativeEleve.getEcrire()){ // en appuyant sur le bouton ecrire
             if (tentativeEleve.getTortueG().enTrace()==false){
@@ -39,14 +40,7 @@ public class controllerTentativeEleve implements ActionListener{
             }else{
                 tentativeEleve.getTortueG().tracer(false);
             }
-            
-            
-        }else if(e.getSource()==tentativeEleve.getTortueRapide()){ // en selectionnant la tortue rapide
-            //
-        }else if(e.getSource()==tentativeEleve.getTortueClassique()){ // en selectionnant la tortue rapide
-            //
-        }else if(e.getSource()==tentativeEleve.getTortueCouleur()){ // en selectionnant la tortue rapide
-            //
+      
         }else if(e.getSource()==tentativeEleve.getExecuter()){ // en selectionnant la tortue rapide
             //
         }else if(e.getSource()==tentativeEleve.getValider()){ // en selectionnant la tortue rapide

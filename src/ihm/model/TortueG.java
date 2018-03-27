@@ -19,8 +19,8 @@ public class TortueG {
     protected String couleurTrace = "black";
 
     private void init(){
-        x = 0;
-        y = 0;
+        x = -1;
+        y = -1;
         direction = 3;
         trace = true;
         afficherTortue();

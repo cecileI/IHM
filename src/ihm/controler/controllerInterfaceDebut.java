@@ -5,6 +5,8 @@
  */
 package ihm.controler;
 
+import ihm.model.Classe;
+import ihm.model.Eleve;
 import ihm.view.InterfaceDebut;
 import ihm.view.MenuEleve;
 import ihm.view.MenuProfesseur;
@@ -29,11 +31,13 @@ public class controllerInterfaceDebut implements ActionListener {
             if (e.getSource()==moninterf.getvalidEleve()){
                 String prenomE = moninterf.getprenomEleve().getText();
                 String nomE = moninterf.getnomEleve().getText();
-                String classe = moninterf.getclasseEleve().getText();
+                String niveau = moninterf.getclasseEleve().getText();
+                Classe classe = new Classe(niveau);
 
-                if (controllerConnexion.connexionEleve(prenomE, nomE, classe)==true){
+                if (controllerConnexion.connexionEleve(prenomE, nomE, niveau)==true){
                     System.out.println("connexion reussie");
-                    MenuEleve interfaceEleve = new MenuEleve(nomE,prenomE,classe);
+                    Eleve currentEleve = new Eleve(nomE,prenomE,classe);
+                    MenuEleve interfaceEleve = new MenuEleve(currentEleve);
                     moninterf.refresh(interfaceEleve);
                 }else{
                     moninterf.getmessage().setText("Connexion refusée");

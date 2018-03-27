@@ -32,7 +32,7 @@ public class Canvas extends JFrame
     public static Canvas getCanvas()
     {
         if(canvasSingleton == null) {
-            canvasSingleton = new Canvas("Tortue LOGO", 700, 450, 
+            canvasSingleton = new Canvas("Tortue LOGO", 500, 500, 
                                          Color.white);
         }
         canvasSingleton.setCanvasVisible(false);
