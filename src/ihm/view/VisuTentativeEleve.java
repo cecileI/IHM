@@ -21,16 +21,17 @@ public class VisuTentativeEleve extends JPanel{
     
     private JButton retourMenu; // va renvoyer sur MenuEleve
     private JPanel entete; // contient petite entete + num exo + bouton retourMenu + nom, prenom, classe
-    
+     private ArrayList<Tentative> tentative;
     private ViewVisuTentativeEleve maJTable;
     private MenuEleve menuEleve;
     private Eleve eleve;
+    private controllerTentative controlTent;
     
     public VisuTentativeEleve(Eleve eleve,String titreExercice) {
                   
         this.setLayout(new BorderLayout()); 
         this.setPreferredSize(new Dimension(500,500));
-     
+       // controlTent = new controllerTentative(maJTable,tentative ,menuEleve);
         entete=new JPanel();
         
         lblNomEleve = new JLabel(eleve.getNomEleve() + "  ");
@@ -49,16 +50,12 @@ public class VisuTentativeEleve extends JPanel{
         numeroExercice = new JLabel(titreExercice);
         numeroExercice.setHorizontalAlignment(SwingConstants.CENTER);
         numeroExercice.setFont(new Font("Arial",Font.BOLD,20));
-        
+         
+        //Bouton Menu
         retourMenu= new JButton("Retour Menu");
-        retourMenu.addActionListener(
-                new ActionListener(){
-                public void actionPerformed (ActionEvent e) {
-                    //réoriente vers MenuEleve
-                    //MenuEleve app = new MenuEleve(eleve);
-                }
+        retourMenu.setPreferredSize(new Dimension(150,50));   
+       // retourMenu.addActionListener(controlTent); 
         
-            });
         entete.add(numeroExercice);
         entete.add(retourMenu);
         this.maJTable = new ViewVisuTentativeEleve(menuEleve,eleve);
@@ -68,5 +65,13 @@ public class VisuTentativeEleve extends JPanel{
         this.add(maJTable, BorderLayout.CENTER);
 
         this.setVisible(true);
+        
 }    
+    public JButton getMenu() {
+        return retourMenu;
+    }
+    
+        public Eleve getCurrentEleve() {
+        return eleve;
+    }
 }

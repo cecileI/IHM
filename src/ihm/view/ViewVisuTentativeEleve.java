@@ -60,7 +60,7 @@ public class ViewVisuTentativeEleve extends JScrollPane {
     public static class TableMod extends AbstractTableModel {
         
         private ArrayList<Tentative> tentatives;
-        private String[] menubar = {"N°","Statut"};
+        private String[] menubar = {"ID Exercice","N° Tentative","Statut"};
         private Eleve eleve;
         /**
          * Constructeur de tablemod
@@ -101,8 +101,10 @@ public class ViewVisuTentativeEleve extends JScrollPane {
         public Object getValueAt(int rowIndex, int columnIndex){
 //            throw new UnsupportedOperationException("Not supported yet . ");
             if  (columnIndex==0) {
-		return tentatives.get(rowIndex).getIdTentative();}
+		return tentatives.get(rowIndex).getIdExercice();}
             else if (columnIndex==1) {
+		return tentatives.get(rowIndex).getIdTentative();}
+            else if (columnIndex==2) {
 		return tentatives.get(rowIndex).getStatutTentative();}
             else { 
                 System.out.println("erreur");
