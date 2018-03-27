@@ -1,5 +1,7 @@
 package ihm.view;
 
+import ihm.controler.*;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
- * Pour créer l'interface permettant à un professeur de modifier un exercice
+ * Crée le Panel permettant à un Professeur de Modifier un Exercice
  * @author Diane
  */
 public class ModifExerciceProf extends JPanel{
@@ -23,6 +25,8 @@ public class ModifExerciceProf extends JPanel{
            
     public ModifExerciceProf(){
         setLayout(new BorderLayout());
+        //pour instancier le controllerModifExerciceProf et appeler les ActionEvent en cliquant sur les boutons
+        controllerModifExerciceProf controlProf = new controllerModifExerciceProf(this);   
         
         //Partie Exercice
         setLayout(new GridLayout(2,1));                      
