@@ -6,6 +6,7 @@ import ihm.controler.controllerJTree;
 import ihm.controler.controllerMenuProfesseur;
 import ihm.model.Classe;
 import ihm.model.Eleve;
+import ihm.model.Exercice;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -57,6 +58,7 @@ public class MenuProfesseur extends JPanel {
     
     //panel pour Créer un exercice
     private AjoutExerciceProf panCreer;
+    private Exercice currentExercice;
     
     //panel pour Modifier un exercice
     private ListeExercicesProf panliste;
@@ -65,7 +67,7 @@ public class MenuProfesseur extends JPanel {
         //pour instancier le controllerMenuProfesseur et appeler les ActionEvent en cliquant sur les boutons
         controllerMenuProfesseur controlProf = new controllerMenuProfesseur(this);
         panliste = new ListeExercicesProf();
-        panCreer = new AjoutExerciceProf();
+        panCreer = new AjoutExerciceProf(); //this.getCurrentExercice());
         
         //Partie JTree à gauche 
             racine = new DefaultMutableTreeNode("Classes"); // creation racine
@@ -261,5 +263,8 @@ public class MenuProfesseur extends JPanel {
 
     public AjoutExerciceProf getPanCreer() {
         return panCreer;
-    }      
+    }
+    public Exercice getCurrentExercice(){
+        return currentExercice;
+    }
 }

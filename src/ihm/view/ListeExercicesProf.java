@@ -41,7 +41,9 @@ public class ListeExercicesProf extends JPanel {
     private ViewTableExercices maJTable;
     private Exercice currentExercice;
     
+    //panel pour Modifier Exercice
     private ModifExerciceProf panmodif;
+    //private Exercice currentExercice;
     
     public ListeExercicesProf(){
         //pour instancier le controllerListeExercicesProf et appeler les ActionEvent en cliquant sur les boutons
@@ -56,14 +58,10 @@ public class ListeExercicesProf extends JPanel {
         JLabel labelBlanc = new JLabel("");
         labelBlanc.setHorizontalAlignment(SwingConstants.CENTER);       
         
-        //Boutton Retour
         retourMenu = new JButton("Menu");
         retourMenu.setPreferredSize(new Dimension(20,10));
-        retourMenu.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    MenuProfesseur app = new MenuProfesseur();
-                }
-            });
+        retourMenu.addActionListener(controlProf);
+        
         panelHaut.add(labelBlanc);
         panelHaut.add(retourMenu); 
         
@@ -72,31 +70,24 @@ public class ListeExercicesProf extends JPanel {
         listeEx.setPreferredSize(new Dimension(600,500));
         listedesExos = new JLabel("Liste des exercices : Sélectionnez un Exercice");
         
-        maJTable = new ViewTableExercices(this);
-        
         modifierEx = new JButton("Modifier cet exercice");
-        modifierEx.setEnabled(false);
-        //modifierEx.addActionListener(controlProf);
+        modifierEx.setEnabled(false);   
+        modifierEx.addActionListener(controlProf);
         
-        modifierEx.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    panelDroite.remove(panelHaut);
-                    panelDroite.remove(listeEx);
-                    panelDroite.add(panmodif,BorderLayout.CENTER);
-                    repaint();
-                    validate();
-                }
-            });
-        
+        maJTable = new ViewTableExercices(this);
+                        
         listeEx.add(listedesExos);
         listeEx.add(modifierEx);
         listeEx.add(maJTable);
         
+        //Assemblage final des deux panels à droite:
         JPanel panelDroite = new JPanel();
         panelDroite.setLayout(new BorderLayout());
         panelDroite.add(panelHaut,BorderLayout.NORTH);
         panelDroite.add(listeEx,BorderLayout.SOUTH);
+        
         add(panelDroite,BorderLayout.CENTER);
+        setVisible(true);
     }   
     
     
@@ -112,20 +103,16 @@ public class ListeExercicesProf extends JPanel {
 	}
     }
     /*
-    * Cette fonction permet d'ouvrir le panel ModifExerciceProf pour l'exercice selectionné!
+    * Cette fonction permet d'activer le button Modifier Exercice
     * quand on a sélectionné un exercice 
     */
     public void update(){
         if (currentExercice != null){
             modifierEx.setEnabled(true);
         }
-    }    
-    /*
-    *@return bouton modifier Exercice
-    */
-    public JButton getModifierEx() {
-        return modifierEx;
-    }
+    }   
+       
+    
     /*
     *@getters pour les panels
     * utilisés dans le action listener dans controllerMenuProfesseur
@@ -136,7 +123,20 @@ public class ListeExercicesProf extends JPanel {
     public JPanel getListeEx() {
         return listeEx;
     } 
+    public JPanel getPanelDroite() {
+        return panelDroite;
+    }
     public ModifExerciceProf getPanmodif() {
         return panmodif;
-    }    
+    }
+    
+    
+    //getters pour les Buttons
+    public JButton getRetourMenu() {
+        return retourMenu;
+    }
+    public JButton getModifierEx() {
+        return modifierEx;
+    }  
+    
 }

@@ -20,10 +20,28 @@ public class controllerListeExercicesProf implements ActionListener  {
    @Override
     public void actionPerformed (ActionEvent e) {
         
-        //if (e.getSource()== monmenu.getDeconnexion()){
-            InterfaceDebut interfaceDebut = new InterfaceDebut();            
-        //}else if(e.getSource()==monmenu.getFaireTentative()){
-            //getEleve
-            //TentativeEleve tent = new TentativeEleve(Eleve);       
+        //JButton Menu: ouvre le panel du MenuProfesseur à la place du panel AjoutExerciceProf(retour au Menu)
+        if (e.getSource() == monmenu.getRetourMenu()){
+            monmenu.remove(monmenu.getPanelDroite());
+            //monmenu.getPanelDroite().remove(monmenu.getPanelHaut());
+            //monmenu.getPanelDroite().remove(monmenu.getListeEx());
+            //monmenu.getPanelDroite().add(monmenu.getPanmodif());
+
+          
+            monmenu.repaint();
+            monmenu.validate();
+                
+        }else if(e.getSource()==monmenu.getModifierEx()){
+            
+            monmenu.remove(monmenu.getPanelDroite());
+            monmenu.add(monmenu.getPanmodif());
+            
+            //monmenu.getPanelDroite().remove(monmenu.getPanelHaut());
+            //monmenu.getPanelDroite().remove(monmenu.getListeEx());
+//            monmenu.getPanelDroite().add(monmenu.getPanmodif());
+                     
+            monmenu.repaint();
+            monmenu.validate();      
+        }
     }
 }

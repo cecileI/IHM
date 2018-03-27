@@ -48,14 +48,4 @@ public class controllerMenuProfesseur implements ActionListener {
                 }
                 
     }
-    
-//    public void modif (ActionEvent e) {
-//                if (e.getSource() == listexercice.getModifierEx()){
-//                    //listexercice.getPanelHaut().remove(listexercice.getPanelHaut());
-//                    //listexercice.getListeEx().remove(listexercice.getListeEx());
-//                    listexercice.getPanelHaut().add(listexercice.getPanmodif(),BorderLayout.CENTER);
-//                    listexercice.repaint();
-//                    listexercice.validate();
-//                }
-//    }
 }
