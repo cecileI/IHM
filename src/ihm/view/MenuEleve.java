@@ -41,6 +41,7 @@ public class MenuEleve extends JPanel{
     
     private ViewTableExercicesEleves maJTable;
     
+    private Eleve currentEleve;
     private Exercice currentExercice;
     private Tentative currentTentative;
     
@@ -50,6 +51,8 @@ public class MenuEleve extends JPanel{
         
         this.setLayout(new BorderLayout());
         this.setSize(750,500);
+        
+       this.currentEleve = new Eleve(currentEleve.getNomEleve(),currentEleve.getPrenomEleve(),currentEleve.getNiveau());
         
         controlEleve = new controllerMenuEleve(this);
         
@@ -161,7 +164,7 @@ public class MenuEleve extends JPanel{
 	}
     }
     
-        public void afficheInfoTentative(MenuEleve this,Tentative node) {
+    public void afficheInfoTentative(MenuEleve this,Tentative node) {
 	if (node instanceof Tentative) {
             currentTentative = node;
             update();
@@ -177,6 +180,10 @@ public class MenuEleve extends JPanel{
             faireTentative.setEnabled(true);
             visualiserTentative.setEnabled(true);
         }
+    }
+
+    public JPanel getGeneral() {
+        return general;
     }
     
     /*
@@ -199,8 +206,14 @@ public class MenuEleve extends JPanel{
     public JButton getVisualiserTentative() {
         return visualiserTentative;
     }
+
+    public Eleve getCurrentEleve() {
+        return currentEleve;
+    }
     
-    
+    public Exercice getCurrentExercice(){
+        return currentExercice;
+    }
     
     
 }

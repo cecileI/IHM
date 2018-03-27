@@ -24,42 +24,66 @@ public class controllerTentativeEleve implements ActionListener{
     
     @Override
     public void actionPerformed (ActionEvent e) {
+        
+        //Ne concerne pas les tortues
         if (e.getSource()==tentativeEleve.getMenu()){ //en appuyant sur le bouton menu
             //MenuEleve menuEleve = new MenuEleve(); 
             
-        }else if(e.getSource()==tentativeEleve.getTourner()){ // en appuyant sur le bouton tourner
-            tentativeEleve.getTortue().tourner();
-            
-        }else if(e.getSource()==tentativeEleve.getAvancer()){ // en appuyant sur le bouton avancer
-            tentativeEleve.getTortue().avancer();
-            //.append("avancer")
-            
-        }else if(e.getSource()==tentativeEleve.getEcrire()){ // en appuyant sur le bouton ecrire
-            if (tentativeEleve.getTortue().enTrace()==false){
-                tentativeEleve.getTortue().tracer(true);
-            }else{
-                tentativeEleve.getTortue().tracer(false);
-            }
         }else if(e.getSource()==tentativeEleve.getExecuter()){ // en selectionnant executer
             //
         }else if(e.getSource()==tentativeEleve.getValider()){ // en selectionnant valider
             //
         }
-        if (tentativeEleve.getModeTortue()=="couleur"){
+        
+        //si tortue couleur
+        if (tentativeEleve.getModeTortue().equals("couleur")){
                         
             if(e.getSource()==tentativeEleve.getBlack()){
-                tentativeEleve.getTortue().setCouleur("black");
+                tentativeEleve.getTortueCoul().setCouleur("black");
+                
             }else if(e.getSource()==tentativeEleve.getBlue()){
-                tentativeEleve.getTortue().setCouleur("blue");
+                tentativeEleve.getTortueCoul().setCouleur("blue");
+                
             }else if(e.getSource()==tentativeEleve.getGreen()){
-                tentativeEleve.getTortue().setCouleur("green");
+                tentativeEleve.getTortueCoul().setCouleur("green");
+                
             }else if(e.getSource()==tentativeEleve.getRed()){
-                tentativeEleve.getTortue().setCouleur("red");
+                tentativeEleve.getTortueCoul().setCouleur("red");
+                
             }else if(e.getSource()==tentativeEleve.getMagenta()){
-                tentativeEleve.getTortue().setCouleur("magenta");
+                tentativeEleve.getTortueCoul().setCouleur("magenta");
+                
             }else if(e.getSource()==tentativeEleve.getYellow()){
-                tentativeEleve.getTortue().setCouleur("yellow");
-
+                System.out.println("coucou");
+                tentativeEleve.getTortueCoul().setCouleur("yellow");
+                
+            }else if(e.getSource()==tentativeEleve.getTourner()){ // en appuyant sur le bouton tourner
+                tentativeEleve.getTortueCoul().tourner();
+                
+            }else if(e.getSource()==tentativeEleve.getAvancer()){ // en appuyant sur le bouton avancer
+                tentativeEleve.getTortueCoul().avancer();
+                //.append("avancer")
+            }else if(e.getSource()==tentativeEleve.getEcrire()){ // en appuyant sur le bouton ecrire
+                if (tentativeEleve.getTortueCoul().enTrace()==false){
+                    tentativeEleve.getTortueCoul().tracer(true);
+                }else{
+                    tentativeEleve.getTortueCoul().tracer(false);
+                }
+            }
+        }else{ // si tortue rapide ou classique
+            if(e.getSource()==tentativeEleve.getTourner()){ // en appuyant sur le bouton tourner
+                tentativeEleve.getTortue().tourner();
+            
+            }else if(e.getSource()==tentativeEleve.getAvancer()){ // en appuyant sur le bouton avancer
+                tentativeEleve.getTortue().avancer();
+                //.append("avancer")
+            
+            }else if(e.getSource()==tentativeEleve.getEcrire()){ // en appuyant sur le bouton ecrire
+                if (tentativeEleve.getTortue().enTrace()==false){
+                    tentativeEleve.getTortue().tracer(true);
+                }else{
+                    tentativeEleve.getTortue().tracer(false);
+                }
             }
         }
         
