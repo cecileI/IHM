@@ -97,12 +97,8 @@ public class ViewVisuTentativeEleve extends JScrollPane {
          */
         
         public Object getValueAt(int rowIndex, int columnIndex){
-            throw new UnsupportedOperationException("Not supported yet . ");
-        }
-        
-        public Object getValueAtTentative(int rowIndex, int columnIndex) {
-
-	    if  (columnIndex==0) {
+//            throw new UnsupportedOperationException("Not supported yet . ");
+            if  (columnIndex==0) {
 		return tentatives.get(rowIndex).getIdTentative();}
             else if (columnIndex==1) {
 		return tentatives.get(rowIndex).getStatutTentative();}
@@ -110,7 +106,19 @@ public class ViewVisuTentativeEleve extends JScrollPane {
                 System.out.println("erreur");
                 return null;
             }
-       }
+        }
+        
+//        public Object getValueAtTentative(int rowIndex, int columnIndex) {
+//
+////	    if  (columnIndex==0) {
+////		return tentatives.get(rowIndex).getIdTentative();}
+////            else if (columnIndex==1) {
+////		return tentatives.get(rowIndex).getStatutTentative();}
+////            else { 
+////                System.out.println("erreur");
+////                return null;
+////            }
+//       }
 
         
         
@@ -121,6 +129,6 @@ public class ViewVisuTentativeEleve extends JScrollPane {
      * @return JTable
      */
     public JTable getTable(){
-        return this.jtable;
+        return jtable;
     }
 }
