@@ -55,6 +55,8 @@ public class MenuEleve extends JPanel{
         this.setLayout(new BorderLayout());
         this.setSize(900,600);
         
+        this.currentEleve = currentEleve;
+        
         controlEleve = new controllerMenuEleve(this);
         
         //Partie petite entete
@@ -67,7 +69,7 @@ public class MenuEleve extends JPanel{
        
         
         imageTortue = new JLabel();
-        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
+//        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
         imageTortue.setHorizontalAlignment(SwingConstants.CENTER);
         lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
@@ -136,13 +138,7 @@ public class MenuEleve extends JPanel{
         faireTentative.setPreferredSize(new Dimension(150,50));
         faireTentative.setEnabled(false);
         //faireTentative.addActionListener(controlEleve);
-        faireTentative.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    
-                    TentativeEleve tent = new TentativeEleve(currentEleve, currentExercice);
-                    
-                }
-            }); 
+        faireTentative.addActionListener(controlEleve); 
         
         visualiserTentative = new JButton("Visualiser mes tentatives");
         visualiserTentative.setEnabled(false);

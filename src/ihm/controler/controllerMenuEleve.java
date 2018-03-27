@@ -31,7 +31,7 @@ public class controllerMenuEleve implements ActionListener{
             InterfaceDebut interfaceDebut = new InterfaceDebut();
             
         }else if(e.getSource()==menuEleve.getFaireTentative()){
-            //getEleve
+            
             TentativeEleve tent = new TentativeEleve(menuEleve.getCurrentEleve(),menuEleve.getCurrentExercice());
             menuEleve.remove(menuEleve.getGeneral());
             menuEleve.add(tent);

@@ -69,8 +69,12 @@ public class TentativeEleve extends JPanel{
     private TortueG currentTortue;
     private TortueCouleur currentTortueCoul;
 
+    private JPanel general;
+    
+    private Eleve currentEleve;
+    
     private Canvas myCanvas;
-   
+    
     
     private controllerTentativeEleve controlTentEl;
            
@@ -78,6 +82,8 @@ public class TentativeEleve extends JPanel{
         
         this.setLayout(new BorderLayout());
         this.setSize(750,500);  //largeur, hauteur
+        
+        this.currentEleve = currentEleve;
         
         controlTentEl = new controllerTentativeEleve(this);
         
@@ -228,12 +234,16 @@ public class TentativeEleve extends JPanel{
         //tentative.add(panelBoutons);
         //tentative.add(panelBasBoutons);
         
-        this.add(tentative, BorderLayout.WEST);
-        this.add(canv, BorderLayout.CENTER);
-        this.add(panelBoutons, BorderLayout.SOUTH);
-        this.add(grandPanelBoutons, BorderLayout.EAST);
-        this.add(entete, BorderLayout.NORTH);
+        general = new JPanel();
+        general.setLayout(new BorderLayout());
         
+        general.add(tentative, BorderLayout.WEST);
+        general.add(canv, BorderLayout.CENTER);
+        general.add(panelBoutons, BorderLayout.SOUTH);
+        general.add(grandPanelBoutons, BorderLayout.EAST);
+        general.add(entete, BorderLayout.NORTH);
+        
+        this.add(general);
         
         this.setVisible(true); 
 
@@ -243,7 +253,10 @@ public class TentativeEleve extends JPanel{
         return modeTortue;
     }
 
-    
+    public Eleve getCurrentEleve() {
+        return currentEleve;
+    }
+
     public JButton getMenu() {
         return menu;
     }
@@ -299,8 +312,12 @@ public class TentativeEleve extends JPanel{
     public JButton getMagenta() {
         return magenta;
     }
-    
 
+    public JPanel getGeneral() {
+        return general;
+    }
+    
+    
     
             
 }
