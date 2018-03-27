@@ -143,7 +143,6 @@ public class InfoBDD {
             stmt = recon.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
                 String niveau = rs.getString("Classe");
@@ -151,7 +150,7 @@ public class InfoBDD {
                 
                 for (Classe laclasse : selectionListClasse()){
                     if(laclasse.getNiveau().equals(niveau)){
-                        Eleve eleve = new Eleve(idEleve, nomEleve,  prenomEleve, laclasse);
+                        Eleve eleve = new Eleve(nomEleve,  prenomEleve, laclasse);
                         listeEleve.add(eleve);
                     }
                 }
@@ -181,11 +180,10 @@ public class InfoBDD {
 
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
                 
-                Eleve eleve = new Eleve(idEleve,nomEleve,prenomEleve,maclasse);
+                Eleve eleve = new Eleve(nomEleve,prenomEleve,maclasse);
                 listeEleveClasse.add(eleve);
             }
 
