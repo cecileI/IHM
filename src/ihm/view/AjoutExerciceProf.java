@@ -5,11 +5,13 @@ import ihm.model.*;
 import ihm.controler.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
@@ -43,7 +45,8 @@ public class AjoutExerciceProf extends JPanel {
     private JButton tRapide;
     private JButton tClassique;
     private JButton tCouleur;
-    private JComboBox couleur;
+    //private JComboBox couleur; 
+    //pas le temps de faire fonctionner la JComboBox correctement: JButton à la place
     
     //panel central
     private JPanel centre;
@@ -114,7 +117,7 @@ public class AjoutExerciceProf extends JPanel {
 //---------------------------------------------------------
         gauche = new JPanel();
         gauche.setPreferredSize(new Dimension(200,400));
-        gauche.setLayout(new GridLayout(6,2)); //5 lignes, 1 colonne
+        gauche.setLayout(new GridLayout(5,2)); //5 lignes, 2 colonnes
 
         titre = new JTextField("Titre");      
     
@@ -126,28 +129,28 @@ public class AjoutExerciceProf extends JPanel {
             
         tCouleur = new JButton ("Tortue Couleur");
         tCouleur.addActionListener(controlexprof);        
-        
-        couleur = new JComboBox();
-		couleur.addItem("Rouge");                
-		couleur.addItem("Bleu");
-		couleur.addItem("Vert");
-		couleur.addItem("Cyan");
-		couleur.addItem("Orange");
-		couleur.addItem("Jaune");
-		couleur.addItem("Violet");
-		couleur.addItem("Noir");
-		couleur.addItem("Blanc");
-        couleur.addActionListener(controlexprof);
-        
+               
 
 //Ajout des Couleurs!
      
-        red = new JButton("rouge");
-        magenta = new JButton("magenta");
-        yellow = new JButton("jaune");
-        green = new JButton("vert");
-        blue = new JButton("bleu");
-        black = new JButton ("noir");
+        red = new JButton("");
+        red.setBackground(Color.RED);
+        red.setIcon(new ImageIcon(AjoutExerciceProf.class.getResource("/images/rouge.JPG")));
+        magenta = new JButton("");
+        magenta.setBackground(Color.MAGENTA);
+        magenta.setIcon(new ImageIcon(AjoutExerciceProf.class.getResource("/images/magenta.JPG")));
+        yellow = new JButton("");
+        yellow.setBackground(Color.YELLOW);
+        yellow.setIcon(new ImageIcon(AjoutExerciceProf.class.getResource("/images/jaune.JPG")));
+        green = new JButton("");
+        green.setBackground(Color.GREEN);
+        green.setIcon(new ImageIcon(AjoutExerciceProf.class.getResource("/images/vert.JPG")));
+        blue = new JButton("");
+        blue.setBackground(Color.BLUE);        
+        blue.setIcon(new ImageIcon(AjoutExerciceProf.class.getResource("/images/bleu.JPG")));
+        black = new JButton ("");
+        black.setBackground(Color.BLACK);
+        black.setIcon(new ImageIcon(AjoutExerciceProf.class.getResource("/images/noir.JPG")));
         
         black.setEnabled(false); //mise à dispo du choix de la couleur
         red.setEnabled(false);
@@ -185,7 +188,6 @@ public class AjoutExerciceProf extends JPanel {
         gauche.add(tRapide);
         gauche.add(tClassique);
         gauche.add(tCouleur);
-        gauche.add(couleur);
         gauche.add(red);
         gauche.add(magenta);
         gauche.add(yellow);
@@ -305,9 +307,6 @@ public class AjoutExerciceProf extends JPanel {
     }
     public JButton gettCouleur() {
         return tCouleur;
-    }
-    public JComboBox getCouleur() {
-        return couleur;
     }
     public JButton getValider() {
         return valider;
