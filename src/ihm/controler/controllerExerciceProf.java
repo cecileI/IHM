@@ -21,7 +21,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * pour afficher la liste des Exercices et gérer les exercices
+ * pour afficher la JTable avec la liste des exercices dans ListeExerciesProf
  * @author Diane
  */
 public class controllerExerciceProf implements ListSelectionListener{

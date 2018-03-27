@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *This class allows to view tentatives achieved by a student
  */
 package ihm.view;
 
@@ -14,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -25,8 +24,8 @@ public class ViewVisuTentativeEleve extends JScrollPane {
     private JTable jtable;
     private MenuEleve menuEleve;
     private ListSelectionModel listSelectionModel;
-    private static Eleve eleve;
-    private String nomEleve, prenomEleve,classeEleve;
+    //private static Eleve eleve;
+   // private String nomEleve, prenomEleve,classeEleve;
         
     
      /**
@@ -34,14 +33,10 @@ public class ViewVisuTentativeEleve extends JScrollPane {
      * Cette fonction permet de créer une JTable des exercices dans le menu Eleve
      * @param menuEleve : l'interface du menu eleve
      */
-    public ViewVisuTentativeEleve(MenuEleve menuEleve){
-        eleve.setNomEleve(nomEleve);
-        eleve.setPrenomEleve(prenomEleve);
-        eleve.setNiveau(classeEleve); 
-        
-        
+    public ViewVisuTentativeEleve(MenuEleve menuEleve,Eleve currentEleve){
+             
         this.menuEleve = menuEleve;
-        tableMod = new TableMod(); //création de la tableMod
+        tableMod = new TableMod(currentEleve); //création de la tableMod
         jtable = new JTable(tableMod); //création de la jtable
         jtable.setAutoCreateRowSorter(true);
         jtable.setCellSelectionEnabled(true);
@@ -59,18 +54,19 @@ public class ViewVisuTentativeEleve extends JScrollPane {
 
 
     /**
-     * Sous-classe pour créer la JTable des exercices propre à un élève
+     * Sous-classe pour créer la JTable des tentatives propre à un élève
      */
     public static class TableMod extends AbstractTableModel {
         
         private ArrayList<Tentative> tentatives;
         private String[] menubar = {"N°","Statut"};
-        
+        private Eleve eleve;
         /**
          * Constructeur de tablemod
          */
-        public TableMod(){
-            this.tentatives = InfoBDD.selectionListTentativeUnEleve(eleve);
+        public TableMod(Eleve currentEleve){
+            eleve = currentEleve; 
+            this.tentatives = InfoBDD.selectionListTentativeUnEleve(currentEleve);
         }
 
         /**
@@ -99,9 +95,10 @@ public class ViewVisuTentativeEleve extends JScrollPane {
          * @param columnIndex num de la colonne
          * @return Object
          */
-        public Object getValueAtTentative(int rowIndex, int columnIndex) {
-
-	    if  (columnIndex==0) {
+        
+        public Object getValueAt(int rowIndex, int columnIndex){
+//            throw new UnsupportedOperationException("Not supported yet . ");
+            if  (columnIndex==0) {
 		return tentatives.get(rowIndex).getIdTentative();}
             else if (columnIndex==1) {
 		return tentatives.get(rowIndex).getStatutTentative();}
@@ -109,18 +106,29 @@ public class ViewVisuTentativeEleve extends JScrollPane {
                 System.out.println("erreur");
                 return null;
             }
-       }
-
-        @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
+        
+//        public Object getValueAtTentative(int rowIndex, int columnIndex) {
+//
+////	    if  (columnIndex==0) {
+////		return tentatives.get(rowIndex).getIdTentative();}
+////            else if (columnIndex==1) {
+////		return tentatives.get(rowIndex).getStatutTentative();}
+////            else { 
+////                System.out.println("erreur");
+////                return null;
+////            }
+//       }
+
+        
+        
+        
     }
     /**
      * Getter de la JTable
      * @return JTable
      */
     public JTable getTable(){
-        return this.jtable;
+        return jtable;
     }
 }

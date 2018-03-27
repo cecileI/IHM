@@ -3,12 +3,13 @@ package ihm.controler;
 import ihm.view.InterfaceDebut;
 import ihm.view.MenuEleve;
 import ihm.view.TentativeEleve;
+import ihm.view.VisuTentativeEleve;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
- *
+ * 
  * @author Goup7
  */
 
@@ -32,7 +33,11 @@ public class controllerMenuEleve implements ActionListener{
             //TentativeEleve tent = new TentativeEleve(Eleve);
             
         }else if(e.getSource()==menuEleve.getVisualiserTentative()){
-            //VisuTentativeEleve visuTentEleve = new visuTentativeEleve();
+            VisuTentativeEleve visuTentEleve = new VisuTentativeEleve(menuEleve.getCurrentEleve(),menuEleve.getCurrentExercice());
+            menuEleve.remove(menuEleve.getGeneral());
+            menuEleve.add(visuTentEleve);
+            menuEleve.repaint();
+            menuEleve.validate();
         }
     }
     

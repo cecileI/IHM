@@ -25,9 +25,9 @@ public class MenuEleve extends JPanel{
     
     private JButton deconnexion;
     
-    private JPanel entete;
-    private JPanel petiteEntete;
-    private JPanel exercices;
+    private JPanel entete; //Info elève Menu et deconnexion
+    private JPanel petiteEntete; // info élève
+    private JPanel exercices; // JTable exercice
     private JPanel actionsExo;
     private JPanel panelBas;
     private JPanel general;
@@ -46,6 +46,7 @@ public class MenuEleve extends JPanel{
     
     private Exercice currentExercice;
     private Tentative currentTentative;
+    private Eleve monCurrentEleve;
     
     private static controllerMenuEleve controlEleve;
     
@@ -53,6 +54,8 @@ public class MenuEleve extends JPanel{
         
         this.setLayout(new BorderLayout());
         this.setSize(900,600);
+        
+        monCurrentEleve = currentEleve;
         
         controlEleve = new controllerMenuEleve(this);
         
@@ -118,11 +121,13 @@ public class MenuEleve extends JPanel{
         mesExercices.setFont(new Font("Arial",Font.BOLD,30));
         
         this.maJTable = new ViewTableExercicesEleves(this);
+        exercices.setPreferredSize(new Dimension(500,500));
         exercices.add(mesExercices);
         exercices.add(maJTable); 
                 
         //Partie Tentatives
         tentative = new JPanel();
+        tentative.setPreferredSize(new Dimension(200,100));
         tentative.setLayout(new GridLayout(3,1));
               
         nexo = new JLabel("N° Exercice");
@@ -130,6 +135,7 @@ public class MenuEleve extends JPanel{
         tentative.add(nexo);        
         
         faireTentative = new JButton("Faire une tentative");
+        faireTentative.setPreferredSize(new Dimension(150,50));
         faireTentative.setEnabled(false);
         //faireTentative.addActionListener(controlEleve);
         faireTentative.addActionListener(new ActionListener () {
@@ -152,18 +158,17 @@ public class MenuEleve extends JPanel{
         //Partie du bas         
         panelBas = new JPanel();
         panelBas.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
-        panelBas.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
-        panelBas.add(exercices);
-        panelBas.add(tentative);
+        panelBas.setLayout(new BorderLayout()); //1 ligne et 2 colonnes
+        panelBas.add(tentative,BorderLayout.SOUTH);
+        panelBas.add(exercices,BorderLayout.CENTER);
         
         
         //Partie Général
         general = new JPanel();
         general.add(entete,BorderLayout.NORTH);
-        general.add(panelBas,BorderLayout.SOUTH);
+        general.add(panelBas,BorderLayout.CENTER);
                     
         this.add(general, BorderLayout.CENTER);
-        this.add(entete, BorderLayout.NORTH);
         
         //this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
         //this.setLocationRelativeTo(null);
@@ -223,7 +228,16 @@ public class MenuEleve extends JPanel{
         return visualiserTentative;
     }
     
+    public Eleve getCurrentEleve(){
+        return monCurrentEleve;
+    }
     
+    public String getCurrentExercice(){
+        return currentExercice.getTitre();
+    }
     
+    public JPanel getGeneral(){
+        return general;
+    }
     
 }
