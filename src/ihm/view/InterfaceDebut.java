@@ -23,6 +23,8 @@ public class InterfaceDebut extends JFrame {
     
     private JLabel jeSuis;
     private JLabel message;
+    private JLabel imageProf;
+    private JLabel imageEleve;
     
     private JLabel unEleve;
     private JTextField prenomEleve;
@@ -37,70 +39,102 @@ public class InterfaceDebut extends JFrame {
     private JButton validEleve;
     private JButton validProf;
 
-    private static controllerInterfaceDebut controlInterf;
+    
     public InterfaceDebut(){
-        
-        controlInterf = new controllerInterfaceDebut(this);
         
         this.getContentPane().setLayout(new BorderLayout()); 
         this.setTitle("LOGO Groupe 7");
-        this.setSize(750,500);
+        this.setSize(900,600);
+        this.setResizable(false);
         
+        controllerInterfaceDebut controlinterf = new controllerInterfaceDebut(this);
+
         //Partie eleve
         panelEleve = new JPanel();
-        panelEleve.setLayout(new GridLayout(5,1)); //5lignes et 1 colonne
+        panelEleve.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 3)); 
         
         unEleve = new JLabel("Un élève");
         unEleve.setHorizontalAlignment(SwingConstants.CENTER);
         unEleve.setFont(new Font("Arial",Font.BOLD,30));
         panelEleve.add(unEleve);
         
+        imageEleve = new JLabel();
+        imageEleve.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/eleve.png")));
+        imageEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        panelEleve.add(imageEleve);
+        
         prenomEleve = new JTextField("Xavier");
         prenomEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        prenomEleve.setFont(new Font("Arial",Font.PLAIN,20));
         prenomEleve.setPreferredSize( new Dimension( 100, 50 ) );
         panelEleve.add(prenomEleve);
         
         nomEleve = new JTextField("Poalon");
         nomEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        nomEleve.setFont(new Font("Arial",Font.PLAIN,20));
+        nomEleve.setPreferredSize( new Dimension( 100, 50 ) );
         panelEleve.add(nomEleve);
         
         classeEleve = new JTextField("CE1");
         classeEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        classeEleve.setFont(new Font("Arial",Font.PLAIN,20));
+        classeEleve.setPreferredSize( new Dimension( 100, 50 ) );
         panelEleve.add(classeEleve);
         
-        message = new JLabel();
-        validEleve = new JButton("Valider");
-        validEleve.setHorizontalAlignment(SwingConstants.CENTER);
+        validEleve = new JButton();
+        validEleve.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/valider.png")));
+        validEleve.setEnabled(true);
+        validEleve.setBackground(Color.white);
+        validEleve.setHorizontalAlignment(SwingConstants.CENTER); 
+        validEleve.setOpaque(false);
+        validEleve.setContentAreaFilled(false);
+        validEleve.setBorderPainted(false);
         panelEleve.add(validEleve);
-        validEleve.addActionListener(controlInterf); 
+        validEleve.addActionListener(controlinterf); 
         
 
         //Partie prof
         panelProf = new JPanel();
-        panelProf.setLayout(new GridLayout(5,1)); //5lignes et 1 colonne
-        
+        panelProf.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 3));  
         unProfesseur = new JLabel("Un professeur");
         unProfesseur.setHorizontalAlignment(SwingConstants.CENTER);
         unProfesseur.setFont(new Font("Arial",Font.BOLD,30));
         panelProf.add(unProfesseur);
         
+        
+        imageProf = new JLabel();
+        imageProf.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/prof.png")));
+        imageProf.setHorizontalAlignment(SwingConstants.CENTER);
+        panelProf.add(imageProf);
+        
         prenomProf = new JTextField("Charles");
         prenomProf.setHorizontalAlignment(SwingConstants.CENTER);
+        prenomProf.setFont(new Font("Arial",Font.PLAIN,20));
         prenomProf.setPreferredSize( new Dimension( 100, 50 ) );
         panelProf.add(prenomProf);
         
         nomProf = new JTextField("Abot");
         nomProf.setHorizontalAlignment(SwingConstants.CENTER);
+        nomProf.setFont(new Font("Arial",Font.PLAIN,20));
+        nomProf.setPreferredSize( new Dimension( 100, 50 ) );
         panelProf.add(nomProf);
         
         motDePasse = new JTextField("1234");
         motDePasse.setHorizontalAlignment(SwingConstants.CENTER);
+        motDePasse.setFont(new Font("Arial",Font.PLAIN,20));
+        motDePasse.setPreferredSize( new Dimension( 100, 50 ) );
         panelProf.add(motDePasse);
         
-        validProf = new JButton("Valider");
+        validProf = new JButton();
+        validProf.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/valider.png")));
+        validProf.setEnabled(true);
+        validProf.setBackground(Color.white);
         validProf.setHorizontalAlignment(SwingConstants.CENTER);
+        validProf.setOpaque(false);
+        validProf.setContentAreaFilled(false);
+        validProf.setBorderPainted(false);
         panelProf.add(validProf);
-        validProf.addActionListener(controlInterf); 
+        validProf.addActionListener(controlinterf); 
         
         //Partie générale
         jeSuis = new JLabel("Je suis");
@@ -136,7 +170,7 @@ public class InterfaceDebut extends JFrame {
         nouvFrame.validate();
         //return(nouvFrame);
     }
-
+    
     public JButton getvalidEleve(){
         return validEleve;
     }
@@ -174,6 +208,5 @@ public class InterfaceDebut extends JFrame {
     public JTextField getmotDePasse(){
         return motDePasse;
     }
+ 
 }
-
-
