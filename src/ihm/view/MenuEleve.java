@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
+ * 
  * @author Group7
  */
 public class MenuEleve extends JPanel{
