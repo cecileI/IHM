@@ -5,6 +5,7 @@ import ihm.model.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -33,7 +34,12 @@ public class TentativeEleve extends JPanel{
     private JButton menu;
     private JPanel petiteEntete;
     private JPanel entete;
-    
+    private JPanel imageEntete;
+    private JPanel texteEntete;
+    private JLabel imageTortue;
+    private JPanel directionPanel;
+    private JPanel directionPaneNord;
+
     //Tentative
     private JPanel tentative; //panel sous l'entete
     
@@ -90,8 +96,17 @@ public class TentativeEleve extends JPanel{
 
         //Bouton Menu
         menu = new JButton("Menu");
-        menu.setPreferredSize(new Dimension(20,10));   
+        menu.setPreferredSize(new Dimension(150,50));   
         menu.addActionListener(controlTentEl); 
+        
+        
+        
+        imageEntete = new JPanel();
+        texteEntete = new JPanel();
+        texteEntete.setLayout(new GridLayout(3,2));
+        imageTortue = new JLabel();
+        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
+        imageTortue.setHorizontalAlignment(SwingConstants.CENTER);
         
         //infos élève
         lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
@@ -100,15 +115,21 @@ public class TentativeEleve extends JPanel{
         lblPrenomEleve.setFont(new Font("Arial",Font.BOLD,15));
         lblClasseEleve = new JLabel(currentEleve.getNiveau().getNiveau());
         lblClasseEleve.setFont(new Font("Arial",Font.BOLD,15));
-        
+        JLabel blanc = new JLabel("");
+        JLabel blanc2 = new JLabel("");
         petiteEntete = new JPanel();
-        petiteEntete.setLayout(new GridLayout(3,1));        
-        petiteEntete.add(lblNomEleve);
-        petiteEntete.add(lblPrenomEleve);
-        petiteEntete.add(lblClasseEleve);
+        petiteEntete.add(imageEntete,BorderLayout.WEST);
+        petiteEntete.add(texteEntete,BorderLayout.EAST);     
+        texteEntete.add(lblNomEleve);
+        texteEntete.add(lblPrenomEleve);
+        texteEntete.add(blanc);
+        texteEntete.add(blanc2);
+        texteEntete.add(lblClasseEleve);
+        imageEntete.add(imageTortue);
+        
         
         entete = new JPanel();
-        entete.setLayout(new GridLayout(1,2));//1ligne 2 colonnes
+        entete.setLayout(new FlowLayout(FlowLayout.CENTER, 200, 3));
         entete.add(petiteEntete);
         entete.add(menu);
         
@@ -176,21 +197,76 @@ public class TentativeEleve extends JPanel{
         green.setEnabled(false);
         magenta.setEnabled(false);
 
-        executer = new JButton ("Executer");
+        
+        directionPanel   = new JPanel ();
+        directionPaneNord   = new JPanel ();
+        //directionPanel.setLayout(new GridLayout(2,1));
+        
+        
+        executer = new JButton ("");
+        executer.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue_valider.png")));
+        executer.setEnabled(true);
+        executer.setBackground(Color.white);
+        executer.setHorizontalAlignment(SwingConstants.CENTER); 
+        executer.setOpaque(false);
+        executer.setContentAreaFilled(false);
+        executer.setBorderPainted(false);
         executer.addActionListener(controlTentEl); 
         
-        valider = new JButton ("Valider");
+        valider = new JButton ("");
+        valider.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/valider.png")));
+        valider.setEnabled(true);
+        valider.setBackground(Color.white);
+        valider.setHorizontalAlignment(SwingConstants.CENTER); 
+        valider.setOpaque(false);
+        valider.setContentAreaFilled(false);
+        valider.setBorderPainted(false);
         valider.addActionListener(controlTentEl); 
         
        
+        
+        tourner = new JButton("");
+        tourner.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tourne.png")));
+        tourner.setEnabled(true);
+        tourner.setBackground(Color.white);
+        tourner.setHorizontalAlignment(SwingConstants.CENTER); 
+        tourner.setOpaque(false);
+        tourner.setContentAreaFilled(false);
+        tourner.setBorderPainted(false);
+        tourner.addActionListener(controlTentEl); 
+        
+        avancer = new JButton("");
+        avancer.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/fleche.png")));
+        avancer.setEnabled(true);
+        avancer.setBackground(Color.white);
+        avancer.setHorizontalAlignment(SwingConstants.CENTER); 
+        avancer.setOpaque(false);
+        avancer.setContentAreaFilled(false);
+        avancer.setBorderPainted(false);
+        avancer.addActionListener(controlTentEl); 
+        
+        ecrire = new JButton("");
+        ecrire.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/crayon.png")));
+        ecrire.setEnabled(true);
+        ecrire.setBackground(Color.white);
+        ecrire.setHorizontalAlignment(SwingConstants.CENTER); 
+        ecrire.setOpaque(false);
+        ecrire.setContentAreaFilled(false);
+        ecrire.setBorderPainted(false);
+        ecrire.addActionListener(controlTentEl); 
+        directionPaneNord.add(avancer);
+        directionPanel.add(tourner,BorderLayout.WEST);
+        directionPanel.add(ecrire,BorderLayout.EAST); 
+        
+        
         grandPanelBoutons = new JPanel();
         grandPanelBoutons.setLayout(new GridLayout(3,1));//4llignes 1 colonne
         grandPanelBoutons.add(couleurs);
         
         //panelBasBoutons = new JPanel();
         //panelBasBoutons.setLayout(new GridLayout(2,1));
-        grandPanelBoutons.add(executer);
-        grandPanelBoutons.add(valider);
+        grandPanelBoutons.add(directionPaneNord);
+        grandPanelBoutons.add(directionPanel);
         
         //visualisation directe de la tentative de l'élève  
         
@@ -221,25 +297,16 @@ public class TentativeEleve extends JPanel{
         JPanel canv = Canvas.getCanvasPanel();  
 
         
-        //petit panel de boutons
-        tourner = new JButton("Tourner");
-        tourner.addActionListener(controlTentEl); 
-        
-        avancer = new JButton("Avancer");
-        avancer.addActionListener(controlTentEl); 
-        
-        ecrire = new JButton("Ecrire");
-        ecrire.addActionListener(controlTentEl); 
-        
+
         
         petitPanelBoutons = new JPanel();
-        petitPanelBoutons.setLayout(new GridLayout(1,2));
-        petitPanelBoutons.add(tourner);
-        petitPanelBoutons.add(avancer);
+        petitPanelBoutons.setLayout(new FlowLayout(FlowLayout.CENTER, 200, 3)); 
+        petitPanelBoutons.add(executer);
+        petitPanelBoutons.add(valider);
         panelBoutons = new JPanel();
-        panelBoutons.setLayout(new GridLayout(2,1));
+        //panelBoutons.setLayout(new GridLayout(2,1));
         panelBoutons.add(petitPanelBoutons);
-        panelBoutons.add(ecrire);
+        //panelBoutons.add(ecrire);
         
 
         
