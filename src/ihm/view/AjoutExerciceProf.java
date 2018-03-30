@@ -73,9 +73,9 @@ public class AjoutExerciceProf extends JPanel {
    
     //tortue
     private String modeTortue;
-    private TortueG currentTortue;    
-    private TortueCouleur currentTortueCoul;
-    //private Exercice currentExercice;
+    private TortueG tortueG;    
+    private TortueCouleur tortueCoul;
+    private TortueRapide tortueRapide;
     private Canvas myCanvas;    
     
     //controller avec Action Performed
@@ -88,7 +88,7 @@ public class AjoutExerciceProf extends JPanel {
         setLayout(new BorderLayout());
         
         //pour instancier le controllerAjoutExerciceProf et appeler les ActionEvent en cliquant sur les boutons
-        controllerAjoutExerciceProf controlProf = new controllerAjoutExerciceProf(this);
+        controllerAjoutExerciceProf controlexprof = new controllerAjoutExerciceProf(this);
         
 //---------------------------------------------------------
 //                      Entête: panelHaut
@@ -118,9 +118,8 @@ public class AjoutExerciceProf extends JPanel {
         titre = new JTextField("Titre");      
     
         tRapide = new JButton ("<HTML><BODY>Tortue<BR>Rapide</BODY></HTML>");
-
-        tRapide.addActionListener(controlexprof);
-    
+        tRapide.addActionListener(controlexprof);            
+          
         tClassique = new JButton ("<HTML><BODY>Tortue<BR>Classique</BODY></HTML>");
         tClassique.addActionListener(controlexprof);
             
@@ -156,30 +155,12 @@ public class AjoutExerciceProf extends JPanel {
         green.setEnabled(false);
         magenta.setEnabled(false);
         
-        //récupération du type de la tortue pour cet exercice
-        //modeTortue = currentExercice.getModeTortue();
-                
-        //creation de la tortue
-//        if(modeTortue.equals("normal")){
-//            currentTortue = new TortueG(); //creation d'une tortue classique
-//            
-//        }else if(modeTortue.equals("couleur")){
-//            currentTortueCoul = new TortueCouleur(); //creation d'une tortue couleur
-//            black.setEnabled(true); //mise à dispo du choix de la couleur
-//            black.addActionListener(controlexprof);
-//            red.setEnabled(true);
-//            red.addActionListener(controlexprof);
-//            yellow.setEnabled(true);
-//            yellow.addActionListener(controlexprof);
-//            blue.setEnabled(true);
-//            blue.addActionListener(controlexprof);
-//            green.setEnabled(true);
-//            green.addActionListener(controlexprof);
-//            magenta.setEnabled(true);
-//            magenta.addActionListener(controlexprof);
-//        }else if(modeTortue.equals("rapide")){
-//            currentTortue = new TortueRapide(); //creation d'une tortue couleur
-//        }
+        black.addActionListener(controlexprof);
+        red.addActionListener(controlexprof);
+        yellow.addActionListener(controlexprof);
+        blue.addActionListener(controlexprof);
+        green.addActionListener(controlexprof);
+        magenta.addActionListener(controlexprof);
         
         gauche.add(titre);
         gauche.add(tRapide);
@@ -198,11 +179,11 @@ public class AjoutExerciceProf extends JPanel {
         centre = new JPanel();
         centre.setPreferredSize(new Dimension(300,400));
         centre.setLayout(new GridLayout(1,1)); //2 lignes, 1 colonne
-       
-        //Créé le panel qui affiche la tortue
-        JPanel canv = Canvas.getCanvasPanel();  
 
-        centre.add(canv);
+        //Créé le panel qui affiche la tortue        
+        //canv = new JPanel();
+        
+        //centre.add(canv);
         
 //---------------------------------------------------------
 //               Ajout d'un Exercice: panelDroite
@@ -321,14 +302,23 @@ public class AjoutExerciceProf extends JPanel {
     
     //getters concernant la tortue    
     public TortueG getTortue(){
-        return currentTortue;
+        return tortueG;
     }    
      public String getModeTortue() {
         return modeTortue;
     }     
      public TortueCouleur getTortueCoul(){
-        return currentTortueCoul;
+        return tortueCoul;
     }
+    public TortueRapide getTortueRapide() {
+        return tortueRapide;
+    }
+
+    public TortueG getTortueG() {
+        return tortueG;
+    }
+
+
     public JButton getBlack() {
         return black;
     }

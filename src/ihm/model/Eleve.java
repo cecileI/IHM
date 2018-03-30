@@ -16,6 +16,7 @@ public class Eleve {
         this.prenomEleve = prenomEleve;
         this.niveau = niveau;
     }
+    
 
     public String getNomEleve() {
         return nomEleve;

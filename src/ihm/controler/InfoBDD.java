@@ -232,22 +232,7 @@ public class InfoBDD {
         Connection recon = connect();
         Statement stmt = null;
         String Nom = el.getNomEleve();
-        String sql1 = "select IdEleve from Eleve where nomEleve="+'"'+Nom+'"';
-        int idE = 0;
-        try{
-            System.out.println("try");
-            stmt = recon.createStatement();
-        
-            ResultSet rs = stmt.executeQuery(sql1); // applique la requête
-            while (rs.next()) { // Parcours de la liste d'exercices 
-                idE = rs.getInt("IdEleve");
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        
-        String sql = "select IdTentative,StatutTentative,Tentative.IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where Tentative.IdEleve="+'"'+idE+'"';       
+        String sql = "select IdTentative,StatutTentative,Eleve.IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve="+'"'+Nom+'"';       
 
         
         try{
@@ -257,9 +242,12 @@ public class InfoBDD {
             ResultSet rs = stmt.executeQuery(sql); // applique la requête
             System.out.println(rs);
             while (rs.next()) { // Parcours de la liste d'exercices 
+                System.out.println("while");
                 int idT = rs.getInt("IdTentative");
-                System.out.println("idT:"+idT);
                 String StatutTentative = rs.getString("StatutTentative");
+                System.out.println("infobdd :");
+                System.out.println(StatutTentative);
+                int idE = rs.getInt("IdEleve");
                 int idExo = rs.getInt("IdExercice");
                 int idP = rs.getInt("IdProf");
                 String ModeleE = rs.getString("ModeleEleve");
