@@ -64,6 +64,9 @@ public class MenuProfesseur extends JPanel {
     
     //panel pour Modifier un exercice
     private ListeExercicesProf panliste;
+    
+    //JTable des exercices d'un élève
+    VisuTableExEleveProf tableExEleveProf;
            
     public MenuProfesseur(){
         //pour instancier le controllerMenuProfesseur et appeler les ActionEvent en cliquant sur les boutons
@@ -214,19 +217,21 @@ public class MenuProfesseur extends JPanel {
     public void update(){
         
         if (currentEleve != null) {
-           
-            panHaut.remove(txtNom);
-            panHaut.remove(txtPrenom);
-            panExercice.remove(creerExercice);
-            panExercice.remove(modifierExercice);
-            
+            if (tableExEleveProf ==null){
+                panHaut.remove(txtNom);
+                panHaut.remove(txtPrenom);
+                panExercice.remove(creerExercice);
+                panExercice.remove(modifierExercice);
+                tableExEleveProf = new VisuTableExEleveProf(currentEleve);
+            }else{
+                panExercice.remove(tableExEleveProf);
+            }
             txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
             txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
             
             panHaut.add(txtNom, BorderLayout.WEST);
             panHaut.add(txtPrenom, BorderLayout.CENTER);
             panHaut.add(deconnexion, BorderLayout.EAST);   //JPanel Deconnection 
-            VisuTableExEleveProf tableExEleveProf = new VisuTableExEleveProf(currentEleve);
             panExercice.add(tableExEleveProf);
             this.repaint();
             this.validate();
