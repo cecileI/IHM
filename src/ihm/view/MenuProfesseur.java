@@ -283,6 +283,5 @@ public class MenuProfesseur extends JPanel {
     }
     public Exercice getCurrentExercice(){
         return currentExercice;
-    }
-}     
-    
+    }   
+}

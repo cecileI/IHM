@@ -73,7 +73,7 @@ public class AjoutExerciceProf extends JPanel {
    
     //tortue
     private String modeTortue;
-    private TortueG tortueG;    
+    //private TortueG tortueG;    
     private TortueCouleur tortueCoul;
     private TortueRapide tortueRapide;
     private Canvas myCanvas;    
@@ -117,7 +117,7 @@ public class AjoutExerciceProf extends JPanel {
 
         titre = new JTextField("Titre");      
     
-        tRapide = new JButton ("<HTML><BODY>Tortue<BR>Rapide</BODY></HTML>");
+        tRapide = new JButton ("<HTML><BODY>Tortue<BR>Rapide</BODY></HTML>"); //pour faire retour à la ligne dans button
         tRapide.addActionListener(controlexprof);            
           
         tClassique = new JButton ("<HTML><BODY>Tortue<BR>Classique</BODY></HTML>");
@@ -301,22 +301,24 @@ public class AjoutExerciceProf extends JPanel {
     
     
     //getters concernant la tortue    
-    public TortueG getTortue(){
-        return tortueG;
-    }    
-     public String getModeTortue() {
+//    public TortueG getTortue(){
+//        return tortueG;
+//    }
+    
+     
+     public String getModeTortue(){
         return modeTortue;
-    }     
-     public TortueCouleur getTortueCoul(){
+    }
+    public TortueCouleur getTortueCoul() {
         return tortueCoul;
     }
     public TortueRapide getTortueRapide() {
         return tortueRapide;
     }
 
-    public TortueG getTortueG() {
-        return tortueG;
-    }
+//    public TortueG getTortueG() {
+//        return tortueG;
+//    }
 
 
     public JButton getBlack() {
