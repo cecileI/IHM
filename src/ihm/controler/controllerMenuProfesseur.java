@@ -1,5 +1,4 @@
 package ihm.controler;
-
 import ihm.view.AjoutExerciceProf;
 import ihm.view.InterfaceDebut;
 import ihm.view.ListeExercicesProf;
@@ -9,26 +8,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * ControllerMenuProfesseur contient les ActionEvent des boutons du panel MenuProfesseur
+ * Les Boutons du MenuProfesseur sont Créer Exercices, Modifier Exercice et Deconnexion
  * @author Group7
  */
 public class controllerMenuProfesseur implements ActionListener {
     private MenuProfesseur monmenu;
-    private ListeExercicesProf listexercice;
     
     public controllerMenuProfesseur(MenuProfesseur menu){
         this.monmenu = menu;
     }
-    
-    public controllerMenuProfesseur(ListeExercicesProf listexercice){
-        this.listexercice = listexercice;
-    }
-    
+ 
     public void actionPerformed (ActionEvent e) {
-                // le bouton déconnexion réoriente vers InterfaceDebut
+                //ActionEvent pour le bouton Déconnexion: réoriente vers InterfaceDebut
                 if (e.getSource() == monmenu.getDeconnexion()) {
                     InterfaceDebut app = new InterfaceDebut();
                 }
+                //ActionEvent pour le bouton "Créer Exercice" qui 
+                //change le panel pour celui de AjoutExerciceProf
                 if (e.getSource() == monmenu.getcreerExercice()){
                     monmenu.getpanDroite().remove(monmenu.getpanHaut());
                     monmenu.getpanDroite().remove(monmenu.getpanExercice());
@@ -38,6 +35,8 @@ public class controllerMenuProfesseur implements ActionListener {
                     monmenu.repaint();
                     monmenu.validate(); 
                 }
+                //ActionEvent pour le bouton "Modifier Exercice" qui
+                //change le panel pour celui de ListeExercicesProf
                 if (e.getSource() == monmenu.getmodifierExercice()){                  
                     monmenu.getpanDroite().remove(monmenu.getpanHaut());
                     monmenu.getpanDroite().remove(monmenu.getpanExercice());
@@ -49,14 +48,4 @@ public class controllerMenuProfesseur implements ActionListener {
                 }
                 
     }
-    
-//    public void modif (ActionEvent e) {
-//                if (e.getSource() == listexercice.getModifierEx()){
-//                    //listexercice.getPanelHaut().remove(listexercice.getPanelHaut());
-//                    //listexercice.getListeEx().remove(listexercice.getListeEx());
-//                    listexercice.getPanelHaut().add(listexercice.getPanmodif(),BorderLayout.CENTER);
-//                    listexercice.repaint();
-//                    listexercice.validate();
-//                }
-//    }
 }

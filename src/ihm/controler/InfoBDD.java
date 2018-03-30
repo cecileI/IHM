@@ -143,7 +143,6 @@ public class InfoBDD {
             stmt = recon.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
                 String niveau = rs.getString("Classe");
@@ -151,7 +150,7 @@ public class InfoBDD {
                 
                 for (Classe laclasse : selectionListClasse()){
                     if(laclasse.getNiveau().equals(niveau)){
-                        Eleve eleve = new Eleve(idEleve, nomEleve,  prenomEleve, laclasse);
+                        Eleve eleve = new Eleve(nomEleve,  prenomEleve, laclasse);
                         listeEleve.add(eleve);
                     }
                 }
@@ -181,11 +180,10 @@ public class InfoBDD {
 
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                int idEleve = rs.getInt("IdEleve");
                 String  nomEleve = rs.getString("NomEleve"); 
                 String  prenomEleve = rs.getString("PrenomEleve");
                 
-                Eleve eleve = new Eleve(idEleve,nomEleve,prenomEleve,maclasse);
+                Eleve eleve = new Eleve(nomEleve,prenomEleve,maclasse);
                 listeEleveClasse.add(eleve);
             }
 
@@ -235,23 +233,29 @@ public class InfoBDD {
         Statement stmt = null;
         String Nom = el.getNomEleve();
         String sql = "select IdTentative,StatutTentative,Tentative.IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve='Nom'";       
+
         
         try{
-        stmt = recon.createStatement();
+            System.out.println("try");
+            stmt = recon.createStatement();
         
-        ResultSet rs = stmt.executeQuery(sql); // applique la requête
-        while (rs.next()) { // Parcours de la liste d'exercices 
-            int idT = rs.getInt("IdTentative");
-            String StatutTentative = rs.getString("StatutTentative");
-            int idE = rs.getInt("IdEleve");
-            int idExo = rs.getInt("IdExercice");
-            int idP = rs.getInt("IdProf");
-            String ModeleE = rs.getString("ModeleEleve");
-            //String NomEleve = rs.getString(Nom);
-            Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
+            ResultSet rs = stmt.executeQuery(sql); // applique la requête
+            System.out.println(rs);
+            while (rs.next()) { // Parcours de la liste d'exercices 
+                System.out.println("while");
+                int idT = rs.getInt("IdTentative");
+                String StatutTentative = rs.getString("StatutTentative");
+                System.out.println("infobdd :");
+                System.out.println(StatutTentative);
+                int idE = rs.getInt("IdEleve");
+                int idExo = rs.getInt("IdExercice");
+                int idP = rs.getInt("IdProf");
+                String ModeleE = rs.getString("ModeleEleve");
+                //String NomEleve = rs.getString(Nom);
+                Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
                     
-            listeTentativeUnEleve.add(tent); 
-                }
+                listeTentativeUnEleve.add(tent); 
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

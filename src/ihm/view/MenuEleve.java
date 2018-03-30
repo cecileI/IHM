@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
+ * 
  * @author Group7
  */
 public class MenuEleve extends JPanel{
@@ -21,18 +21,27 @@ public class MenuEleve extends JPanel{
     private JLabel lblPrenomEleve;
     private JLabel lblClasseEleve;
     private JLabel menu;
+    private JLabel imageTortue;
     
     private JButton deconnexion;
     
-    private JPanel entete;
-    private JPanel petiteEntete;
-    private JPanel exercices;
+    
+    private JPanel imageEntete;
+    private JPanel texteEntete;
+    private JPanel entete; //Info elève Menu et deconnexion
+    private JPanel petiteEntete; // info élève
+    private JPanel exercices; // JTable exercice
     private JPanel actionsExo;
     private JPanel panelBas;
     private JPanel general;
-
+    private JPanel miniTentative;
+    
+    
+            
     private JLabel mesExercices;
     private JLabel listeExercices;
+    private JLabel visualiser;
+    private JLabel faire;
   
     private JPanel tentative; 
     private JLabel nexo;
@@ -41,48 +50,80 @@ public class MenuEleve extends JPanel{
     
     private ViewTableExercicesEleves maJTable;
     
+    private Eleve currentEleve;
     private Exercice currentExercice;
     private Tentative currentTentative;
     
     private static controllerMenuEleve controlEleve;
     
-    public MenuEleve (String nomEleve, String prenomEleve, String classeEleve){
+    public MenuEleve (Eleve currentEleve){
         
         this.setLayout(new BorderLayout());
-        this.setSize(750,500);
+        this.setSize(900,600);
+        
+        this.currentEleve = currentEleve;
         
         controlEleve = new controllerMenuEleve(this);
         
         //Partie petite entete
-        petiteEntete = new JPanel();
-        petiteEntete.setLayout(new GridLayout(2,2)); //2lignes et 1 colonne
         
-        lblNomEleve = new JLabel(nomEleve + "  ");
+        imageEntete = new JPanel();
+        texteEntete = new JPanel();
+        texteEntete.setLayout(new GridLayout(3,2)); 
+        
+        
+       
+        
+        imageTortue = new JLabel();
+        imageTortue.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/tortue.png")));
+        imageTortue.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNomEleve = new JLabel(currentEleve.getNomEleve() + "  ");
         lblNomEleve.setFont(new Font("Arial",Font.BOLD,15));
-        lblPrenomEleve = new JLabel(prenomEleve);
+        lblPrenomEleve = new JLabel(currentEleve.getPrenomEleve());
         lblPrenomEleve.setFont(new Font("Arial",Font.BOLD,15));
-        lblClasseEleve = new JLabel(classeEleve);
+        lblClasseEleve = new JLabel(currentEleve.getNiveau().getNiveau());
         lblClasseEleve.setFont(new Font("Arial",Font.BOLD,15));
-        petiteEntete.add(lblNomEleve);
-        petiteEntete.add(lblPrenomEleve);
-        petiteEntete.add(lblClasseEleve);
+        JLabel blanc = new JLabel("");
+        JLabel blanc2 = new JLabel("");
+        imageEntete.add(imageTortue);
+        texteEntete.add(lblNomEleve);
+        texteEntete.add(lblPrenomEleve);
+        texteEntete.add(blanc);
+        texteEntete.add(blanc2);
+        texteEntete.add(lblClasseEleve);
+        
+        
+        petiteEntete = new JPanel();
+        petiteEntete.add(imageEntete,BorderLayout.WEST);
+        petiteEntete.add(texteEntete,BorderLayout.EAST);
+        
+        
+        
         
         //partie entete
         entete = new JPanel();
-        entete.setLayout(new BorderLayout());
+        entete.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 0)); 
+       // entete.setLayout(new BorderLayout());
         
         menu = new JLabel("MENU");
-        menu.setHorizontalAlignment(SwingConstants.CENTER);
-        menu.setFont(new Font("Arial",Font.BOLD,20));
+        menu.setFont(new Font("Arial",Font.BOLD,30));
+        
+        JLabel blanc3 = new JLabel(" ");
         
         //bouton deconnexion
-        deconnexion = new JButton("Deconnexion");
-        deconnexion.setPreferredSize(new Dimension(150,50));
+
+        deconnexion = new JButton("");
+        deconnexion.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/quit.png")));
+        deconnexion.setHorizontalAlignment(SwingConstants.CENTER); 
+        deconnexion.setOpaque(false);
+        deconnexion.setContentAreaFilled(false);
+        deconnexion.setBorderPainted(false);   
+
         deconnexion.addActionListener(controlEleve);
-        
-        entete.add(petiteEntete, BorderLayout.WEST);
-        entete.add(menu, BorderLayout.CENTER);
-        entete.add(deconnexion, BorderLayout.EAST);
+                
+        entete.add(petiteEntete);
+        entete.add(menu);     
+        entete.add(deconnexion);
         
         
         
@@ -93,55 +134,75 @@ public class MenuEleve extends JPanel{
         
         mesExercices = new JLabel("Mes Exercices");
         mesExercices.setVerticalAlignment(SwingConstants.CENTER);
+        mesExercices.setHorizontalAlignment(SwingConstants.CENTER);
         mesExercices.setFont(new Font("Arial",Font.BOLD,30));
         
         this.maJTable = new ViewTableExercicesEleves(this);
+        this.maJTable.setFont(new Font("Serif", Font.BOLD, 20));
+        exercices.setPreferredSize(new Dimension(300,300));
         exercices.add(mesExercices);
         exercices.add(maJTable); 
                 
         //Partie Tentatives
         tentative = new JPanel();
-        tentative.setLayout(new GridLayout(3,1));
+        tentative.setPreferredSize(new Dimension(200,150));
+        tentative.setLayout(new BorderLayout());
               
         nexo = new JLabel("N° Exercice");
+        nexo.setFont(new Font("Arial",Font.BOLD,20));
         nexo.setVerticalAlignment(SwingConstants.CENTER);
-        tentative.add(nexo);        
+        nexo.setHorizontalAlignment(SwingConstants.CENTER);
+        tentative.add(nexo, BorderLayout.CENTER);   
         
-        faireTentative = new JButton("Faire une tentative");
+        miniTentative = new JPanel();
+        miniTentative.setLayout(new GridLayout(2,2));
+        
+        
+        faireTentative = new JButton("");
+        faireTentative.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/crayon.png")));
         faireTentative.setEnabled(false);
+        faireTentative.setHorizontalAlignment(SwingConstants.CENTER); 
+        faireTentative.setOpaque(false);
+        faireTentative.setContentAreaFilled(false);
+        faireTentative.setBorderPainted(false);     
         //faireTentative.addActionListener(controlEleve);
-        faireTentative.addActionListener(new ActionListener () {
-                public void actionPerformed (ActionEvent e) {
-                    
-                    TentativeEleve tent = new TentativeEleve(nomEleve, prenomEleve,classeEleve);
-                    
-                }
-            }); 
+        faireTentative.addActionListener(controlEleve); 
         
-        visualiserTentative = new JButton("Visualiser mes tentatives");
+        visualiserTentative = new JButton("");
+        visualiserTentative.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/visualiser.png")));
         visualiserTentative.setEnabled(false);
+        visualiserTentative.setHorizontalAlignment(SwingConstants.CENTER); 
+        visualiserTentative.setOpaque(false);
+        visualiserTentative.setContentAreaFilled(false);
+        visualiserTentative.setBorderPainted(false);     
         visualiserTentative.setHorizontalAlignment(SwingConstants.CENTER);
         visualiserTentative.addActionListener(controlEleve);
-        
-        tentative.add(faireTentative);
-        tentative.add(visualiserTentative);
-       
+        faire = new JLabel("Faire :");
+        faire.setFont(new Font("Arial",Font.PLAIN,25));
+        faire.setVerticalAlignment(SwingConstants.CENTER);
+        visualiser = new JLabel ("Visualiser :");
+        visualiser.setFont(new Font("Arial",Font.PLAIN,25));
+        visualiser.setVerticalAlignment(SwingConstants.CENTER);
+        miniTentative.add(faire);
+        miniTentative.add(visualiser);
+        miniTentative.add(faireTentative);
+        miniTentative.add(visualiserTentative);
+       tentative.add(miniTentative, BorderLayout.SOUTH);
         
         //Partie du bas         
         panelBas = new JPanel();
-        panelBas.setPreferredSize(new Dimension(725,325));   //largeur, hauteur
-        panelBas.setLayout(new GridLayout(1,2)); //1 ligne et 2 colonnes
-        panelBas.add(exercices);
-        panelBas.add(tentative);
+        panelBas.setPreferredSize(new Dimension(600,400));   //largeur, hauteur
+        panelBas.setLayout(new BorderLayout()); //1 ligne et 2 colonnes
+        panelBas.add(tentative,BorderLayout.SOUTH);
+        panelBas.add(exercices,BorderLayout.CENTER);
         
         
         //Partie Général
         general = new JPanel();
         general.add(entete,BorderLayout.NORTH);
-        general.add(panelBas,BorderLayout.SOUTH);
+        general.add(panelBas,BorderLayout.CENTER);
                     
         this.add(general, BorderLayout.CENTER);
-        this.add(entete, BorderLayout.NORTH);
         
         //this.setDefaultCloseOperation(EXIT_ON_CLOSE);;
         //this.setLocationRelativeTo(null);
@@ -162,7 +223,7 @@ public class MenuEleve extends JPanel{
 	}
     }
     
-        public void afficheInfoTentative(MenuEleve this,Tentative node) {
+    public void afficheInfoTentative(MenuEleve this,Tentative node) {
 	if (node instanceof Tentative) {
             currentTentative = node;
             update();
@@ -178,6 +239,10 @@ public class MenuEleve extends JPanel{
             faireTentative.setEnabled(true);
             visualiserTentative.setEnabled(true);
         }
+    }
+
+    public JPanel getGeneral() {
+        return general;
     }
     
     /*
@@ -200,8 +265,13 @@ public class MenuEleve extends JPanel{
     public JButton getVisualiserTentative() {
         return visualiserTentative;
     }
+
+    public Eleve getCurrentEleve() {
+        return currentEleve;
+    }
     
-    
-    
+    public Exercice getCurrentExercice(){
+        return currentExercice;
+    }
     
 }
