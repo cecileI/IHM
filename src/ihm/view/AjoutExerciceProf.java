@@ -117,13 +117,14 @@ public class AjoutExerciceProf extends JPanel {
 
         titre = new JTextField("Titre");      
     
-        tRapide = new JButton ("Tortue Rapide");
+        tRapide = new JButton ("<HTML><BODY>Tortue<BR>Rapide</BODY></HTML>");
+
         tRapide.addActionListener(controlexprof);
     
-        tClassique = new JButton ("Tortue Classique");
+        tClassique = new JButton ("<HTML><BODY>Tortue<BR>Classique</BODY></HTML>");
         tClassique.addActionListener(controlexprof);
             
-        tCouleur = new JButton ("Tortue Couleur");
+        tCouleur = new JButton ("<HTML><BODY>Tortue<BR>Couleur</BODY></HTML>");
         tCouleur.addActionListener(controlexprof);        
                
 
@@ -239,7 +240,8 @@ public class AjoutExerciceProf extends JPanel {
         bas.setLayout(new GridLayout(1,1)); //1 ligne, 1 colonne
         
         //lignes de code entrées par le professeur
-        ligneCode = new JTextArea();              
+        ligneCode = new JTextArea();
+        ligneCode.setBackground(Color.lightGray);
         
         bas.add(ligneCode);        
 //---------------------------------------------------------
