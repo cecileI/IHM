@@ -65,7 +65,7 @@ public class ListeExercicesProf extends JPanel {
         panelHaut.add(labelBlanc);
         panelHaut.add(retourMenu); 
         
-        //Partie Liste des Exercices       
+        //Partie Liste des Exercices avec affichage de la JTable!
         listeEx = new JPanel();
         listeEx.setPreferredSize(new Dimension(600,500));
         listedesExos = new JLabel("Liste des exercices : Sélectionnez un Exercice");
@@ -86,8 +86,8 @@ public class ListeExercicesProf extends JPanel {
         panelDroite.add(panelHaut,BorderLayout.NORTH);
         panelDroite.add(listeEx,BorderLayout.SOUTH);
         
-        add(panelDroite,BorderLayout.CENTER);
-        setVisible(true);
+        this.add(panelDroite,BorderLayout.CENTER);
+        this.setVisible(true);
     }   
     
     
