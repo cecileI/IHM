@@ -323,10 +323,57 @@ public class InfoBDD {
     
     /**
      * Sauvegarde de la tentative d'un élève
+     * @return retourne si la sauvegarde sest bien faite ou non
      */
-    public static void saveTentEleve(){
+    public static boolean saveTentEleve(int idE,int idEx, String modele){
         //Tentative(int idTentative, int idEleve, int idExercice, String statutTentative,String modeleEleve)
+        Connection recon = connect();
+        Statement stmt = null;
         
+        String statut = "a evaluer";
+        
+        String sql1 = "insert into Tentative (idEleve, idExercice, statutTentative, modeleEleve)values(idE, idEx, "+'"'+statut+'"'+" ,modele )";       
+
+        try{
+            System.out.println("try");
+            stmt = recon.createStatement();
+        
+            stmt.executeQuery(sql1); // applique la requête
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Recupere l'id de l'eleve de la base de donnees grace au nom de leleve
+     * @param el eleve dont on veut recuperer l'id
+     * @return idE l'id de l'élève
+     */
+    public static int recupIdEleve(Eleve el) {
+        
+        Connection recon = connect();
+        Statement stmt = null;
+        String Nom = el.getNomEleve();
+        int idE=0;
+        String sql1 = "select IdEleve from Eleve where NomEleve="+'"'+Nom+'"';       
+
+        
+        try{
+            System.out.println("try");
+            stmt = recon.createStatement();
+        
+            ResultSet rs = stmt.executeQuery(sql1); // applique la requête
+            while (rs.next()) { // Parcours de la liste d'exercices 
+
+                idE = rs.getInt("IdEleve");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return idE;
     }
 
        

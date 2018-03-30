@@ -82,7 +82,7 @@ public class TentativeEleve extends JPanel{
     private Canvas myCanvas;
     
     private JScrollPane listScroller;
-    private ArrayList<String> scriptTentative; //suite des boutons sur lesquels l'élève à cliquer
+    private String scriptTentative; //suite des boutons sur lesquels l'élève à cliquer
     
     
     private controllerTentativeEleve controlTentEl;
@@ -97,7 +97,7 @@ public class TentativeEleve extends JPanel{
         
         controlTentEl = new controllerTentativeEleve(this);
         
-        scriptTentative = new ArrayList<String>();
+        scriptTentative = new String();
         //------------------------------------
         // Partie entete 
         //------------------------------------
@@ -436,8 +436,12 @@ public class TentativeEleve extends JPanel{
         return lignesCode;
     }
 
-    public ArrayList<String> getScriptTentative() {
+    public String getScriptTentative() {
         return scriptTentative;
+    }
+
+    public void setScriptTentative(String scriptTentative) {
+        this.scriptTentative = scriptTentative;
     }
 
     public JScrollPane getListScroller() {
