@@ -30,11 +30,11 @@ public class VisuTableExEleveProf extends JPanel{
 public VisuTableExEleveProf(Eleve monEleve){
              
         this.setSize(750,500);
-        this.setLayout(new GridLayout(2,1));
+        this.setLayout(new BorderLayout());
 
         
         this.maJTable = new TableExEleveProf(menuProf, monEleve);
-        this.add(maJTable);    
+        this.add(maJTable, BorderLayout.CENTER);    
 
         this.setVisible(true);
 }    

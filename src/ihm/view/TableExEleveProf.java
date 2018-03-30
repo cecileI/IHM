@@ -83,14 +83,18 @@ public class TableExEleveProf extends JScrollPane{
           return menubar.length; 
         }
        
-        /**
-         * Cette fonction définie les différentes colonnes de la jtable
-         * @param rowIndex num de la ligne
-         * @param columnIndex num de la colonne
-         * @return Object
-         */
-        public Object getValueAtTentative(int rowIndex, int columnIndex) {
+//        /**
+//         * Cette fonction définie les différentes colonnes de la jtable
+//         * @param rowIndex num de la ligne
+//         * @param columnIndex num de la colonne
+//         * @return Object
+//         */
+//        public Object getValueAtTentative(int rowIndex, int columnIndex) {
+//        }
 
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            System.out.println("columnIndex :"+columnIndex);
 	    if  (columnIndex==0) {
                 return tentatives.get(rowIndex).getIdExercice();
             }else if (columnIndex ==1){
@@ -101,11 +105,6 @@ public class TableExEleveProf extends JScrollPane{
                 System.out.println("erreur");
                 return null;
             }
-       }
-
-        @Override
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
     /**

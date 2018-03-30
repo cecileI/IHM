@@ -1,6 +1,9 @@
 import ihm.controler.InfoBDD;
 import ihm.model.Classe;
+import ihm.model.Eleve;
 import ihm.view.*;
+import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
  * Classe lançant l'application
@@ -22,6 +25,14 @@ public class LogoMain{
         }
         
         //Lance l'interface Début en instanciant la classe JFrame InterfaceDebut 
-        InterfaceDebut app = new InterfaceDebut();
+         InterfaceDebut app = new InterfaceDebut();
+//      JFrame maJframe = new JFrame();
+//      Classe maClasse = new Classe("CE1");
+//      Eleve monEleve = new Eleve("Poalon", "Xavier", maClasse);
+//      VisuTableExEleveProf visu = new VisuTableExEleveProf(monEleve);
+//      maJframe.add(visu);
+//      maJframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//      maJframe.setLocationRelativeTo(null);
+//      maJframe.setVisible(true);
     }
 }
