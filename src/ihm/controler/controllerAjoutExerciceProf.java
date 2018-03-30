@@ -5,6 +5,7 @@ import ihm.model.TortueCouleur;
 import ihm.model.TortueG;
 import ihm.model.TortueRapide;
 import ihm.view.*;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +17,10 @@ import javax.swing.JPanel;
  * @author Diane
  */
 public class controllerAjoutExerciceProf implements ActionListener {
-    private AjoutExerciceProf monmenu;     
+    private AjoutExerciceProf monmenu;
+    private TortueG tortue;
+    private TortueRapide tortueR;
+    private TortueCouleur tortueC;
      
       public controllerAjoutExerciceProf(AjoutExerciceProf menu){
         this.monmenu = menu;
@@ -42,8 +46,8 @@ public class controllerAjoutExerciceProf implements ActionListener {
         }else if(e.getSource()==monmenu.getValider()){ // en selectionnant valider
             //
         }
-        //TORTUES
-        // boutons Tortue Rapide, Classique, Couleur 
+        //TORTUES : OK!
+        // Boutons Tortue Rapide, Classique, Couleur 
         if (e.getSource()==monmenu.gettRapide()){
             //Creation de la TortueRapide et affichage Canvas
             TortueRapide tortueRapide = new TortueRapide();
@@ -52,6 +56,14 @@ public class controllerAjoutExerciceProf implements ActionListener {
             monmenu.repaint();
             monmenu.validate();
             
+             //retire les Boutons pour la Couleur (si précédement cliquer sur TortueCoul)
+            monmenu.getBlack().setEnabled(false); 
+            monmenu.getRed().setEnabled(false);
+            monmenu.getYellow().setEnabled(false);
+            monmenu.getBlue().setEnabled(false);
+            monmenu.getGreen().setEnabled(false);
+            monmenu.getMagenta().setEnabled(false);
+            
         }else if(e.getSource()==monmenu.gettClassique()){
             //Creation de la Tortue et affichage Canvas
             TortueG tortueG = new TortueG();
@@ -59,6 +71,14 @@ public class controllerAjoutExerciceProf implements ActionListener {
             monmenu.getCentre().add(canv);
             monmenu.repaint();
             monmenu.validate();
+            
+            //retire les Boutons pour la Couleur (si précédement cliquer sur TortueCoul)
+            monmenu.getBlack().setEnabled(false); 
+            monmenu.getRed().setEnabled(false);
+            monmenu.getYellow().setEnabled(false);
+            monmenu.getBlue().setEnabled(false);
+            monmenu.getGreen().setEnabled(false);
+            monmenu.getMagenta().setEnabled(false);
             
         }else if(e.getSource()==monmenu.gettCouleur()){
             //Creation de la TortueCouleur et affichage Canvas
@@ -76,23 +96,24 @@ public class controllerAjoutExerciceProf implements ActionListener {
             monmenu.getGreen().setEnabled(true);
             monmenu.getMagenta().setEnabled(true);            
         }
-        
-        //Buttons Tourner, Avancer, Ecrire Exétuter, Valider
-        if (e.getSource()==monmenu.getTourner()){ 
-           monmenu.getTortueCoul().tourner();
-           monmenu.repaint();
-           monmenu.validate();
            
-            
+        //Buttons Tourner, Avancer, Ecrire Exétuter, Valider pour Tortue
+        if (e.getSource()==monmenu.getTourner()){ 
+            System.out.println("tourne");                
+                
+            monmenu.getTortueCoul().tourner();
+            monmenu.repaint();
+            monmenu.validate();
+      
         }else if(e.getSource()==monmenu.getAvancer()){
-            monmenu.getTortue().avancer();
+            monmenu.getTortueCoul().avancer();
             
         }else if(e.getSource()==monmenu.getEcrire()){
-           if (monmenu.getTortueCoul().enTrace()==false){
-                    monmenu.getTortueCoul().tracer(true);
-                }else{
-                    monmenu.getTortueCoul().tracer(false);
-                }
+            if (monmenu.getTortueCoul().enTrace()==false){
+                monmenu.getTortueCoul().tracer(true);
+            }else{
+                monmenu.getTortueCoul().tracer(false);
+            }
             
         }else if(e.getSource()==monmenu.getExecuter()){
             System.out.println("Button Exécuter en cours de construction");
@@ -102,8 +123,9 @@ public class controllerAjoutExerciceProf implements ActionListener {
             System.out.println("Button Valider en cours de construction");
             //monmenu.getTortue().valider();
         }
+    
         
-        //if TortueCouleur        
+        //if TortueCouleur
             if(e.getSource()==monmenu.getBlack()){
                 monmenu.getTortueCoul().setCouleur("black");
                 
@@ -123,21 +145,19 @@ public class controllerAjoutExerciceProf implements ActionListener {
                 System.out.println("coucou");
                 monmenu.getTortueCoul().setCouleur("yellow");
                 
-            }else if(e.getSource()==monmenu.getTourner()){ // en appuyant sur le bouton tourner
-                monmenu.getTortueCoul().tourner();
-                
-            }else if(e.getSource()==monmenu.getAvancer()){ // en appuyant sur le bouton avancer
-                monmenu.getTortueCoul().avancer();
-                //.append("avancer")
-            }else if(e.getSource()==monmenu.getEcrire()){ // en appuyant sur le bouton ecrire
-                if (monmenu.getTortueCoul().enTrace()==false){
-                    monmenu.getTortueCoul().tracer(true);
-                }else{
-                    monmenu.getTortueCoul().tracer(false);
-                }
             }
         
             
         
+    }
+
+    public TortueG getTortue() {
+        return tortue;
+    }
+    public TortueRapide getTortueR() {
+        return tortueR;
+    }
+    public TortueCouleur getTortueC() {
+        return tortueC;
     }
 }
