@@ -232,7 +232,27 @@ public class InfoBDD {
         Connection recon = connect();
         Statement stmt = null;
         String Nom = el.getNomEleve();
-        String sql = "select IdTentative,StatutTentative,Eleve.IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve="+'"'+Nom+'"';       
+        int idE=0;
+        String sql1 = "select IdEleve from Eleve where NomEleve="+'"'+Nom+'"';       
+
+        
+        try{
+            System.out.println("try");
+            stmt = recon.createStatement();
+        
+            ResultSet rs = stmt.executeQuery(sql1); // applique la requête
+            while (rs.next()) { // Parcours de la liste d'exercices 
+
+                idE = rs.getInt("IdEleve");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
+        
+        
+        String sql = "select IdTentative,StatutTentative,IdEleve,IdExercice,IdProf,ModeleEleve from Tentative where IdEleve="+'"'+idE+'"';       
 
         
         try{
@@ -247,7 +267,6 @@ public class InfoBDD {
                 String StatutTentative = rs.getString("StatutTentative");
                 System.out.println("infobdd :");
                 System.out.println(StatutTentative);
-                int idE = rs.getInt("IdEleve");
                 int idExo = rs.getInt("IdExercice");
                 int idP = rs.getInt("IdProf");
                 String ModeleE = rs.getString("ModeleEleve");
