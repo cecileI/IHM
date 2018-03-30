@@ -6,6 +6,7 @@ import ihm.controler.controllerJTree;
 import ihm.controler.controllerMenuProfesseur;
 import ihm.model.Classe;
 import ihm.model.Eleve;
+import ihm.model.Tentative;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -52,6 +53,7 @@ public class MenuProfesseur extends JPanel {
     private DefaultMutableTreeNode racine;
     private Eleve currentEleve;
     private Classe currentClasse;
+    private Tentative currentTentative;
     
     //panel pour créer un exercice
     private AjoutExerciceProf panCreer;
@@ -80,7 +82,7 @@ public class MenuProfesseur extends JPanel {
 
         //Boutton Deconnection
         deconnexion = new JButton("Deconnexion");
-        deconnexion.setPreferredSize(new Dimension(150,150));
+        deconnexion.setPreferredSize(new Dimension(150,50));
         deconnexion.addActionListener(controlProf);
         
 
@@ -214,20 +216,30 @@ public class MenuProfesseur extends JPanel {
            
             panHaut.remove(txtNom);
             panHaut.remove(txtPrenom);
+            panExercice.remove(creerExercice);
+            panExercice.remove(modifierExercice);
             
             txtNom.setText(currentEleve.getNomEleve()); // Nom de l'eleve
             txtPrenom.setText(currentEleve.getPrenomEleve()); //Prenom de l'eleve
             
             panHaut.add(txtNom, BorderLayout.WEST);
             panHaut.add(txtPrenom, BorderLayout.CENTER);
-            panHaut.add(deconnexion, BorderLayout.EAST);   //JPanel Deconnection  
-            
+            panHaut.add(deconnexion, BorderLayout.EAST);   //JPanel Deconnection 
+            VisuTableExEleveProf tableExEleveProf = new VisuTableExEleveProf(currentEleve);
+            panExercice.add(tableExEleveProf);
             this.repaint();
             this.validate();
             
         }else{
             System.out.print("Erreur");
         }
+    }
+    
+    public void afficheInfoTentativeProf(MenuProfesseur this,Tentative node) {
+	if (node instanceof Tentative) {
+            currentTentative = node;
+            update();
+	}
     }
     
     public JButton getDeconnexion(){
@@ -264,4 +276,5 @@ public class MenuProfesseur extends JPanel {
     public AjoutExerciceProf getPanCreer() {
         return panCreer;
     }      
+    
 }

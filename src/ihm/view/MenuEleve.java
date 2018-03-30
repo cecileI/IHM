@@ -77,6 +77,7 @@ public class MenuEleve extends JPanel{
         
         //bouton deconnexion
         deconnexion = new JButton("Deconnexion");
+        deconnexion.setPreferredSize(new Dimension(150,50));
         deconnexion.addActionListener(controlEleve);
         
         entete.add(petiteEntete, BorderLayout.WEST);

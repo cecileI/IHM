@@ -234,7 +234,7 @@ public class InfoBDD {
         Connection recon = connect();
         Statement stmt = null;
         String Nom = el.getNomEleve();
-        String sql = "select IdTentative,StatutTentative,IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve='Nom'";       
+        String sql = "select IdTentative,StatutTentative,Tentative.IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve='Nom'";       
         
         try{
         stmt = recon.createStatement();
