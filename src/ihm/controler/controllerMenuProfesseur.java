@@ -18,7 +18,8 @@ public class controllerMenuProfesseur implements ActionListener {
     public controllerMenuProfesseur(MenuProfesseur menu){
         this.monmenu = menu;
     }
- 
+    
+    @Override
     public void actionPerformed (ActionEvent e) {
                 //ActionEvent pour le bouton Déconnexion: réoriente vers InterfaceDebut
                 if (e.getSource() == monmenu.getDeconnexion()) {

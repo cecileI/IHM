@@ -111,12 +111,14 @@ public class MenuEleve extends JPanel{
         JLabel blanc3 = new JLabel(" ");
         
         //bouton deconnexion
+
         deconnexion = new JButton("");
         deconnexion.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/quit.png")));
         deconnexion.setHorizontalAlignment(SwingConstants.CENTER); 
         deconnexion.setOpaque(false);
         deconnexion.setContentAreaFilled(false);
         deconnexion.setBorderPainted(false);   
+
         deconnexion.addActionListener(controlEleve);
                 
         entete.add(petiteEntete);

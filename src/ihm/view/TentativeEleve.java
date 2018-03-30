@@ -146,9 +146,24 @@ public class TentativeEleve extends JPanel{
 //---------------------------------------------------------
         //modèle du professeur
         //pas encore effectif
-        JLabel modele = new JLabel("Le modele");
-        
+        JLabel modele = new JLabel();
+        System.out.println(currentExercice.getTitre());
+        if (currentExercice.getTitre().equals("exo1") ) {
+             System.out.println("boucle exo1");
+        modele.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/modele_exo1.PNG")));
+        modele.setHorizontalAlignment(SwingConstants.CENTER);}
+        else if (currentExercice.getTitre().equals("exo2")) {
+            
+             System.out.println("boucle exo2");
+        modele.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/modele_exo2.PNG")));
+        modele.setHorizontalAlignment(SwingConstants.CENTER);}
+        else if (currentExercice.getTitre().equals("exo3")) {
+            
+             System.out.println("boucle exo3");
+        modele.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/modele_exo3.PNG")));
+        modele.setHorizontalAlignment(SwingConstants.CENTER);}
         //lignes de code produites par l'élève
+
         lignesCode = new JTextArea("Tu peux trouver toutes tes \nactions ici : \n");
         lignesCode.setFont(new Font("Arial",Font.BOLD,12));
         lignesCode.setEditable(false); //on ne peut pas ecrire dedans
@@ -157,6 +172,7 @@ public class TentativeEleve extends JPanel{
         listScroller.setPreferredSize(new Dimension(250, 80));
         listScroller.setMinimumSize(new Dimension(250, 80));
         listScroller.setAlignmentX(LEFT_ALIGNMENT);
+
         
         //panel de gauche avec le modele du prof et les lignes de code produites par l'élève
         tentative = new JPanel();
@@ -228,7 +244,7 @@ public class TentativeEleve extends JPanel{
         executer.addActionListener(controlTentEl); 
         
         valider = new JButton ("");
-        valider.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/valider.png")));
+        valider.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/valider1.png")));
         valider.setEnabled(true);
         valider.setBackground(Color.white);
         valider.setHorizontalAlignment(SwingConstants.CENTER); 
@@ -260,7 +276,7 @@ public class TentativeEleve extends JPanel{
         avancer.addActionListener(controlTentEl); 
         
         ecrire = new JButton("");
-        ecrire.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/crayon.png")));
+        ecrire.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/crayon1.png")));
         ecrire.setEnabled(true);
         ecrire.setBackground(Color.white);
         ecrire.setHorizontalAlignment(SwingConstants.CENTER); 
