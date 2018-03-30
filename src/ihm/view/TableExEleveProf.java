@@ -28,9 +28,10 @@ public class TableExEleveProf extends JScrollPane{
     private MenuProfesseur menuProf;
     private ListSelectionModel listSelectionModel;
     private static Eleve currentEleve;
+    private ListSelectionModel e;
     
-    public TableExEleveProf(MenuProfesseur monMenuProf, Eleve currentEleve){
-        this.menuProf=monMenuProf;
+    public TableExEleveProf(MenuProfesseur menuProf, Eleve currentEleve){
+        this.menuProf=menuProf;
         this.currentEleve=currentEleve;
         tableMod = new TableMod(); //création de la tableMod
         jtable = new JTable(tableMod); //création de la jtable
@@ -47,6 +48,7 @@ public class TableExEleveProf extends JScrollPane{
         
         
     }
+    
     
     /**
      * Sous-classe pour créer la JTable des exercices propre à un élève
