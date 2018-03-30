@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -75,8 +77,12 @@ public class TentativeEleve extends JPanel{
     private JPanel general;
     
     private Eleve currentEleve;
+    private Exercice currentExercice;
     
     private Canvas myCanvas;
+    
+    private JScrollPane listScroller;
+    private ArrayList<String> scriptTentative; //suite des boutons sur lesquels l'élève à cliquer
     
     
     private controllerTentativeEleve controlTentEl;
@@ -86,10 +92,12 @@ public class TentativeEleve extends JPanel{
         this.setLayout(new BorderLayout());
         this.setSize(750,500);  //largeur, hauteur
         
+        this.currentExercice = currentExercice;
         this.currentEleve = currentEleve;
         
         controlTentEl = new controllerTentativeEleve(this);
         
+        scriptTentative = new ArrayList<String>();
         //------------------------------------
         // Partie entete 
         //------------------------------------
@@ -141,7 +149,14 @@ public class TentativeEleve extends JPanel{
         JLabel modele = new JLabel("Le modele");
         
         //lignes de code produites par l'élève
-        lignesCode = new JTextArea();
+        lignesCode = new JTextArea("Tu peux trouver toutes tes \nactions ici : \n");
+        lignesCode.setFont(new Font("Arial",Font.BOLD,12));
+        lignesCode.setEditable(false); //on ne peut pas ecrire dedans
+        lignesCode.setLineWrap(true); //revient à la ligne
+        listScroller = new JScrollPane(lignesCode); //scrollpane contenant le jtextarea des lignes de codes
+        listScroller.setPreferredSize(new Dimension(250, 80));
+        listScroller.setMinimumSize(new Dimension(250, 80));
+        listScroller.setAlignmentX(LEFT_ALIGNMENT);
         
         //panel de gauche avec le modele du prof et les lignes de code produites par l'élève
         tentative = new JPanel();
@@ -149,10 +164,9 @@ public class TentativeEleve extends JPanel{
         tentative.setLayout(new GridLayout(2,1));
         
         tentative.add(modele);
-        tentative.add(lignesCode);
+        tentative.add(listScroller);
         
         //Grand panel Boutons à droite
-        
         couleurs = new JPanel();
         couleurs.setLayout(new GridLayout(3,2));
         black = new JButton();
@@ -400,6 +414,22 @@ public class TentativeEleve extends JPanel{
 
     public JPanel getGeneral() {
         return general;
+    }
+
+    public JTextArea getLignesCode() {
+        return lignesCode;
+    }
+
+    public ArrayList<String> getScriptTentative() {
+        return scriptTentative;
+    }
+
+    public JScrollPane getListScroller() {
+        return listScroller;
+    }
+
+    public Exercice getCurrentExercice() {
+        return currentExercice;
     }
     
     

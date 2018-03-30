@@ -200,7 +200,8 @@ public class AjoutExerciceProf extends JPanel {
         centre.setLayout(new GridLayout(1,1)); //2 lignes, 1 colonne
        
         //Créé le panel qui affiche la tortue
-        JPanel canv = Canvas.getCanvasPanel();  
+        canv = new JPanel();
+        //canv = Canvas.getCanvasPanel();  
 
         centre.add(canv);
         

@@ -10,28 +10,24 @@ public class Tentative {
     private int idEleve;
     private int idExercice;
     private String statutTentative;
-    private int idProf;
     private String modeleEleve;
 
     //Constructeur de la classe Tentative
-    public Tentative(int idTentative, int idEleve, int idExercice, String statutTentative, int idProf, String modeleEleve) {
+    public Tentative(int idTentative, int idEleve, int idExercice, String statutTentative,String modeleEleve) {
         this.idTentative = idTentative;
         this.idEleve = idEleve;
         this.idExercice = idExercice;
         this.statutTentative = statutTentative;
-        this.idProf = idProf;
         this.modeleEleve = modeleEleve;
     }
 
     //getters-setters des paramètres
+
     public int getIdTentative() {
         return idTentative;
     }
-
-    public void setIdTentative(int idTentative) {
-        this.idTentative = idTentative;
-    }
-
+        
+    
     public int getIdEleve() {
         return idEleve;
     }
@@ -54,14 +50,6 @@ public class Tentative {
 
     public void setStatutTentative(String statutTentative) {
         this.statutTentative = statutTentative;
-    }
-
-    public int getIdProf() {
-        return idProf;
-    }
-
-    public void setIdProf(int idProf) {
-        this.idProf = idProf;
     }
 
     public String getModeleEleve() {

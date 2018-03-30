@@ -52,7 +52,7 @@ public class InfoBDD {
                 int idProf = rs.getInt("IdProf");
                 String ModelEleve = rs.getString("ModelEleve");
 
-                Tentative tent = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
+                Tentative tent = new Tentative(idT,idEleve,idExercice,StatutTentative,ModelEleve);
 
                 listeTentative.add(tent);                          
             }
@@ -85,7 +85,7 @@ public class InfoBDD {
                 int idProf = rs.getInt("IdProf");
                 String ModelEleve = rs.getString("ModelEleve");
 
-                Tentative tentNE = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
+                Tentative tentNE = new Tentative(idT,idEleve,idExercice,StatutTentative,ModelEleve);
                 listeTentativeNE.add(tentNE);                          
             }
         } catch (SQLException e) {
@@ -249,10 +249,10 @@ public class InfoBDD {
                 System.out.println(StatutTentative);
                 int idE = rs.getInt("IdEleve");
                 int idExo = rs.getInt("IdExercice");
-                int idP = rs.getInt("IdProf");
+                //int idP = rs.getInt("IdProf");
                 String ModeleE = rs.getString("ModeleEleve");
                 //String NomEleve = rs.getString(Nom);
-                Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
+                Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,ModeleE);
                     
                 listeTentativeUnEleve.add(tent); 
             }
@@ -269,7 +269,7 @@ public class InfoBDD {
     /**
     * Création de la liste des Exercices
     */
-      public static ArrayList<Exercice> selectionListExercice () {
+    public static ArrayList<Exercice> selectionListExercice () {
       
         listeExercice = new ArrayList<Exercice>();
         
@@ -300,8 +300,16 @@ public class InfoBDD {
 
         return listeExercice;
               
-       }
-
+    }
+    
+    /**
+     * Sauvegarde de la tentative d'un élève
+     */
+    public static void saveTentEleve(){
+        //Tentative(int idTentative, int idEleve, int idExercice, String statutTentative,String modeleEleve)
         
+    }
+
+       
  
 }

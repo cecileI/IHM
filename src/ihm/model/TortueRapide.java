@@ -16,7 +16,7 @@ public class TortueRapide extends TortueG
     public TortueRapide()
     {
         super();
-        vitesse = 1;
+        vitesse = 2;
     }
 
     /**
