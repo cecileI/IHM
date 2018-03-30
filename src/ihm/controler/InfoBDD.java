@@ -232,14 +232,14 @@ public class InfoBDD {
         Connection recon = connect();
         Statement stmt = null;
         String Nom = el.getNomEleve();
-        System.out.println(Nom);
-        String sq = "select IdTentative,Eleve.IdEleve,IdExercice,StatutTentative,IdProf,ModeleEleve from Tentative,Eleve where NomEleve="+'"'+Nom+'"';       
+        String sql = "select IdTentative,StatutTentative,Eleve.IdEleve,IdExercice,IdProf,ModeleEleve from Tentative,Eleve where NomEleve="+'"'+Nom+'"';       
+
         
         try{
             System.out.println("try");
             stmt = recon.createStatement();
         
-            ResultSet rs = stmt.executeQuery(sq); // applique la requête
+            ResultSet rs = stmt.executeQuery(sql); // applique la requête
             System.out.println(rs);
             while (rs.next()) { // Parcours de la liste d'exercices 
                 System.out.println("while");

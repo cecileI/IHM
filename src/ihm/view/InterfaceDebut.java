@@ -185,12 +185,12 @@ public class InterfaceDebut extends JFrame {
     
     public JTextField getclasseEleve(){
         return classeEleve;
-    }    
+    }
     
     public JLabel getmessage(){
         return message;
     }
-        
+
     public JButton getvalidProf(){
         return validProf;
     }
