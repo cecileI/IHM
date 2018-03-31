@@ -32,14 +32,11 @@ public class controllerAjoutExerciceProf implements ActionListener {
         //Ne concerne pas les tortues
         //JButton Menu: ouvre le panel du MenuProfesseur à la place du panel AjoutExerciceProf(retour au Menu)
         if (e.getSource() == monmenu.getMenu()){
-            monmenu.getPanelHaut().remove(monmenu.getPanelHaut());
-            monmenu.getGauche().remove(monmenu.getGauche());
-            monmenu.getCentre().remove(monmenu.getCentre());
-            monmenu.getDroite().remove(monmenu.getDroite());
-            monmenu.getBas().remove(monmenu.getBas());
-            //monmenu.add(monmenu.getPanDroite(),BorderLayout.CENTER);           
+            MenuProfesseur menuProf = new MenuProfesseur();
+            monmenu.remove(monmenu.getGeneral());
+            monmenu.add(menuProf);      
             monmenu.repaint();
-            monmenu.validate();           
+            monmenu.validate();         
 
         }else if(e.getSource()==monmenu.getExecuter()){ // en selectionnant executer
             //

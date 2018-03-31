@@ -47,7 +47,10 @@ public class MenuProfesseur extends JPanel {
     private JButton creerExercice; //bouton création exercice
     private JButton modifierExercice; //bouton modification exercice
     private JButton deconnexion; //bouton deconnection
+    private JButton menu;
     
+    //JLabel
+    private JLabel blanc1, blanc2,blanc3,blanc4,blanc5,blanc6;
     //JTree
     private JPanel panTree; //panel à gauche Jtree
     private JLabel lblEleve;
@@ -92,6 +95,10 @@ public class MenuProfesseur extends JPanel {
         deconnexion.setPreferredSize(new Dimension(150,50));
         deconnexion.addActionListener(controlProf);
         
+        //Boutton menu
+        menu = new JButton("Menu");
+        menu.setPreferredSize(new Dimension(150,50));
+        menu.addActionListener(controlProf);
 
         //Partie Exercice     
             //Bouton création exercice
@@ -122,17 +129,17 @@ public class MenuProfesseur extends JPanel {
             txtPrenom.setPreferredSize(new Dimension(150,150));
         
         //panExercice qui contient les boutons créer et modifier
-        JLabel blanc1 = new JLabel("");
+        blanc1 = new JLabel("");
         blanc1.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel blanc2 = new JLabel("");
+        blanc2 = new JLabel("");
         blanc2.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel blanc3 = new JLabel("");
+        blanc3 = new JLabel("");
         blanc3.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel blanc4 = new JLabel("");
+        blanc4 = new JLabel("");
         blanc4.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel blanc5 = new JLabel("");
+        blanc5 = new JLabel("");
         blanc5.setHorizontalAlignment(SwingConstants.CENTER);
-        JLabel blanc6 = new JLabel("");
+        blanc6 = new JLabel("");
         blanc6.setHorizontalAlignment(SwingConstants.CENTER);        
         
         panExercice = new JPanel();
@@ -218,8 +225,15 @@ public class MenuProfesseur extends JPanel {
         
         if (currentEleve != null) {
             if (tableExEleveProf ==null){
+                panHaut.remove(deconnexion);
                 panHaut.remove(txtNom);
                 panHaut.remove(txtPrenom);
+                panExercice.remove(blanc1);
+                panExercice.remove(blanc2);
+                panExercice.remove(blanc3);
+                panExercice.remove(blanc4);
+                panExercice.remove(blanc5);
+                panExercice.remove(blanc6);
                 panExercice.remove(creerExercice);
                 panExercice.remove(modifierExercice);
                 tableExEleveProf = new VisuTableExEleveProf(currentEleve);
@@ -231,7 +245,7 @@ public class MenuProfesseur extends JPanel {
             
             panHaut.add(txtNom, BorderLayout.WEST);
             panHaut.add(txtPrenom, BorderLayout.CENTER);
-            panHaut.add(deconnexion, BorderLayout.EAST);   //JPanel Deconnection 
+            panHaut.add(menu, BorderLayout.EAST);   //JPanel Deconnection 
             panExercice.add(tableExEleveProf);
             this.repaint();
             this.validate();
@@ -250,7 +264,12 @@ public class MenuProfesseur extends JPanel {
     
     public JButton getDeconnexion(){
         return deconnexion;
-    }    
+    } 
+    
+    public JButton getMenu(){
+        return menu;
+    } 
+    
     public JButton getCreerExercice(){
         return creerExercice;
     }
@@ -286,5 +305,17 @@ public class MenuProfesseur extends JPanel {
     }   
     public JPanel getPanTree(){
         return panTree;
+    }
+    
+    public JLabel getTxtNom(){
+        return txtNom;
+    }
+    
+    public JLabel getTxtPrenom(){
+        return txtPrenom;
+    }
+    
+    public VisuTableExEleveProf getTableExEleveProf(){
+        return tableExEleveProf;
     }
 }

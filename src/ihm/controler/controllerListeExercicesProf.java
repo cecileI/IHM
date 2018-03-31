@@ -22,7 +22,7 @@ public class controllerListeExercicesProf implements ActionListener  {
         if (e.getSource() == monmenu.getRetourMenu()){
             MenuProfesseur menuProf = new MenuProfesseur();
             monmenu.remove(monmenu.getPanelDroite());
-            monmenu.add(menuProf.getPanDroite());      
+            monmenu.add(menuProf);      
             monmenu.repaint();
             monmenu.validate();
                 
