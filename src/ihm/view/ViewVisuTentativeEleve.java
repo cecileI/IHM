@@ -15,8 +15,8 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 /**
- *
- * @author Cécile
+ * Table des tentatives effectué par l'élève courrant (afficher lorsque l'on apuit sur visualiser tentatives)
+ * @author Group 7
  */
 public class ViewVisuTentativeEleve extends JScrollPane {
     

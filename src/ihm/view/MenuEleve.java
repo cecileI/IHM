@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * 
+ * MenuEleve
  * @author Group7
  */
 public class MenuEleve extends JPanel{
@@ -170,7 +170,7 @@ public class MenuEleve extends JPanel{
         
         visualiserTentative = new JButton("");
         visualiserTentative.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/visualiser.png")));
-        visualiserTentative.setEnabled(false);
+        //visualiserTentative.setEnabled(false);
         visualiserTentative.setHorizontalAlignment(SwingConstants.CENTER); 
         visualiserTentative.setOpaque(false);
         visualiserTentative.setContentAreaFilled(false);
@@ -237,7 +237,7 @@ public class MenuEleve extends JPanel{
     public void update(){
         if (currentExercice != null){
             faireTentative.setEnabled(true);
-            visualiserTentative.setEnabled(true);
+            //visualiserTentative.setEnabled(true);
         }
     }
 

@@ -6,9 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * ControllerListeExerciesProf contient les ActionEvent des boutons du panel ListeExerciesProf
- * Les Boutons de ListeExerciesProf sont Modifier Exercice et Menu
- * @author Diane
+ * ControllerListeExerciceProf permet de gérer les actions sur les boutons de la page des exercices avant modification
+ * @author Group 7
  */
 public class controllerListeExercicesProf implements ActionListener  {
     private ListeExercicesProf monmenu;     
@@ -21,10 +20,9 @@ public class controllerListeExercicesProf implements ActionListener  {
         
         //JButton Menu: ouvre le panel du MenuProfesseur à la place du panel AjoutExerciceProf(retour au Menu)
         if (e.getSource() == monmenu.getRetourMenu()){
-            //monmenu.remove(monmenu.getPanelDroite());
-            monmenu.getPanelDroite().remove(monmenu.getPanelHaut());
-            monmenu.getPanelDroite().remove(monmenu.getListeEx());
-            //monmenu.getPanelDroite().add(monmenu.getPanmodif());         
+            MenuProfesseur menuProf = new MenuProfesseur();
+            monmenu.remove(monmenu.getPanelDroite());
+            monmenu.add(menuProf.getPanDroite());      
             monmenu.repaint();
             monmenu.validate();
                 

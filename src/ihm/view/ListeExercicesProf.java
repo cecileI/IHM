@@ -25,7 +25,7 @@ import javax.swing.table.AbstractTableModel;
  * le panel JTree reste le même que celui du Menu Elève
  * le panel Menu (en haut) et le panel du milieu affichant la liste des exercices change par rapport au MenuProfesseur
  * il faut cliquer sur un exercice pour ensuite pouvoir le modifier et ouvrir le panel AjoutExerciceProf 
- * @author Diane
+ * @author Group 7
  */
 public class ListeExercicesProf extends JPanel {
     private JPanel panelDroite;
@@ -48,7 +48,6 @@ public class ListeExercicesProf extends JPanel {
     public ListeExercicesProf(){
         //pour instancier le controllerListeExercicesProf et appeler les ActionEvent en cliquant sur les boutons
         controllerListeExercicesProf controlProf = new controllerListeExercicesProf(this);      
-        setLayout(new BorderLayout());
         
         //Partie Menu en haut = JPanel : panelHaut = un Label vide + Button retourMenu
         JPanel panelHaut = new JPanel();
@@ -81,11 +80,12 @@ public class ListeExercicesProf extends JPanel {
         listeEx.add(maJTable);
         
         //Assemblage final des deux panels à droite:
-        JPanel panelDroite = new JPanel();
+        panelDroite = new JPanel();
         panelDroite.setLayout(new BorderLayout());
         panelDroite.add(panelHaut,BorderLayout.NORTH);
         panelDroite.add(listeEx,BorderLayout.SOUTH);
         
+        this.setLayout(new BorderLayout());
         this.add(panelDroite,BorderLayout.CENTER);
         this.setVisible(true);
     }   

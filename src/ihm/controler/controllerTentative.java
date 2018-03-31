@@ -15,9 +15,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * Controleur de la jtable des tentatives d'un élève donné
- * Il permet de gérer les actions effectuées sur le jtable
- * @author Cécile
+ * Controlleur de la jtable des tentatives d'un élève donné
+ * Il permet de gérer les actions effectuées sur la jtable
+ * @author Group 7
  */
 public class controllerTentative implements ListSelectionListener{
     
@@ -58,21 +58,6 @@ public class controllerTentative implements ListSelectionListener{
         }
      
     }  
-    /* 
-    * action performed pour retourner au menu élève
-    */
-     //public void actionPerformed (ActionEvent e) {
-        
-      // if (e.getSource()== VisuTentativeEleve.getMenu()){ //en appuyant sur le bouton menu
-            //MenuEleve interfaceEleve = new MenuEleve(VisuTentativeEleve.getCurrentEleve());
-           // VisuTentativeEleve.remove(VisuTentativeEleve);
-            //VisuTentativeEleve.add(interfaceEleve);
-            //VisuTentativeEleve.repaint();
-           //VisuTentativeEleve.validate();
-        //}else{
-           
-       //}
-     //}
-
+    
 }
 

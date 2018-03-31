@@ -10,8 +10,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
- * @author Clara
+ * Table des exercices presente dans le menu elève
+ * @author Group 7
  */
 public class ViewTableExercicesEleves extends JScrollPane {
     

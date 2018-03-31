@@ -13,8 +13,8 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
- *
- * @author clarisse
+ * Action when users click on the Jtree in menuProfesseur
+ * @author group 7
  */
 public class controllerJTree implements TreeSelectionListener{
     private JTree tree;

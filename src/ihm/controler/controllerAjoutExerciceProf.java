@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 /**
  * ControllerAjoutExerciceProf contient les ActionEvent des boutons du panel AjoutExerciceProf
  * Les Boutons de AjoutExerciceProf sont Valider et Menu
- * @author Diane
+ * @author Group 7
  */
 public class controllerAjoutExerciceProf implements ActionListener {
     private AjoutExerciceProf monmenu;

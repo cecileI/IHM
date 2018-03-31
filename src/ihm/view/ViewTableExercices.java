@@ -10,8 +10,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
- * @author Diane
+ * Cette classe permet d'afficher tout les exercices afin que le professeur sélectionne un exercice existant pour le modifier
+ * @author Group 7
  */
 public class ViewTableExercices extends JScrollPane {
     

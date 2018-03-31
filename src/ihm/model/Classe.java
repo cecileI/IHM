@@ -10,7 +10,7 @@ import static ihm.controler.InfoBDD.selectionListEleveClasse;
 import java.util.ArrayList;
 
 /**
- * @author pc
+ * @author group 7
  *
  */
 public class Classe {

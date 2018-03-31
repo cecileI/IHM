@@ -25,8 +25,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 /**
- *
- * @author Clara
+ * Cette classe est le Jpanel permettant a un élève de faire une tentative sur un exercices
+ * @author group 7
  */
 public class TentativeEleve extends JPanel{
     //entete

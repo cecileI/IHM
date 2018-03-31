@@ -6,8 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
- * @author Clara
+ * This Controller allows us to execute an action when user click on button in TentativeEleve.
+ * @author Group 7
  */
 public class controllerTentativeEleve implements ActionListener{
     
@@ -31,13 +31,12 @@ public class controllerTentativeEleve implements ActionListener{
         }else if(e.getSource()==tentativeEleve.getExecuter()){ // en selectionnant executer
             //
         }else if(e.getSource()==tentativeEleve.getValider()){ // en selectionnant valider
-            int idE = InfoBDD.recupIdEleve(tentativeEleve.getCurrentEleve());
             int idEx = tentativeEleve.getCurrentExercice().getIdEx();
             String modele = tentativeEleve.getScriptTentative(); //A TESTER
-            if (InfoBDD.saveTentEleve(idE,idEx,modele)){
-                //message de réussite
+            if (InfoBDD.saveTentEleve(tentativeEleve.getCurrentEleve(),idEx,modele)){
+                System.out.println("Sauvegarde réussie");
             }else{
-                //message d'échec
+                System.out.println("Sauvegarde non réussie");
             }
         }
         
@@ -105,7 +104,7 @@ public class controllerTentativeEleve implements ActionListener{
                 }else{
                     tentativeEleve.getTortueCoul().tracer(false);
                     tentativeEleve.getLignesCode().append("ne pas écrire\n");
-                    tentativeEleve.setScriptTentative(tentativeEleve.getScriptTentative()+"ne pas ecrire");
+                    tentativeEleve.setScriptTentative(tentativeEleve.getScriptTentative()+"ne pas ecrire\n");
                     tentativeEleve.getListScroller().getVerticalScrollBar().setValue(tentativeEleve.getListScroller().getVerticalScrollBar().getMaximum());
                 }
             }
@@ -113,7 +112,7 @@ public class controllerTentativeEleve implements ActionListener{
             if(e.getSource()==tentativeEleve.getTourner()){ // en appuyant sur le bouton tourner
                 tentativeEleve.getTortue().tourner();
                 tentativeEleve.getLignesCode().append("tourner\n");
-                tentativeEleve.setScriptTentative(tentativeEleve.getScriptTentative()+"tourner");
+                tentativeEleve.setScriptTentative(tentativeEleve.getScriptTentative()+"tourner\n");
                 tentativeEleve.getListScroller().getVerticalScrollBar().setValue(tentativeEleve.getListScroller().getVerticalScrollBar().getMaximum());
             
             }else if(e.getSource()==tentativeEleve.getAvancer()){ // en appuyant sur le bouton avancer

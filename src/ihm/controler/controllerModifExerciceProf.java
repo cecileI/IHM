@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * ControllerModifExerciceProf contient les ActionEvent des boutons du panel ModifExerciceProf
  * Les Boutons du ModifExerciceProf sont Valider et Menu
- * @author Diane
+ * @author Group 7
  */
 public class controllerModifExerciceProf implements ActionListener  {
     

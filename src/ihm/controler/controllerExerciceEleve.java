@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * Controleur de la jtable des exercices dans le menu eleve
  * Il permet de gérer les actions effectuées sur le jtable
- * @author Clara
+ * @author Group7
  */
 public class controllerExerciceEleve implements ListSelectionListener{
     

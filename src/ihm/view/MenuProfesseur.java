@@ -30,7 +30,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
 /**
- * Cette classe permet de créer un panel deuis l'InterfaceDebut permettant au Professeur d'accéder à son Menu
+ * Cette classe permet de créer un panel depuis l'InterfaceDebut permettant au Professeur d'accéder à son Menu
  * Cela permet au professeur de choisir entre Créer un Exercice ou Modifier un Exercice 
  * et donc d'ouvrir le panel correspondant
  * @author Goup7
@@ -251,18 +251,18 @@ public class MenuProfesseur extends JPanel {
     public JButton getDeconnexion(){
         return deconnexion;
     }    
-    public JButton getcreerExercice(){
+    public JButton getCreerExercice(){
         return creerExercice;
     }
-    public JButton getmodifierExercice(){
+    public JButton getModifierExercice(){
         return modifierExercice;
     }
     
-    public JPanel getpanDroite(){
+    public JPanel getPanDroite(){
         return panDroite;
     }
     
-    public JPanel getpanGeneral(){
+    public JPanel getPanGeneral(){
         return panGeneral;
     }
     
@@ -284,4 +284,7 @@ public class MenuProfesseur extends JPanel {
     public Exercice getCurrentExercice(){
         return currentExercice;
     }   
+    public JPanel getPanTree(){
+        return panTree;
+    }
 }
