@@ -2,8 +2,11 @@ package ihm.controler;
 
 import ihm.view.MenuEleve;
 import ihm.view.TentativeEleve;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * This Controller allows us to execute an action when user click on button in TentativeEleve.
@@ -29,13 +32,21 @@ public class controllerTentativeEleve implements ActionListener{
             tentativeEleve.validate();
             
         }else if(e.getSource()==tentativeEleve.getExecuter()){ // en selectionnant executer
-            //
+            //non fonctionnel
+            
         }else if(e.getSource()==tentativeEleve.getValider()){ // en selectionnant valider
             int idEx = tentativeEleve.getCurrentExercice().getIdEx();
-            String modele = tentativeEleve.getScriptTentative(); //A TESTER
+            String modele = tentativeEleve.getScriptTentative(); //liste des boutons sur lesquels a cliquer l'eleve
             if (InfoBDD.saveTentEleve(tentativeEleve.getCurrentEleve(),idEx,modele)){
+                MenuEleve interfaceEleve = new MenuEleve(tentativeEleve.getCurrentEleve());
+                interfaceEleve.getMessage().setText("Tu as bien sauvegardé ta tentative ! ");
+                tentativeEleve.remove(tentativeEleve.getGeneral());
+                tentativeEleve.add(interfaceEleve);
+                tentativeEleve.repaint();
+                tentativeEleve.validate();
                 System.out.println("Sauvegarde réussie");
             }else{
+                JLabel message = new JLabel("Ta sauvegarde a échoué !");
                 System.out.println("Sauvegarde non réussie");
             }
         }
