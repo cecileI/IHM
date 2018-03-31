@@ -352,16 +352,15 @@ public class InfoBDD {
         System.out.println("ide : "+ idE);
         System.out.println("idexo : "+ idEx);
         System.out.println("modele : "+ modele);
-        String statut = "à évaluer";
+        String statut = "Non-Evalue";
         System.out.println("statut : "+ statut);
         
-        String sql = "insert into Tentative (idEleve, idExercice, statutTentative, "
-                + "modeleEleve)values("+'"'+idE+'"'+", "+'"'+idEx+'"'+", "+'"'+statut+'"'+" ,"+'"'+modele+'"'+" )";       
+        String sql = "insert into Tentative (IdEleve, IdExercice, StatutTentative, IdProf, ModeleEleve)values("+'"'+idE+'"'+", "+'"'+idEx+'"'+", "+'"'+statut+'"'+" ,1,"+'"'+modele+'"'+" )";       
         //String sql = "insert into Tentative values(null, idE, idEx, "+'"'+statut+'"'+" ,modele )"; 
         try{
             System.out.println("try save");
             stmt = recon.createStatement();
-            stmt.executeQuery(sql); // applique la requête
+            stmt.executeUpdate(sql); // applique la requête
             //System.out.println(rs);
             return true;
             
