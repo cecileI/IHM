@@ -52,7 +52,7 @@ public class InfoBDD {
                 int idProf = rs.getInt("IdProf");
                 String ModelEleve = rs.getString("ModelEleve");
 
-                Tentative tent = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
+                Tentative tent = new Tentative(idT,idEleve,idExercice,StatutTentative,ModelEleve);
 
                 listeTentative.add(tent);                          
             }
@@ -85,7 +85,7 @@ public class InfoBDD {
                 int idProf = rs.getInt("IdProf");
                 String ModelEleve = rs.getString("ModelEleve");
 
-                Tentative tentNE = new Tentative(idT,idEleve,idExercice,StatutTentative,idProf,ModelEleve);
+                Tentative tentNE = new Tentative(idT,idEleve,idExercice,StatutTentative,ModelEleve);
                 listeTentativeNE.add(tentNE);                          
             }
         } catch (SQLException e) {
@@ -268,10 +268,10 @@ public class InfoBDD {
                 System.out.println("infobdd :");
                 System.out.println(StatutTentative);
                 int idExo = rs.getInt("IdExercice");
-                int idP = rs.getInt("IdProf");
+                //int idP = rs.getInt("IdProf");
                 String ModeleE = rs.getString("ModeleEleve");
                 //String NomEleve = rs.getString(Nom);
-                Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,idP,ModeleE);
+                Tentative tent = new Tentative(idT,idE,idExo,StatutTentative,ModeleE);
                     
                 listeTentativeUnEleve.add(tent); 
             }
@@ -288,7 +288,7 @@ public class InfoBDD {
     /**
     * Création de la liste des Exercices
     */
-      public static ArrayList<Exercice> selectionListExercice () {
+    public static ArrayList<Exercice> selectionListExercice () {
       
         listeExercice = new ArrayList<Exercice>();
         
@@ -319,8 +319,63 @@ public class InfoBDD {
 
         return listeExercice;
               
-       }
+    }
+    
+    /**
+     * Sauvegarde de la tentative d'un élève
+     * @return retourne si la sauvegarde sest bien faite ou non
+     */
+    public static boolean saveTentEleve(int idE,int idEx, String modele){
+        //Tentative(int idTentative, int idEleve, int idExercice, String statutTentative,String modeleEleve)
+        Connection recon = connect();
+        Statement stmt = null;
+        
+        String statut = "a evaluer";
+        
+        String sql1 = "insert into Tentative (idEleve, idExercice, statutTentative, modeleEleve)values(idE, idEx, "+'"'+statut+'"'+" ,modele )";       
+
+        try{
+            System.out.println("try");
+            stmt = recon.createStatement();
+        
+            stmt.executeQuery(sql1); // applique la requête
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return true;
+    }
+    
+    /**
+     * Recupere l'id de l'eleve de la base de donnees grace au nom de leleve
+     * @param el eleve dont on veut recuperer l'id
+     * @return idE l'id de l'élève
+     */
+    public static int recupIdEleve(Eleve el) {
+        
+        Connection recon = connect();
+        Statement stmt = null;
+        String Nom = el.getNomEleve();
+        int idE=0;
+        String sql1 = "select IdEleve from Eleve where NomEleve="+'"'+Nom+'"';       
 
         
+        try{
+            System.out.println("try");
+            stmt = recon.createStatement();
+        
+            ResultSet rs = stmt.executeQuery(sql1); // applique la requête
+            while (rs.next()) { // Parcours de la liste d'exercices 
+
+                idE = rs.getInt("IdEleve");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return idE;
+    }
+
+       
  
 }
