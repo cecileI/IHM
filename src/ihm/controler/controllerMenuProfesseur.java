@@ -27,23 +27,23 @@ public class controllerMenuProfesseur implements ActionListener {
                 }
                 //ActionEvent pour le bouton "Créer Exercice" qui 
                 //change le panel pour celui de AjoutExerciceProf
-                if (e.getSource() == monmenu.getcreerExercice()){
-                    monmenu.getpanDroite().remove(monmenu.getpanHaut());
-                    monmenu.getpanDroite().remove(monmenu.getpanExercice());
-                    monmenu.getpanGeneral().remove(monmenu.getpanDroite());
-                    monmenu.getpanDroite().add(monmenu.getPanCreer());
-                    monmenu.getpanGeneral().add(monmenu.getPanCreer(),BorderLayout.CENTER);
+                if (e.getSource() == monmenu.getCreerExercice()){
+                    monmenu.getPanDroite().remove(monmenu.getpanHaut());
+                    monmenu.getPanDroite().remove(monmenu.getpanExercice());
+                    monmenu.getPanGeneral().remove(monmenu.getPanDroite());
+                    monmenu.getPanDroite().add(monmenu.getPanCreer());
+                    monmenu.getPanGeneral().add(monmenu.getPanCreer(),BorderLayout.CENTER);
                     monmenu.repaint();
                     monmenu.validate(); 
                 }
                 //ActionEvent pour le bouton "Modifier Exercice" qui
                 //change le panel pour celui de ListeExercicesProf
-                if (e.getSource() == monmenu.getmodifierExercice()){                  
-                    monmenu.getpanDroite().remove(monmenu.getpanHaut());
-                    monmenu.getpanDroite().remove(monmenu.getpanExercice());
-                    monmenu.getpanGeneral().remove(monmenu.getpanDroite());
-                    monmenu.getpanDroite().add(monmenu.getpanliste());
-                    monmenu.getpanGeneral().add(monmenu.getpanDroite(),BorderLayout.CENTER);
+                if (e.getSource() == monmenu.getModifierExercice()){                  
+                    monmenu.getPanDroite().remove(monmenu.getpanHaut());
+                    monmenu.getPanDroite().remove(monmenu.getpanExercice());
+                    monmenu.getPanGeneral().remove(monmenu.getPanDroite());
+                    monmenu.getPanDroite().add(monmenu.getpanliste());
+                    monmenu.getPanGeneral().add(monmenu.getPanDroite(),BorderLayout.CENTER);
                     monmenu.repaint();
                     monmenu.validate();                    
                 }

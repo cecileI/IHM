@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
+ * Cette classe nous permet d'éffectuer les requetes sur la base de données
  * @author Group7
  */
 public class InfoBDD {

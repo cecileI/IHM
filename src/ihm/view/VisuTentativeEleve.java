@@ -13,19 +13,19 @@ import javax.swing.table.AbstractTableModel;
 
 
 /**
- *
- * @author Cécile
+ * This Interface allows us to visualize with a table the statut of all tentatives of the exercices did by a student.
+ * @author Group 7
  */
 public class VisuTentativeEleve extends JPanel{
-    private JLabel lblNomEleve,lblPrenomEleve,lblClasseEleve,numeroExercice;
+    private JLabel lblNomEleve,lblPrenomEleve,lblClasseEleve;
     
     private JButton retourMenu; // va renvoyer sur MenuEleve
     private JPanel entete; // contient petite entete + num exo + bouton retourMenu + nom, prenom, classe
+    private JPanel general;
     private ArrayList<Tentative> tentative;
     private ViewVisuTentativeEleve maJTable;
     private MenuEleve menuEleve;
     private Eleve eleve;
-    private controllerTentative controlTent;
     
     private JLabel imageTortue;
     private JLabel imageCahier;
@@ -33,11 +33,15 @@ public class VisuTentativeEleve extends JPanel{
     private JPanel imageEntete;
     private JPanel texteEntete;
     
-    public VisuTentativeEleve(Eleve eleve,String titreExercice) {
-                  
+    /*
+    * Constructeur de la classe VisuTentativeEleve
+    * @param Eleve est l'élève courant
+    */
+    public VisuTentativeEleve(Eleve eleve) {
+        this.eleve=eleve;          
         this.setLayout(new BorderLayout()); 
         this.setPreferredSize(new Dimension(500,500));
-       // controlTent = new controllerTentative(maJTable,tentative ,menuEleve);
+        ControllerTentativeAction controlTentAct = new ControllerTentativeAction(this);
         entete=new JPanel();
         imageEntete = new JPanel();
         texteEntete = new JPanel();
@@ -73,12 +77,7 @@ public class VisuTentativeEleve extends JPanel{
         
         //partie entete
         entete = new JPanel();
-        entete.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 0));
-        
-        numeroExercice = new JLabel(titreExercice);
-        numeroExercice.setHorizontalAlignment(SwingConstants.CENTER);
-        numeroExercice.setFont(new Font("Arial",Font.BOLD,20));
-         
+        entete.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 0));         
         
         imageCahier = new JLabel();
         imageCahier.setIcon(new ImageIcon(InterfaceDebut.class.getResource("/images/cahier.png")));
@@ -86,25 +85,31 @@ public class VisuTentativeEleve extends JPanel{
         //Bouton Menu
         retourMenu= new JButton("Menu");
         retourMenu.setPreferredSize(new Dimension(150,50));   
-       // retourMenu.addActionListener(controlTent); 
+        retourMenu.addActionListener(controlTentAct); 
         entete.add(petiteEntete);
-        entete.add(numeroExercice);
         entete.add(retourMenu);
         this.maJTable = new ViewVisuTentativeEleve(menuEleve,eleve);
         
+        general = new JPanel();
+        general.setLayout(new BorderLayout());
+        general.add(entete, BorderLayout.NORTH);
+        general.add(maJTable, BorderLayout.CENTER);
+        general.add(imageCahier, BorderLayout.SOUTH);
+        
         this.setLayout(new BorderLayout());
-        this.add(entete, BorderLayout.NORTH);
-        this.add(maJTable, BorderLayout.CENTER);
-        this.add(imageCahier, BorderLayout.SOUTH);
-
+        this.add(general, BorderLayout.CENTER);
         this.setVisible(true);
         
 }    
-    public JButton getMenu() {
+    public JButton getRetourMenu() {
         return retourMenu;
     }
     
-        public Eleve getCurrentEleve() {
+    public Eleve getCurrentEleve() {
         return eleve;
+    }
+    
+    public JPanel getGeneral(){
+        return general;
     }
 }

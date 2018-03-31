@@ -14,9 +14,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * Controleur de la jtable des exercices dans le menu eleve
- * Il permet de gérer les actions effectuées sur le jtable
- * @author Clara
+ * Controleur de la jtable des exercices dans le menu prof
+ * Il permet de gérer les actions effectuées sur la jtable
+ * @author Group 7
  */
 public class controllerTableExEleveProf implements ListSelectionListener{
     
@@ -25,10 +25,10 @@ public class controllerTableExEleveProf implements ListSelectionListener{
     private MenuProfesseur menuProf;
 
     /**
-     * Constructeur du controller pour la jtable des exercices dans le menu élève
+     * Constructeur du controller pour la jtable des exercices dans le menu prof
      * @param jtable la jtable regroupant les différents exercices
-     * @param exercices liste des exercices
-     * @param menuEleve interface du menu eleve
+     * @param tentatives liste des tentatives
+     * @param menuProf interface du menu prof
      */
     public controllerTableExEleveProf(JTable jtable, ArrayList<Tentative> tentatives, MenuProfesseur menuProf) {
 	this.jtable = jtable;
@@ -54,7 +54,7 @@ public class controllerTableExEleveProf implements ListSelectionListener{
            Tentative selectTentatives = tentatives.get(jtable.convertRowIndexToModel(selectligne));
            System.out.println("La ligne"+ selectTentatives.toString()+" est sélectionnée");
            
-           menuProf.afficheInfoTentativeProf(selectTentatives); //effectue les actions voulues, ici, fait apparaitre les boutons faire ou visualiser tentatives
+           menuProf.afficheInfoTentativeProf(selectTentatives); //effectue les actions voulues
         }
      
     }   

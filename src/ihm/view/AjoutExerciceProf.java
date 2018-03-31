@@ -25,8 +25,7 @@ import javax.swing.SwingConstants;
 
 /**
  * Interface pour permettre au Professeur de créer un Exercice
- * Les boutons sont: Valider, Menu, 
- * @author Diane
+ * @author group  7
  */
 public class AjoutExerciceProf extends JPanel {
     //panel final appelé par le controllerMenuProfesseur (tout sauf le JTree)

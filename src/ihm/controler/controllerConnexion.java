@@ -11,8 +11,8 @@ import ihm.model.Professeur;
 import java.util.ArrayList;
 
 /**
- *
- * @author Clara
+ * fonction pour la connexion d'un prof ou d'un élève
+ * @author group 7
  */
 public class controllerConnexion {
     

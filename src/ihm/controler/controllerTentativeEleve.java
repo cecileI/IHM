@@ -6,8 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
- * @author Clara
+ * This Controller allows us to execute an action when user click on button in TentativeEleve.
+ * @author Group 7
  */
 public class controllerTentativeEleve implements ActionListener{
     

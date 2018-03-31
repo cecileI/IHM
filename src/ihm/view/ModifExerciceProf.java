@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 
 /**
  * Crée le Panel permettant à un Professeur de Modifier un Exercice
- * @author Diane
+ * @author Group 7
  */
 public class ModifExerciceProf extends JPanel{
     //panel final appelé par le controllerListeExercice (tout sauf le JTree)

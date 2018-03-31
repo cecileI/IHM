@@ -20,7 +20,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * Cette classe permet de créer le JPanel qui affiche les exercices d'un élève, le nombre de tentatives associées
  * à l'exercice et le statut de l'exercice
- * @author clarisse
+ * @author group 7
  */
 public class TableExEleveProf extends JScrollPane{
     private TableMod tableMod;

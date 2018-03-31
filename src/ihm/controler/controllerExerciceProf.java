@@ -22,7 +22,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * pour afficher la JTable avec la liste des exercices dans ListeExerciesProf
- * @author Diane
+ * @author Group7
  */
 public class controllerExerciceProf implements ListSelectionListener{
     private JTable jtable;

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 /**
- * 
+ * ControllerMenuEleve contient les ActionEvent des boutons du panel MenuProfesseur
  * @author Goup7
  */
 
@@ -39,7 +39,7 @@ public class controllerMenuEleve implements ActionListener{
             menuEleve.validate();
             
         }else if(e.getSource()==menuEleve.getVisualiserTentative()){
-            VisuTentativeEleve visuTentEleve = new VisuTentativeEleve(menuEleve.getCurrentEleve(),menuEleve.getCurrentExercice().getTitre());
+            VisuTentativeEleve visuTentEleve = new VisuTentativeEleve(menuEleve.getCurrentEleve());
             menuEleve.remove(menuEleve.getGeneral());
             menuEleve.add(visuTentEleve);
             menuEleve.repaint();

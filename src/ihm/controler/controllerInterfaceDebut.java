@@ -15,8 +15,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 
 /**
- *
- * @author clarisse
+ * Actions when user click on button in InterfaceDebut
+ * @author Group 7
  */
 public class controllerInterfaceDebut implements ActionListener {
     private InterfaceDebut moninterf;
