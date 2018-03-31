@@ -106,7 +106,8 @@ public class controllerAjoutExerciceProf implements ActionListener {
             monmenu.validate();
       
         }else if(e.getSource()==monmenu.getAvancer()){
-            monmenu.getTortueCoul().avancer();
+            monmenu.getTortueCoul().avancer(
+            );
             
         }else if(e.getSource()==monmenu.getEcrire()){
             if (monmenu.getTortueCoul().enTrace()==false){
