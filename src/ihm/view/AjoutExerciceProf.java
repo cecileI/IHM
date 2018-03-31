@@ -227,12 +227,14 @@ public class AjoutExerciceProf extends JPanel {
 //---------------------------------------------------------
 //               Assemblage final de tous les panels
 //---------------------------------------------------------    
-                            
-        add(panelHaut,BorderLayout.NORTH);
-        add(gauche,BorderLayout.WEST);
-        add(centre,BorderLayout.CENTER);
-        add(droite,BorderLayout.EAST);  
-        add(bas,BorderLayout.SOUTH);        
+        general = new JPanel(new BorderLayout());                    
+        general.add(panelHaut,BorderLayout.NORTH);
+        general.add(gauche,BorderLayout.WEST);
+        general.add(centre,BorderLayout.CENTER);
+        general.add(droite,BorderLayout.EAST);  
+        general.add(bas,BorderLayout.SOUTH);   
+        
+        this.add(general);
         this.setVisible(true);        
     }
 
