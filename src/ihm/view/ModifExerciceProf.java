@@ -96,7 +96,7 @@ setLayout(new BorderLayout());
         panelHaut.setLayout(new GridLayout(1,2));
         
         //Boutton Menu
-        creerExercice = new JLabel ("Modification de l'Exercice");
+        creerExercice = new JLabel ("Modification Exercice (non fonctionnel)");
         creerExercice.setFont(new Font("Arial",Font.BOLD,20));
 
         menu = new JButton("Menu");

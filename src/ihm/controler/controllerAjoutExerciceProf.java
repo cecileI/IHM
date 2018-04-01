@@ -1,14 +1,13 @@
 package ihm.controler;
 
-import ihm.model.Canvas;
-import ihm.model.TortueCouleur;
-import ihm.model.TortueG;
-import ihm.model.TortueRapide;
+
+import ihm.model.*;
 import ihm.view.*;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -18,9 +17,11 @@ import javax.swing.JPanel;
  */
 public class controllerAjoutExerciceProf implements ActionListener {
     private AjoutExerciceProf monmenu;
-    private TortueG tortue;
-    private TortueRapide tortueR;
-    private TortueCouleur tortueC;
+    
+    private TortueG currentTortue;
+    private TortueCouleur currentTortueCoul;
+    private TortueRapide currenttortueRapide;
+    private String typetortue;
      
       public controllerAjoutExerciceProf(AjoutExerciceProf menu){
         this.monmenu = menu;
@@ -29,7 +30,6 @@ public class controllerAjoutExerciceProf implements ActionListener {
    @Override
     public void actionPerformed (ActionEvent e) {     
         
-        //Ne concerne pas les tortues
         //JButton Menu: ouvre le panel du MenuProfesseur à la place du panel AjoutExerciceProf(retour au Menu)
         if (e.getSource() == monmenu.getMenu()){
             MenuProfesseur menuProf = new MenuProfesseur();
@@ -37,23 +37,28 @@ public class controllerAjoutExerciceProf implements ActionListener {
             monmenu.add(menuProf);      
             monmenu.repaint();
             monmenu.validate();         
-
-        }else if(e.getSource()==monmenu.getExecuter()){ // en selectionnant executer
-            //
-        }else if(e.getSource()==monmenu.getValider()){ // en selectionnant valider
-            //
         }
+        
+        
         //TORTUES : OK!
         // Boutons Tortue Rapide, Classique, Couleur 
         if (e.getSource()==monmenu.gettRapide()){
             //Creation de la TortueRapide et affichage Canvas
-            TortueRapide tortueRapide = new TortueRapide();
+            this.typetortue = "rapide";
+            currenttortueRapide = new TortueRapide(); //creation d'une tortue rapide            
             JPanel canv = Canvas.getCanvasPanel();
             monmenu.getCentre().add(canv);
-            monmenu.repaint();
-            monmenu.validate();
+            monmenu.getLigneCode().append("tortue : rapide\n"); //ecrit dans la console de l'interface
             
-             //retire les Boutons pour la Couleur (si précédement cliquer sur TortueCoul)
+            //permet de garder le scroll en bas pour voir les nouvelles lignes qui s'ajoutent
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            
+            //ajoute à la liste des actions du professeur pour cette tentative
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"Tortue : rapide\n");
+            
+            monmenu.repaint();
+           
+            //retire les Boutons pour la Couleur (si précédement cliqué sur TortueCoul)
             monmenu.getBlack().setEnabled(false); 
             monmenu.getRed().setEnabled(false);
             monmenu.getYellow().setEnabled(false);
@@ -63,13 +68,16 @@ public class controllerAjoutExerciceProf implements ActionListener {
             
         }else if(e.getSource()==monmenu.gettClassique()){
             //Creation de la Tortue et affichage Canvas
-            TortueG tortueG = new TortueG();
+            this.typetortue = "classique";
+            currentTortue = new TortueG(); //creation d'une tortue classique
             JPanel canv = Canvas.getCanvasPanel();
             monmenu.getCentre().add(canv);
+            monmenu.getLigneCode().append("tortue : classique\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"Tortue : classique\n");
             monmenu.repaint();
-            monmenu.validate();
             
-            //retire les Boutons pour la Couleur (si précédement cliquer sur TortueCoul)
+            //retire les Boutons pour la Couleur (si précédement cliqué sur TortueCoul)
             monmenu.getBlack().setEnabled(false); 
             monmenu.getRed().setEnabled(false);
             monmenu.getYellow().setEnabled(false);
@@ -79,11 +87,14 @@ public class controllerAjoutExerciceProf implements ActionListener {
             
         }else if(e.getSource()==monmenu.gettCouleur()){
             //Creation de la TortueCouleur et affichage Canvas
-            TortueCouleur tortueCoul = new TortueCouleur();
+            this.typetortue = "couleur";
+            currentTortueCoul = new TortueCouleur(); //creation d'une tortue couleur
             JPanel canv = Canvas.getCanvasPanel();
+            monmenu.getLigneCode().append("tortue : couleur\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
             monmenu.getCentre().add(canv);
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"Tortue : couleur\n");
             monmenu.repaint();
-            monmenu.validate();
             
             //mise à dispo des Boutons pour la Couleur
             monmenu.getBlack().setEnabled(true); 
@@ -93,69 +104,148 @@ public class controllerAjoutExerciceProf implements ActionListener {
             monmenu.getGreen().setEnabled(true);
             monmenu.getMagenta().setEnabled(true);            
         }
-           
-        //Buttons Tourner, Avancer, Ecrire Exétuter, Valider pour Tortue
-        if (e.getSource()==monmenu.getTourner()){ 
-            System.out.println("tourne");                
+        
+
+//BUTTONS : Tourner, Avancer, Ecrire, Exétuter, Valider par type de Tortue
                 
-            monmenu.getTortueCoul().tourner();
+        if (e.getSource()==monmenu.getTourner()){
+            monmenu.getLigneCode().append("tourner\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"tourner\n");
+            if (typetortue.equals("couleur")){
+                this.getCurrentTortueCoul().tourner();
+            }else if(typetortue.equals("classique")){
+                this.getCurrentTortue().tourner();
+            }else if(typetortue.equals("rapide")){
+                this.getCurrenttortueRapide().tourner();
+            }            
             monmenu.repaint();
-            monmenu.validate();
+
       
         }else if(e.getSource()==monmenu.getAvancer()){
-            monmenu.getTortueCoul().avancer(
-            );
+            monmenu.getLigneCode().append("avancer\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"avancer\n");
+            if (typetortue.equals("couleur")){
+                this.getCurrentTortueCoul().avancer();
+            }else if(typetortue.equals("classique")){
+                this.getCurrentTortue().avancer();
+            }else if(typetortue.equals("rapide")){
+                this.getCurrenttortueRapide().avancer();
+            }                     
+            monmenu.repaint();
             
         }else if(e.getSource()==monmenu.getEcrire()){
-            if (monmenu.getTortueCoul().enTrace()==false){
-                monmenu.getTortueCoul().tracer(true);
-            }else{
-                monmenu.getTortueCoul().tracer(false);
+            if (typetortue.equals("couleur")){
+                if (this.getCurrentTortueCoul().enTrace()==false){
+                    monmenu.getLigneCode().append("écrire\n");
+                    monmenu.setScriptExercice(monmenu.getScriptExercice()+"écrire\n");
+                    this.getCurrentTortueCoul().tracer(true);
+                }else{
+                    monmenu.getLigneCode().append("ne pas écrire\n");
+                    monmenu.setScriptExercice(monmenu.getScriptExercice()+"ne pas écrire\n");
+                    this.getCurrentTortueCoul().tracer(false);
+                }
+                
+            }else if(typetortue.equals("classique")){
+                if (this.getCurrentTortue().enTrace()==false){
+                    monmenu.getLigneCode().append("écrire\n");
+                    monmenu.setScriptExercice(monmenu.getScriptExercice()+"écrire\n");
+                    monmenu.setScriptExercice(monmenu.getScriptExercice()+"ne pas écrire\n");
+                    this.getCurrentTortue().tracer(true);
+                }else{
+                    monmenu.getLigneCode().append("ne pas écrire\n");
+                    this.getCurrentTortue().tracer(false);
+                }                
+               
+            }else if(typetortue.equals("rapide")){
+                if (this.getCurrenttortueRapide().enTrace()==false){
+                    monmenu.getLigneCode().append("écrire\n");
+                    monmenu.setScriptExercice(monmenu.getScriptExercice()+"écrire\n");
+                    this.getCurrenttortueRapide().tracer(true);
+                }else{
+                    monmenu.getLigneCode().append("ne pas écrire\n");
+                    monmenu.setScriptExercice(monmenu.getScriptExercice()+"ne pas écrire\n");
+                    this.getCurrenttortueRapide().tracer(false);
+                }
             }
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            monmenu.repaint();
+            monmenu.validate();
             
         }else if(e.getSource()==monmenu.getExecuter()){
-            System.out.println("Button Exécuter en cours de construction");
+            monmenu.getLigneCode().append("Button Exécuter en cours de construction\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
             //monmenu.getTortue().executer();
             
-        }else if(e.getSource()==monmenu.getValider()){            
-            System.out.println("Button Valider en cours de construction");
+        }else if(e.getSource()==monmenu.getValider()){
+            monmenu.getLigneCode().append("Button Valider en cours de construction, connexion à la BDD\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
             //monmenu.getTortue().valider();
-        }
-    
-        
-        //if TortueCouleur
-            if(e.getSource()==monmenu.getBlack()){
-                monmenu.getTortueCoul().setCouleur("black");
-                
-            }else if(e.getSource()==monmenu.getBlue()){
-                monmenu.getTortueCoul().setCouleur("blue");
-                
-            }else if(e.getSource()==monmenu.getGreen()){
-                monmenu.getTortueCoul().setCouleur("green");
-                
-            }else if(e.getSource()==monmenu.getRed()){
-                monmenu.getTortueCoul().setCouleur("red");
-                
-            }else if(e.getSource()==monmenu.getMagenta()){
-                monmenu.getTortueCoul().setCouleur("magenta");
-                
-            }else if(e.getSource()==monmenu.getYellow()){
-                System.out.println("coucou");
-                monmenu.getTortueCoul().setCouleur("yellow");
-                
-            }
-        
             
+             //int idEx = monmenu.getCurrentExercice().getIdEx();
+            String modele = monmenu.getScriptExercice(); //liste des boutons sur lesquels a cliquer l'eleve
+//            if (InfoBDD.saveExProf(monmenu.idEx)){
+//                MenuProfesseur interfaceProf = new  MenuProfesseur(monmenu.getCurrentEx());
+//                interfaceProf.getMessage().setText("Exercice bien sauvegardé ! ");
+//                monmenu.remove(monmenu.getGeneral());
+//                monmenu.add(interfaceProf);
+//                monmenu.repaint();
+//                monmenu.validate();
+//                System.out.println("Sauvegarde de l'exercice réussie");
+//            }else{
+//                JLabel message = new JLabel("Sauvegarde de l'exercice échouée !");
+//                System.out.println("Sauvegarde de l'exercice non réussie");
+//            } 
+            
+        }    
         
+        //si TortueCouleur
+        if(e.getSource()==monmenu.getBlack()){
+            monmenu.getLigneCode().append("couleur : noir\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            this.getCurrentTortueCoul().setCouleur("black");
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"black\n");
+                
+        }else if(e.getSource()==monmenu.getBlue()){
+            monmenu.getLigneCode().append("couleur : bleu\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            this.getCurrentTortueCoul().setCouleur("blue");
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"blue\n");
+                
+        }else if(e.getSource()==monmenu.getGreen()){
+            monmenu.getLigneCode().append("couleur : vert\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            this.getCurrentTortueCoul().setCouleur("green");
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"vert\n");
+                
+        }else if(e.getSource()==monmenu.getRed()){
+            monmenu.getLigneCode().append("couleur : rouge\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            this.getCurrentTortueCoul().setCouleur("red");
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"rouge\n");
+               
+        }else if(e.getSource()==monmenu.getMagenta()){
+            monmenu.getLigneCode().append("couleur : magenta\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            this.getCurrentTortueCoul().setCouleur("magenta");
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"magenta\n");
+                
+        }else if(e.getSource()==monmenu.getYellow()){
+            monmenu.getLigneCode().append("couleur : jaune\n");
+            monmenu.getListScroller().getVerticalScrollBar().setValue(monmenu.getListScroller().getVerticalScrollBar().getMaximum());
+            this.getCurrentTortueCoul().setCouleur("yellow");
+            monmenu.setScriptExercice(monmenu.getScriptExercice()+"jaune\n");
+        }        
     }
 
-    public TortueG getTortue() {
-        return tortue;
+    public TortueG getCurrentTortue() {
+        return currentTortue;
     }
-    public TortueRapide getTortueR() {
-        return tortueR;
+    public TortueCouleur getCurrentTortueCoul() {
+        return currentTortueCoul;
     }
-    public TortueCouleur getTortueC() {
-        return tortueC;
+    public TortueRapide getCurrenttortueRapide() {
+        return currenttortueRapide;
     }
 }

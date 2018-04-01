@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -75,7 +76,10 @@ public class AjoutExerciceProf extends JPanel {
     //private TortueG tortueG;    
     private TortueCouleur tortueCoul;
     private TortueRapide tortueRapide;
-    private Canvas myCanvas;    
+    private Canvas myCanvas;
+    
+    private JScrollPane listScroller;
+    private String scriptExercice; //suite des boutons sur lesquels le professeur a cliqué
     
     //controller avec Action Performed
     private controllerAjoutExerciceProf controlexprof;
@@ -176,13 +180,8 @@ public class AjoutExerciceProf extends JPanel {
 //               Ajout d'un Exercice: panelCentral
 //--------------------------------------------------------- 
         centre = new JPanel();
-        centre.setPreferredSize(new Dimension(300,400));
+        centre.setPreferredSize(new Dimension(400,400));
         centre.setLayout(new GridLayout(1,1)); //2 lignes, 1 colonne
-
-        //Créé le panel qui affiche la tortue        
-        //canv = new JPanel();
-        
-        //centre.add(canv);
         
 //---------------------------------------------------------
 //               Ajout d'un Exercice: panelDroite
@@ -197,7 +196,7 @@ public class AjoutExerciceProf extends JPanel {
         avancer = new JButton ("Avancer");
         avancer.addActionListener(controlexprof);
     
-        ecrire = new JButton ("Ecrire");
+        ecrire = new JButton ("<HTML><BODY>Ecrire / Ne<BR>pas écrire</BODY></HTML>");
         ecrire.addActionListener(controlexprof);
     
         executer = new JButton ("Executer");
@@ -223,7 +222,14 @@ public class AjoutExerciceProf extends JPanel {
         ligneCode = new JTextArea();
         ligneCode.setBackground(Color.lightGray);
         
-        bas.add(ligneCode);        
+        //scroll bar pour voir toutes les actions réalisées
+        listScroller = new JScrollPane(ligneCode); //scrollpane contenant le jtextarea des lignes de codes
+        listScroller.setPreferredSize(new Dimension(100, 100));
+        listScroller.setMinimumSize(new Dimension(100, 100));
+        listScroller.setAlignmentX(LEFT_ALIGNMENT);
+        
+        //bas.add(ligneCode);  
+        bas.add(listScroller);
 //---------------------------------------------------------
 //               Assemblage final de tous les panels
 //---------------------------------------------------------    
@@ -341,4 +347,18 @@ public class AjoutExerciceProf extends JPanel {
     public JButton getMagenta() {
         return magenta;
     }    
+    
+    
+    public JScrollPane getListScroller() {
+        return listScroller;
+    }
+
+    public String getScriptExercice() {
+        return scriptExercice;
+    }
+
+    public void setScriptExercice(String scriptExercice) {
+        this.scriptExercice = scriptExercice;
+    }
+    
 }

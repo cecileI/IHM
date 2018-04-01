@@ -445,8 +445,7 @@ public class TentativeEleve extends JPanel{
 
     public JPanel getPetitPanelBoutons() {
         return petitPanelBoutons;
-    }
-    
+    }   
     
             
 }
