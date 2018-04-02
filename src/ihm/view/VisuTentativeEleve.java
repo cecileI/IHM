@@ -41,7 +41,7 @@ public class VisuTentativeEleve extends JPanel{
         this.eleve=eleve;          
         this.setLayout(new BorderLayout()); 
         this.setPreferredSize(new Dimension(500,500));
-        ControllerTentativeAction controlTentAct = new ControllerTentativeAction(this);
+        controllerTentativeAction controlTentAct = new controllerTentativeAction(this);
         entete=new JPanel();
         imageEntete = new JPanel();
         texteEntete = new JPanel();
