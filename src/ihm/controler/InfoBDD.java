@@ -369,4 +369,43 @@ public class InfoBDD {
             return false;
         }
     }      
+    
+    
+    /**
+     * Sauvegarde d'un exercice par un professeur
+     * @param idEx id de l'exercice
+     * @param modele script de la tentative de l'eleve
+     * @return retourne si la sauvegarde sest bien faite ou non
+     */
+    public static boolean saveExProf(int idEx){
+        
+        Connection recon = connect();
+        Statement stmt = null;
+
+        int idE=0;
+        //Exercice.setTitre(titre);
+        
+        //String basiques (à changer pour vraiment saisir les valeurs dans la BDD..)
+        //no fonctionnel!
+        String titre = "titre";
+        String modele = "model";
+        String consigne = "consigne";
+        String modetortue = "modetortue";       
+           
+        String sql = "insert into Exercice (IdExercice, Titre, Modele, Consigne, ModeTortue from Exercice)values("+'"'+idEx+'"'+", "+'"'+titre+'"'+","+'"'+modele+'"'+","+'"'+consigne+'"'+","+'"'+modetortue+'"'+")";
+        //String sql = "insert into Tentative values(null, idE, idEx, "+'"'+statut+'"'+" ,modele )"; 
+        try{
+            System.out.println("try save");
+            stmt = recon.createStatement();
+            stmt.executeUpdate(sql); // applique la requête
+            //System.out.println(rs);
+            return true;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }      
+    
+    
 }

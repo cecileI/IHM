@@ -44,8 +44,6 @@ public class TentativeEleve extends JPanel{
 
     //Tentative
     private JPanel tentative; //panel sous l'entete
-    
-    //private modele;
     private Canvas can;
     private JTextArea lignesCode;
     
@@ -326,29 +324,18 @@ public class TentativeEleve extends JPanel{
         //création du canvas
         JPanel canv = Canvas.getCanvasPanel();  
 
-        
 
         
         petitPanelBoutons = new JPanel();
         petitPanelBoutons.setLayout(new FlowLayout(FlowLayout.CENTER, 200, 3)); 
         petitPanelBoutons.add(executer);
         petitPanelBoutons.add(valider);
+        
         panelBoutons = new JPanel();
         //panelBoutons.setLayout(new GridLayout(2,1));
         panelBoutons.add(petitPanelBoutons);
         //panelBoutons.add(ecrire);
-        
 
-        
-
-        //tentative.add(modele);
-        //tentative.add(canv);
-        //tentative.add(grandPanelBoutons);
-        
-        //tentative.add(lignesCode);
-        //tentative.add(panelBoutons);
-        //tentative.add(panelBasBoutons);
-        
         general = new JPanel();
         general.setLayout(new BorderLayout());
         
@@ -451,8 +438,14 @@ public class TentativeEleve extends JPanel{
     public Exercice getCurrentExercice() {
         return currentExercice;
     }
-    
-    
+
+    public JPanel getPanelBoutons() {
+        return panelBoutons;
+    }
+
+    public JPanel getPetitPanelBoutons() {
+        return petitPanelBoutons;
+    }   
     
             
 }

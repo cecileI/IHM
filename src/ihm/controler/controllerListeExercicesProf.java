@@ -26,9 +26,16 @@ public class controllerListeExercicesProf implements ActionListener  {
             monmenu.repaint();
             monmenu.validate();
                 
-        }else if(e.getSource()==monmenu.getModifierEx()){                        
-            monmenu.getPanelDroite().remove(monmenu.getListeEx());
-            monmenu.getPanelDroite().remove(monmenu.getPanelHaut());
+        }else if(e.getSource()==monmenu.getModifierEx()){                 
+            
+            ModifExerciceProf modifEx = new ModifExerciceProf();
+            monmenu.remove(monmenu.getPanelDroite());
+            monmenu.add(modifEx);      
+            monmenu.repaint();
+            monmenu.validate();
+            
+            //monmenu.getPanelDroite().remove(monmenu.getListeEx());
+            //monmenu.getPanelDroite().remove(monmenu.getPanelHaut());
             
             //monmenu.remove(monmenu.getPanelDroite());
             //monmenu.add(monmenu.getPanmodif());
@@ -36,9 +43,7 @@ public class controllerListeExercicesProf implements ActionListener  {
             //monmenu.getPanelDroite().remove(monmenu.getPanelHaut());
             //monmenu.getPanelDroite().remove(monmenu.getListeEx());
 //            monmenu.getPanelDroite().add(monmenu.getPanmodif());
-                     
-            monmenu.repaint();
-            monmenu.validate();      
+      
         }
     }
 }

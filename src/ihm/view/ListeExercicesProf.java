@@ -5,6 +5,7 @@ import ihm.controler.*;
 import ihm.model.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -32,6 +33,7 @@ public class ListeExercicesProf extends JPanel {
     private JPanel panelHaut; 
     private JLabel labelBlanc;
     private JButton retourMenu;
+    private JLabel message;
     
     private JPanel listeEx;
     private JLabel listedesExos;
@@ -76,9 +78,16 @@ public class ListeExercicesProf extends JPanel {
         
         maJTable = new ViewTableExercices(this);
                         
+        message = new JLabel("",SwingConstants.CENTER);
+        message.setFont(new Font("Arial",Font.PLAIN,15));
+        message.setForeground(Color.red);
+        
+              
         listeEx.add(listedesExos,BorderLayout.NORTH);
         listeEx.add(modifierEx,BorderLayout.EAST);
         listeEx.add(maJTable,BorderLayout.NORTH);
+        listeEx.add(message, BorderLayout.SOUTH);
+        
         
         //Assemblage final des deux panels à droite:
         panelDroite = new JPanel();
@@ -140,4 +149,9 @@ public class ListeExercicesProf extends JPanel {
         return modifierEx;
     }  
     
+    
+    //message qd modif Exercice dans la BDD
+     public JLabel getMessage() {
+        return message;
+    }
 }

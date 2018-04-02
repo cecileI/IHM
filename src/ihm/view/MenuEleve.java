@@ -22,6 +22,7 @@ public class MenuEleve extends JPanel{
     private JLabel lblClasseEleve;
     private JLabel menu;
     private JLabel imageTortue;
+    private JLabel message;
     
     private JButton deconnexion;
     
@@ -35,7 +36,7 @@ public class MenuEleve extends JPanel{
     private JPanel panelBas;
     private JPanel general;
     private JPanel miniTentative;
-    
+    private JPanel moyTentative;
     
             
     private JLabel mesExercices;
@@ -154,6 +155,9 @@ public class MenuEleve extends JPanel{
         nexo.setHorizontalAlignment(SwingConstants.CENTER);
         tentative.add(nexo, BorderLayout.CENTER);   
         
+        moyTentative = new JPanel();
+        moyTentative.setLayout(new BorderLayout());
+        
         miniTentative = new JPanel();
         miniTentative.setLayout(new GridLayout(2,2));
         
@@ -187,7 +191,13 @@ public class MenuEleve extends JPanel{
         miniTentative.add(visualiser);
         miniTentative.add(faireTentative);
         miniTentative.add(visualiserTentative);
-       tentative.add(miniTentative, BorderLayout.SOUTH);
+        
+        moyTentative.add(miniTentative, BorderLayout.CENTER);
+        message = new JLabel("",SwingConstants.CENTER);
+        message.setFont(new Font("Arial",Font.PLAIN,15));
+        message.setForeground(Color.red);
+        moyTentative.add(message, BorderLayout.SOUTH);
+        tentative.add(moyTentative, BorderLayout.SOUTH);
         
         //Partie du bas         
         panelBas = new JPanel();
@@ -201,6 +211,7 @@ public class MenuEleve extends JPanel{
         general = new JPanel();
         general.add(entete,BorderLayout.NORTH);
         general.add(panelBas,BorderLayout.CENTER);
+        //general.add(message, BorderLayout.SOUTH);
                     
         this.add(general, BorderLayout.CENTER);
         
@@ -273,5 +284,10 @@ public class MenuEleve extends JPanel{
     public Exercice getCurrentExercice(){
         return currentExercice;
     }
+
+    public JLabel getMessage() {
+        return message;
+    }
+ 
     
 }
