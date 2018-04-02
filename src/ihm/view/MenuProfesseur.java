@@ -10,6 +10,7 @@ import ihm.model.Exercice;
 
 import ihm.model.Tentative;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -42,6 +43,7 @@ public class MenuProfesseur extends JPanel {
     private JPanel panDroite; //panel à droite qui sera modifier par des nouveaux panel
     private JPanel panHaut; //panel de deconnection et panel blanc puis label prenom et nom élève
     private JPanel panExercice; //panel qui regroupe les boutons création et modification exercice
+    private JLabel message;
     
     //JButton
     private JButton creerExercice; //bouton création exercice
@@ -102,11 +104,15 @@ public class MenuProfesseur extends JPanel {
 
         //Partie Exercice     
             //Bouton création exercice
-        creerExercice = new JButton("Créer un Exercice");
-        creerExercice.addActionListener(controlProf); 
+        creerExercice = new JButton("<HTML><BODY> Creer/Ajouter <BR> un exercice</BODY></HTML>");
+        Font f=creerExercice.getFont().deriveFont(28.0f);
+        creerExercice.setFont(f); 
+        creerExercice.addActionListener(controlProf);
         
             //Bouton modification exercice
-        modifierExercice = new JButton("Modifier un Exercice");
+        modifierExercice = new JButton("<HTML><BODY> Modifier un <BR>exercice existant</BODY></HTML>");
+        Font f2=modifierExercice.getFont().deriveFont(28.0f);
+        modifierExercice.setFont(f2);
         modifierExercice.addActionListener(controlProf);
         
         JLabel blanc0 = new JLabel("");
@@ -154,11 +160,17 @@ public class MenuProfesseur extends JPanel {
         panExercice.add(blanc5);
         panExercice.add(blanc6);
         
+        
+        message = new JLabel("",SwingConstants.CENTER);
+        message.setFont(new Font("Arial",Font.PLAIN,15));
+        message.setForeground(Color.red);        
+        
         //panDroite qui contient panHaut et panExercice
         panDroite = new JPanel();
         panDroite.setPreferredSize(new Dimension(550,500));
         panDroite.add(panHaut);
         panDroite.add(panExercice);
+        panDroite.add(message);
         
         panGeneral = new JPanel();
         panGeneral.setLayout(new BorderLayout()); 
@@ -317,5 +329,10 @@ public class MenuProfesseur extends JPanel {
     
     public VisuTableExEleveProf getTableExEleveProf(){
         return tableExEleveProf;
+    }
+    
+    //message qd ajout Exercice dans la BDD
+     public JLabel getMessage() {
+        return message;
     }
 }
